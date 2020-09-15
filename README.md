@@ -1,4 +1,5 @@
 # vue-book
+项目描述，跟随mooc网模拟的读书webApp
 
 ## Project setup
 ```
