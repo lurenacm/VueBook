@@ -4,11 +4,20 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
+  {
+    path: '/',
+    redirect: '/ebook'
+  },
+  {
+    path: '/ebook',
+    component: () => import('@/views/ebook/index.vue'),
+    children: [
+      {
+        path: ':firstName',
+        component: () => import('@/components/ebook/EbookRead.vue')
+      }
+    ]
+  }
   // {
   //   path: '/about',
   //   name: 'About',

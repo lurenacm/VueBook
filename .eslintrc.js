@@ -19,6 +19,6 @@ module.exports = {
     "quotes": [0, "double"],
     // "semi": [2, "off"],
     'eol-last': 'off',
-    'space-before-blocks': 'off'
+    'space-before-blocks': 'off',
   }
 }
