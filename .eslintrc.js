@@ -20,5 +20,7 @@ module.exports = {
     // "semi": [2, "off"],
     'eol-last': 'off',
     'space-before-blocks': 'off',
+    'space-in-parens': 'off',
+    'space-infix-ops': 'off'
   }
 }

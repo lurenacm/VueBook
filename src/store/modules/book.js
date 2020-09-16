@@ -1,13 +1,17 @@
 const book = {
   state: {
-      test: 23
+    fileName: ''
   },
   mutations: {
-      getInfo: (state, val) => {
-        state.test = val
+    setFileName: (state, fileName) => {
+        state.fileName = fileName
       }
   },
-  actions: {}
+  actions: {
+    setFileName: ({ commit }, fileName) => {
+     return commit('setFileName', fileName)
+    }
+  }
 }
 
 export {
