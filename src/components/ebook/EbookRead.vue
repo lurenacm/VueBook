@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <div id="read">
     </div>
 </template>
 
 <script>
+import Epub from 'epubjs'
 import { mapGetters } from 'vuex'
 
+global.epub = Epub
     export default {
         name: 'EbookRead',
         computed: {
@@ -13,8 +15,16 @@ import { mapGetters } from 'vuex'
         },
         methods: {
             initEbook() {
-                const url = 'http://127.0.0.1:8081/epub/'+this.fileName + '.epub'
+                const url = 'http://localhost:8081/epub/'+this.fileName + '.epub'
                 console.log(url)
+                this.book = new Epub(url)
+                // console.log(this.book)
+            //     this.rendition = this.book.renderTo('read',  {
+            //         width: innerWidth,
+            //         height: innerHeight,
+            //         method: 'default'
+            //     })
+            //  this.rendition.display()
             }
         },
         mounted() {
