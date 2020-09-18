@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:uid" content="978-3-319-00233-0"/>
+  </head>
+  <docTitle>
+     <text>The South Texas Health Status Review</text>
+  </docTitle>
+  <docAuthor>
+     <text>Amelie G. Ramirez, Ian M. Thompson and Leonel Vela</text>
+  </docAuthor>
+<navMap>
+    <navPoint id="navpoint-1" playOrder="1">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="ACoverHTML.html"/>
+    </navPoint>
+    <navPoint id="navpoint-2" playOrder="2">
+      <navLabel>
+        <text>Frontmatter</text>
+      </navLabel>
+      <content src="A311816_1_En_BookFrontmatter_OnlinePDF.html"/>
+    </navPoint>
+    <navPoint id="navpoint-3" playOrder="3">
+      <navLabel>
+        <text>1. Introduction</text>
+      </navLabel>
+      <content src="A311816_1_En_1_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-4" playOrder="4">
+      <navLabel>
+        <text>2. South Texas Population Characteristics</text>
+      </navLabel>
+      <content src="A311816_1_En_2_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-5" playOrder="5">
+      <navLabel>
+        <text>3. Access to Health Care in South Texas</text>
+      </navLabel>
+      <content src="A311816_1_En_3_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-6" playOrder="6">
+      <navLabel>
+        <text>4. Communicable Diseases</text>
+      </navLabel>
+      <content src="A311816_1_En_4_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-7" playOrder="7">
+      <navLabel>
+        <text>5. Cancer Incidence and Mortality</text>
+      </navLabel>
+      <content src="A311816_1_En_5_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-8" playOrder="8">
+      <navLabel>
+        <text>6. Maternal and Child Health</text>
+      </navLabel>
+      <content src="A311816_1_En_6_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-9" playOrder="9">
+      <navLabel>
+        <text>7. Chronic Diseases</text>
+      </navLabel>
+      <content src="A311816_1_En_7_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-10" playOrder="10">
+      <navLabel>
+        <text>8. Behavioral Risk Factors in Adults</text>
+      </navLabel>
+      <content src="A311816_1_En_8_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-11" playOrder="11">
+      <navLabel>
+        <text>9. Environmental Health Issues</text>
+      </navLabel>
+      <content src="A311816_1_En_9_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-12" playOrder="12">
+      <navLabel>
+        <text>10. Injury</text>
+      </navLabel>
+      <content src="A311816_1_En_10_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-13" playOrder="13">
+      <navLabel>
+        <text>Backmatter</text>
+      </navLabel>
+      <content src="A311816_1_En_BookBackmatter_OnlinePDF.html"/>
+    </navPoint>
+</navMap>
+</ncx>

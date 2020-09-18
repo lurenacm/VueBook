@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>GUI Design for Android Apps, Part 4: Graphic Interface and Touchscreen Input</title><link href="springer_epub.css" type="text/css" rel="styleSheet"/></head><body><div class="ChapterContextInformation"><div class="ContextInformation" id="Chap10"><div class="ChapterCopyright">© Ryan Cohen 2014</div><span class="ContextInformationAuthorEditorNames"><span class="Author"><span class="AuthorName">Ryan Cohen</span> and </span><span class="Author"><span class="AuthorName">Tao Wang</span></span></span><span class="ContextInformationBookTitles"><span class="BookTitle" xml:lang="en">Android Application Development for the Intel<sup>®</sup> Platform</span></span><span class="ChapterDOI">10.1007/978-1-4842-0100-8_10</span></div></div><!--Begin Abstract--><div class="MainTitleSection"><h1 class="ChapterTitle" xml:lang="en">10. GUI Design for Android Apps, Part 4: Graphic Interface and Touchscreen Input</h1></div><div class="AuthorGroup"><div class="AuthorNames"><span class="Author"><span class="AuthorName">Ryan Cohen</span><sup>1 <span class="ContactIcon"/></sup> and </span><span class="Author"><span class="AuthorName">Tao Wang</span><sup>1 <span class="ContactIcon"/></sup></span></div><div class="Affiliations"><div class="Affiliation" id="Aff1"><span class="AffiliationNumber">(1)</span><div class="AffiliationText">OR, USA</div></div><div class="ClearBoth"> </div></div></div><!--End Abstract--><div class="Fulltext"><div class="Para">So far, three chapters have been devoted to Android interface design. The application interface discussed so far is similar to a dialog interface. The drawback is that it is difficult to obtain accurate touchscreen input information, so it is hard to display accurate images based on the input interface. This chapter introduces the view-based interaction style interface. In this mode, you can enter information with accurate touchscreen input and display detailed images, which happen to be requirements for lots of game applications.</div><div id="Sec1" class="Section1 RenderAsSection1"><h2 class="Heading">Display Output Framework</h2><div class="Para">Unlike the dialog box–style interface, which consists of <span class="EmphasisFontCategoryNonProportional">TextView</span>, <span class="EmphasisFontCategoryNonProportional">EditText</span>, <span class="EmphasisFontCategoryNonProportional">Button</span>, and other window components, an interactive UI display directly uses a <span class="EmphasisFontCategoryNonProportional">View</span> class. This section introduces the basic framework of drawing in the view (that is, displaying images or graphics).</div><div class="Para">To display images and graphics in a view, you need to put drawing code into its <span class="EmphasisFontCategoryNonProportional">onDraw</span> function. The <span class="EmphasisFontCategoryNonProportional">onDraw</span> function is called whenever images need to be redrawn in a view, such as when the view is displayed when the application starts, when the front cover object (such as a view, an event, or a dialog box) on top of the graphic view is moved away, when the view from the bottom layer is moved into the top layer with the activity, or in similar circumstances. You’re advised to put the drawing code in the <span class="EmphasisFontCategoryNonProportional">View.onDraw</span> function, so you can ensure when the view needs to be displayed to the user. The view window can also immediately be displayed in its total output; otherwise, certain graphic view areas may not be refreshed or repainted.</div><div class="Para">Android drawing functions such as draw rectangle, draw oval, draw straight line, and display text are usually integrated into the <span class="EmphasisFontCategoryNonProportional">Canvas</span> class. When the <span class="EmphasisFontCategoryNonProportional">View.onDraw</span> callback executes, it brings with it a <span class="EmphasisFontCategoryNonProportional">Canvas</span> parameter that is used to get the <span class="EmphasisFontCategoryNonProportional">Canvas</span> object.</div><div class="Para">Android uses the <span class="EmphasisFontCategoryNonProportional">Paint</span> class to draw a variety of graphics. <span class="EmphasisFontCategoryNonProportional">Paint</span> contains a variety of brush attributes, such as color, fill style, font, and font size.</div><div class="Para">As described earlier in the book, the interface configuration style of the application code generated in Eclipse is as follows: an activity includes layouts, and a layout contains two layers of widget structures. For this reason, you set parameters for the <span class="EmphasisFontCategoryNonProportional">setContentView</span> function in the <span class="EmphasisFontCategoryNonProportional">onCreate</span> function of the activity as the layout to achieve this effect. To use the view-based interface, you need to change the default parameter layout of the <span class="EmphasisFontCategoryNonProportional">setContentView</span> function to a custom view class.</div><div class="Para">Here is an example that illustrates the process. Modify the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> example project by using the following steps: <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">Using the same steps as in the section “Triggering an Explicit Match of Activities with No Parameters” in <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html"><span class="RefSource">Chapter 9</span></a></span>, create a new class (<span class="EmphasisFontCategoryNonProportional">MyView</span>), as shown in Figure <span class="InternalRef"><a href="#Fig1">10-1</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para">
+            <div class="Figure" id="Fig1"><div class="MediaObject" id="MO1"><img src="A978-1-4842-0100-8_10_Fig1_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig1_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-1.</span><div class="SimplePara">Create a new class in the project</div></div></div></div>
+            <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Edit the source code of the newly added class (<span class="EmphasisFontCategoryNonProportional">MyView.java</span>). The content is shown next.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">2</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">3</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">4</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Canvas;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Paint;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Context;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Color;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Paint.Style;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">9</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Rect;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">10</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Bitmap;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">11</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.BitmapFactory;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">12</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.graphics.Typeface;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">13 public class MyView extends View {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">14</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">MyView(Context context) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">15</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super(context);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">16</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">17</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">18</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onDraw(Canvas canvas) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">19</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Paint paint = new Paint();</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">20</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setAntiAlias(true);        //  Sett anti-aliasing</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">21</span>
+            <span class="EmphasisTypeStrikethrough"><span class="EmphasisFontCategoryNonProportional">// paint.setColor(Color.BLACK);          // Set Color Black</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">22</span>
+            <span class="EmphasisTypeStrikethrough"><span class="EmphasisFontCategoryNonProportional">// paint.setStyle(Style.FILL);           // Set Fill Style</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawCircle(250, 250, 120, paint);   // Draw Circle</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">24</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setColor(Color.RED);       // Set color red</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">25</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setStyle(Style.STROKE);    // Set style-Stroke ( no fill)</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">26</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawRect(new Rect(10, 10, 120, 100), paint); // draw rect</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">27</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setColor(0xff0000ff /*Color.BLUE*/ );</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">28</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">String str = "Hello!";</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">29</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawText(str, 150, 20, paint);  // display text</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">30</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setTextSize(50);                 // Set Text Size</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">31</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setTypeface(Typeface.SERIF);     // Set Typeface: Serif</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">32</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setUnderlineText(true);          // Set Underline Text</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">33</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawText(str, 150, 70, paint);  // Display text</span></span>
+          </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);</span></span>
+          </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawBitmap(bitmap, 0, 250, paint); // Display image</span></span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">  }</span>
+          </div><div class="Para">The code in line 13 adds <span class="EmphasisFontCategoryNonProportional">extends View</span>, which makes a custom class; in this case, <span class="EmphasisFontCategoryNonProportional">MyView</span> inherits from the <span class="EmphasisFontCategoryNonProportional">View</span> category. Lines 13‒16 create a custom class constructor function that calls the superclass. This constructor function is essential to prevent the following compilation error:</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Implicit super constructor View() is undefined. Must explicitly invoke another constructor</span>
+          </div><div class="Para">Lines 17‒34 override the function to program various pieces of drawing code. You construct a brush—that is, a <span class="EmphasisFontCategoryNonProportional">Paint</span> object—for drawing in line 16, and you set it to eliminate jagged edges in line 17. Line 23 draws a circle (x = 250, y = 250); line 24 sets the brush color to red, and so forth.</div><div class="Para">The prototype of the <span class="EmphasisFontCategoryNonProportional">setColor</span> function is</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void Paint.setColor(int color);</span>
+          </div><div class="Para">In Android, a four-byte integer is used to represent a color, based on α, red, green, and blue. This integer data format looks like this:<div id="Taba" class="Table"><table border="1"><colgroup><col/><col/><col/><col/></colgroup><tbody><tr class="noclass"><td align="center"><div class="SimplePara">αα</div></td><td align="center"><div class="SimplePara">
+                        <span class="EmphasisTypeItalic">rr</span>
+                      </div></td><td align="center"><div class="SimplePara">
+                        <span class="EmphasisTypeItalic">gg</span>
+                      </div></td><td align="center"><div class="SimplePara">
+                        <span class="EmphasisTypeItalic">bb</span>
+                      </div></td></tr></tbody></table></div>
+          </div><div class="Para">From left to right, the first four bytes represent α, red, green, and blue values. For example, blue is 0xff0000ff, as is also reflected in line 27. In addition, the Android <span class="EmphasisFontCategoryNonProportional">Color</span> class also defines a constant for some colors, such as <span class="EmphasisFontCategoryNonProportional">BLACK</span>, <span class="EmphasisFontCategoryNonProportional">RED</span>, <span class="EmphasisFontCategoryNonProportional">GREEN</span>, <span class="EmphasisFontCategoryNonProportional">BLUE</span>, and so on, as reflected in line 24.</div><div class="Para">The function sets the fill mode of the brush. The function prototype is</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  Paint.setStyle(Paint.Style style)</span>
+          </div><div class="Para">The parameter <span class="EmphasisFontCategoryNonProportional">style</span> can take <span class="EmphasisFontCategoryNonProportional">Paint.Style.STROKE</span> (hollow fill), <span class="EmphasisFontCategoryNonProportional">Paint.Style.FILL</span> (filled), or <span class="EmphasisFontCategoryNonProportional">Paint.Style.FILL_AND_STROKE</span> (solid and filled). These values are constants defined in the <span class="EmphasisFontCategoryNonProportional">Paint.Style</span> class; their corresponding display styles are shown in Table <span class="InternalRef"><a href="#Tab1">10-1</a></span>.<div id="Tab1" class="Table"><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Table 10-1.</span><div class="SimplePara">Fill Mode Parameters and Examples</div></div></div><table border="1"><colgroup><col/><col/></colgroup><thead><tr class="header"><th><div class="SimplePara">Image Displayed</div></th><th><div class="SimplePara">Graphic Function Parameter Setting</div></th></tr></thead><tbody><tr class="noclass"><td><div class="SimplePara">
+                        <img src="A978-1-4842-0100-8_10_Figa_HTML.jpg" alt="A978-1-4842-0100-8_10_Figa_HTML.jpg"/>
+                      </div></td><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">Color=BLACK, Style=FILL</span>
+                      </div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <img src="A978-1-4842-0100-8_10_Figb_HTML.jpg" alt="A978-1-4842-0100-8_10_Figb_HTML.jpg"/>
+                      </div></td><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">Color=BLACK, Style=STROKE</span>
+                      </div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <img src="A978-1-4842-0100-8_10_Figc_HTML.jpg" alt="A978-1-4842-0100-8_10_Figc_HTML.jpg"/>
+                      </div></td><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">Color=BLACK</span>,<span class="EmphasisFontCategoryNonProportional">Style=FILL_AND_STROKE</span>
+                      </div></td></tr></tbody></table></div>
+          </div><div class="Para">
+            <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">3.</span><div class="ItemContent"><div class="Para">Modify the main <span class="EmphasisFontCategoryNonProportional">Activity</span> class (<span class="EmphasisFontCategoryNonProportional">MainActivity.java</span>) as follows:</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">1</span>  <span class="EmphasisFontCategoryNonProportional">package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">2</span>  <span class="EmphasisFontCategoryNonProportional">import android.os.Bundle;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">3</span>  <span class="EmphasisFontCategoryNonProportional">import android.app.Activity;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">4</span>  <span class="EmphasisFontCategoryNonProportional">import android.view.Menu;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">5</span>  <span class="EmphasisFontCategoryNonProportional">public class MainActivity extends Activity {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">6</span>      <span class="EmphasisFontCategoryNonProportional">@Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">7</span>      <span class="EmphasisFontCategoryNonProportional">public void onCreate(Bundle savedInstanceState) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">8</span>          <span class="EmphasisFontCategoryNonProportional">super.onCreate(savedInstanceState);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">9</span>  <span class="EmphasisTypeStrikethrough"><span class="EmphasisFontCategoryNonProportional">// setContentView(R.layout.activity_main);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">10         setContentView(new MyView(this));</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">11</span>
+            <span class="EmphasisFontCategoryNonProportional">}</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisTypeBold">12</span>     <span class="EmphasisFontCategoryNonProportional">......</span>
+          </div><div class="Para">The system automatically overrides the code in line 7 with the code in line 8. This allows a custom view class instead of the default layout as the interface of the activity.</div><div class="Para">The application interface is as shown in Figure <span class="InternalRef"><a href="#Fig2">10-2</a></span>; (a) shows the entire interface, and (b) is the enlarged section of the graphical display.<div class="Figure" id="Fig2"><div class="MediaObject" id="MO2"><img src="A978-1-4842-0100-8_10_Fig2_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig2_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-2.</span><div class="SimplePara">The interface of the display output framework of the <span class="EmphasisFontCategoryNonProportional">GuiExam</span>application</div></div></div></div>
+          </div></div><div id="Sec2" class="Section1 RenderAsSection1"><h2 class="Heading">Drawing Framework for Responding to Touchscreen Input</h2><div class="Para">The previous example application only displays images/graphics and cannot respond to touchscreen input. In this section, you see how to respond to touchscreen input and control the view display.</div><div class="Para">
+            <span class="EmphasisFontCategoryNonProportional">View</span> has an <span class="EmphasisFontCategoryNonProportional">onTouchEvent</span> function with the following function prototype:</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">boolean View.onTouchEvent(MotionEvent event);</span>
+          </div><div class="Para">When a user clicks, releases, moves, or does other interactive actions on the touchscreen, a touch input event is generated. This touch input event triggers the call to <span class="EmphasisFontCategoryNonProportional">View.onTouchEvent</span>. To allow users to process touchscreen input, you need to rewrite this function. The response code needs to be written in the function’s body.</div><div class="Para">
+            <span class="EmphasisFontCategoryNonProportional">View.onTouchEvent</span> has a parameter of type <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> that defines the coordinate position of the touch point, event type, and so on of the <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> class. The event types can be <span class="EmphasisFontCategoryNonProportional">MotionEvent.ACTION_DOWN</span>, <span class="EmphasisFontCategoryNonProportional">MotionEvent.ACTION_MOVE</span>, <span class="EmphasisFontCategoryNonProportional">MotionEvent.ACTION_UP</span>, or equivalent, as defined constants in the <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> class. The constants represent interactive actions such as a touchscreen press, touchscreen move, touchscreen pop-up, and so on.</div><div class="Para">As discussed earlier, whenever the view needs to be redrawn, the function is called, so the drawing code needs to be put into the function. Most of the time, the system can automatically trigger redraw events; but because users design their own redraws, the system does not know when they need to be triggered. For example, perhaps a user updates the display content, but the location, size, and levels of the content are not changed; as a result, the system does not trigger the redraw event. In this situation, the user needs to call the class function <span class="EmphasisFontCategoryNonProportional">postInvalidate</span> or <span class="EmphasisFontCategoryNonProportional">invalidate</span> of the <span class="EmphasisFontCategoryNonProportional">View</span> class to proactively generate the redraw events. The function prototype is</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  View.invalidate(Rect dirty)</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  View.invalidate(int l, int t, int r, int b)</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  View.invalidate()</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  View.postInvalidate(int left, int top, int right, int bottom)</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">void  View.postInvalidate()</span>
+          </div><div class="Para">The <span class="EmphasisFontCategoryNonProportional">postInvalidate</span> and functions with no parameters redraw the entire view; the <span class="EmphasisFontCategoryNonProportional">postInvalidate</span> and <span class="EmphasisFontCategoryNonProportional">invalidate</span> functions with parameters redraw the designated area (or certain area) of the view. The difference between <span class="EmphasisFontCategoryNonProportional">postInvalidate</span> and <span class="EmphasisFontCategoryNonProportional">invalidate</span> with and without constants is that the first case requires an event loop until the next issue to produce the redraw event, whereas the second one immediately issues a redraw.</div><div class="Para">The following example illustrates the framework of drawing code that responds to touchscreen input. The interface of the application is shown in Figure <span class="InternalRef"><a href="#Fig3">10-3</a></span>.<div class="Figure" id="Fig3"><div class="MediaObject" id="MO3"><img src="A978-1-4842-0100-8_10_Fig3_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig3_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-3.</span><div class="SimplePara">The interface of a <span class="EmphasisFontCategoryNonProportional">GuiExam</span> input graphics framework that responds to the touchscreen</div></div></div></div>
+          </div><div class="Para">The application starts in Figure <span class="InternalRef"><a href="#Fig3">10-3(a)</a></span>. When the user clicks inside a circle (touches the screen within the circle area), the color of the circle changes: it cycles through black, red, green, and blue, as shown in Figure <span class="InternalRef"><a href="#Fig3">10-3(a)</a></span>–(d). If you click outside the circle, the circle does not change colors.</div><div class="Para">Using the same example as in the earlier section, modify the custom view class <span class="EmphasisFontCategoryNonProportional">MyView.java</span> as follows:</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">2</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">3  import android.view.View;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">4  import android.graphics.Canvas;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">5  import android.graphics.Paint;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">6  import android.content.Context;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">7</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">8  import android.graphics.Color;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">9</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.MotionEvent;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">10       import java.lang.Math;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">11 public class MyView extends View {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">12</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private float cx = 250;     // Default X Coordinate of Circle</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">13</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private float cy = 250;     // Default Y Coordinate of Circle</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">14</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private int radius = 120;   // Radius</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">15</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private int colorArray[] = {Color.BLACK, Color.RED, Color.GREEN, Color.BLUE };</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">16</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Defines an array of colors</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">17</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private int colorIdx = 0;   // Custom color subscript</span></span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private Paint paint;        // Define Paint</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">18</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">19     public MyView(Context context) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">20         super(context);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">21</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint = new Paint();       // Initialization paintbrush</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">22</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setAntiAlias(true);  // Setting anti-aliasing</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setColor(colorArray[colorIdx]);    // Set the pen color</span></span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">24</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">25     @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">26     protected void onDraw(Canvas canvas) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">27</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">canvas.drawCircle(cx, cy, radius, paint);</span></span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">28</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">29</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">30</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public boolean onTouchEvent(MotionEvent event) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">31</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">float px = event.getX();</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">32</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// defined the touch point in the X, Y coordinates</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">33</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">float py = event.getY();</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">34</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">switch (event.getAction()) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">35</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_DOWN:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">36</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Touch  screen pressed</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">37</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (Math.abs(px-cx) &lt; radius</span></span>
+            <span class="EmphasisFontCategoryNonProportional">&amp;&amp;</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Math.abs(py-cy) &lt; radius){</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">38</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Touch location inside the circle</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">39</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">colorIdx = (colorIdx + 1) % colorArray.length;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">40</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">paint.setColor(colorArray[colorIdx]);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">41</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set paintbrush color</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">42</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">43</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">postInvalidate();          // Repaint</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">44</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">45</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_MOVE:  // Screen touch and move</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">46</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">47</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_UP:    // Screen touch unpressed</span></span>
+          </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">return true;</span></span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para">Lines 15 and 16 define an array of colors and color indices, and line 17 defines paintbrush variables. Lines 20–22 of the constructor function complete the initialization of the brush property settings. The reason you do not put the code for the paintbrush property set in <span class="EmphasisFontCategoryNonProportional">View.Ondraw</span> is to avoid repeated calculations for each redraw. The only work for the <span class="EmphasisFontCategoryNonProportional">onDraw</span> function is to display the circle.</div><div class="Para">In lines 28–46, you create the new touch input event response function <span class="EmphasisFontCategoryNonProportional">onTouchEvent</span>. In lines 30 and 32, you first get the X, Y coordinates of the touch point using the <span class="EmphasisFontCategoryNonProportional">getX</span> and <span class="EmphasisFontCategoryNonProportional">getY</span> functions of the <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> class. Then you obtain the input action type through the <span class="EmphasisFontCategoryNonProportional">getAction</span> function of the <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> class in line 34, followed by a <span class="EmphasisFontCategoryNonProportional">case</span> statement to complete the different input actions. The response to the action of pressing the touchscreen is in lines 37–43. You determine whether the touch point is within the circle in line 37. Then you modify the codes that set the colors and change the pen color in lines 39–40. You call the <span class="EmphasisFontCategoryNonProportional">postInvalidate</span> function notification to redraw in line 43 and provide it with the final finishing touch.</div></div><div id="Sec3" class="Section1 RenderAsSection1"><h2 class="Heading">Multi-Touch Code Framework</h2><div class="Para">Most Android devices support multi-touch touchscreens. The good news is that the Android system software also provides multi-touch support. This section covers the multi-touch code framework.</div><div class="Para">The touch event class <span class="EmphasisFontCategoryNonProportional">MotionEvent</span> has a <span class="EmphasisFontCategoryNonProportional">getPointerCount()</span> function that returns the current number of touch points on the screen. The function prototype is</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">final int MotionEvent.getPointerCount();</span>
+          </div><div class="Para">You can also use the <span class="EmphasisFontCategoryNonProportional">getX</span> and <span class="EmphasisFontCategoryNonProportional">getY</span> functions discussed earlier to obtain the coordinates of the touch point. The prototypes are as follows:</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">final float  MotionEvent.getX(int pointerIndex)</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">final float  MotionEvent.getX()</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">final float  MotionEvent.getY(int pointerIndex)</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">final float  MotionEvent.getY()</span>
+          </div><div class="Para">In the previous section, you got the coordinates of a single touch point using a function with no parameters. The <span class="EmphasisFontCategoryNonProportional">getX</span>/<span class="EmphasisFontCategoryNonProportional">getY</span> functions with parameters are used to get the position of the touch point in the multi-point touch situation, where the parameter <span class="EmphasisFontCategoryNonProportional">pointerIndex</span> is the index number for the touch point. This is an integer number starting at 0.</div><div class="Para">Here is an example to illustrate the multi-touch programming framework. This example is a two-point touch application that zooms a circle in and out. The application interface is shown in Figure <span class="InternalRef"><a href="#Fig4">10-4</a></span>.<div class="Figure" id="Fig4"><div class="MediaObject" id="MO4"><img src="A978-1-4842-0100-8_10_Fig4_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig4_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-4.</span><div class="SimplePara">The interface of the two-point touch zoom-in/zoom-out GuiExam graphic application</div></div></div></div>
+          </div><div class="Para">The application’s launch interface is shown in Figure <span class="InternalRef"><a href="#Fig4">10-4(a)</a></span>. The circle is always at the center of the view, but the size of the circle (its radius) can be controlled by a two-point touch. The center is the center of the view, not the center of the activity or the center of the screen. The so-called two-point touchscreen means there are two touch points, or two fingers moving on the screen at the same time, either in an expand gesture where the circle becomes larger (b) or in squeeze gesture where the circle becomes smaller (c). The code is as follows:</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">2</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">3  import android.view.View;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">4  import android.graphics.Canvas;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">5  import android.graphics.Paint;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">6  import android.content.Context;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">7</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">8  import android.view.MotionEvent;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">9  import java.lang.Math;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">10 public class MyView extends View {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">11</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private static final int initRadius = 120; // initial value of the radius</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">12     private float cx;                // X coordinate of the circle</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">13     private float cy;                // Y coordinate of the circle</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">14</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private int radius = initRadius; // Set initial value of the radius</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">15</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public float graphScale = 1;     // Set Scale factor for one two-point touch move</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">16</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private float preInterPointDistance;    // Pre-distance of two touch points</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">17</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private boolean bScreenPress = false;   // The sign of the screen being pressed down</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">18     private Paint paint;                    // Define paintbrush</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">19     public MyView(Context context) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">20         super(context);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">21         paint = new Paint();                // Initialize paintbrush</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">22         paint.setAntiAlias(true);           // Set Anti Alias</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">23     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">24     @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">25     protected void onDraw(Canvas canvas) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">26</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cx = canvas.getWidth()/2;  // Let circle center positioned at the screen of the screen</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">27</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cy = canvas.getHeight()/2;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">28         canvas.drawCircle(cx, cy, radius*graphScale, paint);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">29     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">30     @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">31     public boolean onTouchEvent(MotionEvent event) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">32</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">float px1, py1;  // Define the X,Y coordinates of 1st touch point</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">33</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">float px2, py2;  // Define the X,Y coordinates of 2nd touch point</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">34</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">float interPointDistance;  // distance between two  touch points</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">35</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">switch (event.getAction()) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">36</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_DOWN:   // Screen touch pressed</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">37</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">38</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_MOVE:   // Screen touch move</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">39</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (event.getPointerCount() == 2 ) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">40</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">px1 = event.getX(0);    // Get the X,Y coordinate of the first touch point</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">41</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">py1 = event.getY(0);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">42</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">px2 = event.getX(1);    // Get the X,Y coordinate of the second touch point</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">43</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">py2 = event.getY(1);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">44</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">interPointDistance = (float) Math.sqrt((px6-px2)*(px6-px2)+(py1 - py2)*(py1 - py2));</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">45</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (!bScreenPress){</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">46</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">bScreenPress = true;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">47</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">preInterPointDistance = interPointDistance;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">48</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">} else {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">49</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">graphScale = interPointDistance / preInterPointDistance;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">50</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">invalidate();       // Redraw graphics</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">51</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">52</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">} else {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">53</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">bScreenPress = false;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">54</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">radius = (int)(radius * graphScale);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">55</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// One downsize/enlarge circle end. Record final scale factor</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">56</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">57</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">58</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case MotionEvent.ACTION_UP:     // Screen touch lift up</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">59</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">bScreenPress = false;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">60</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">radius = (int)(radius * graphScale);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">61</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// One downsize/enlarge circle end. Record final scale factor</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">62</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">63</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">64         return true;</span>
+          </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+          </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+          </div><div class="Para">This code defines a scaling factor <span class="EmphasisFontCategoryNonProportional">graphScale</span> for a two-point touch in line 15 and a variable <span class="EmphasisFontCategoryNonProportional">preInterPointDistance</span> in line 16 to record the distance between the two touch points. Line 17 defines the flag variable <span class="EmphasisFontCategoryNonProportional">bScreenPress</span> when the screen is pressed.</div><div class="Para">Lines 26 and 27 call <span class="EmphasisFontCategoryNonProportional">getWidth</span> and <span class="EmphasisFontCategoryNonProportional">getHeight</span> of the <span class="EmphasisFontCategoryNonProportional">Canvas</span> class in the <span class="EmphasisFontCategoryNonProportional">onDraw</span> function to get the view’s width and height, and then allocate the center of the circle in the center of the view. The advantage of this step is that, when the screen rotates 90 degrees, the circle remains in the center of the view, as shown in Figure <span class="InternalRef"><a href="#Fig4">10-4(d)</a></span>. The difference between these examples and the previous one is that this time the radius of the circle being drawn is equal to the radius of the circle multiplied by the scaling factor <span class="EmphasisFontCategoryNonProportional">graphScale</span>.</div><div class="Para">Lines 32–61 contain <span class="EmphasisFontCategoryNonProportional">onDraw</span> based on the modified example in the previous section. Lines 38–56 are the response code for a touch-move activity. Line 3 determines whether there are two touch points; if there are, you run code lines 40–51; otherwise, you run lines 53–54. You set the flag <span class="EmphasisFontCategoryNonProportional">bScreenPress</span> to false to indicate when the two touch points are first pressed, and then you record the final radius as equal to the current value of the radius multiplied by the scaling factor <span class="EmphasisFontCategoryNonProportional">graphScale</span>. You get the position coordinates of the two touch points in lines 40–43. Line 44 calculates the distance between the two touch points. Line 45 determines whether it is the first press; if it is, lines 46 and 47 run, and record the distance between the two touch points; otherwise, the code in lines 49‒50 runs. Here you calculate the scaling factor based on the current distance between the points and the distance in the previous movement. After this, the graphic is redrawn.</div><div class="Para">To handle the location of the flag <span class="EmphasisFontCategoryNonProportional">bScreenPress</span>, you execute the response code of the screen touch-up activity in lines 58–60, which is similar to the non-two-point touch code in lines 53 and 54.</div></div><div id="Sec4" class="Section1 RenderAsSection1"><h2 class="Heading">Responding to Keyboard Input</h2><div class="Para">Most Android devices have a number of hardware buttons, such as Volume +, Volume -, Power, Home, Menu, Back, Search, and so on. Some Android devices are also equipped with keyboards. Keyboards, including the device’s hardware buttons, are important input methods for Android applications. Keyboard input corresponds to keyboard events, named <span class="EmphasisFontCategoryNonProportional">KeyEvent</span> (also known as a <span class="EmphasisTypeItalic">pressing key event</span>). In this section, you learn about the methods to respond to keyboard input.</div><div class="Para">In Android, both the <span class="EmphasisFontCategoryNonProportional">Activity</span> and <span class="EmphasisFontCategoryNonProportional">View</span> classes can receive pressed-key events. Key events trigger calls to the <span class="EmphasisFontCategoryNonProportional">onKeyDown</span> function of the <span class="EmphasisFontCategoryNonProportional">Activity</span> or <span class="EmphasisFontCategoryNonProportional">View</span> class. The function prototype is</div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">boolean    Activity.onKeyDown(int keyCode, KeyEvent event);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">boolean    View.onKeyDown(int keyCode, KeyEvent event);</span>
+          </div><div class="Para">The <span class="EmphasisFontCategoryNonProportional">keyCode</span> parameter is the index code of the key that is pressed. Each key in Android has a unique number, which is the <span class="EmphasisFontCategoryNonProportional">keyCode</span>. Some of the key codes were described in Table 7-1. The key event, <span class="EmphasisFontCategoryNonProportional">KeyEvent</span>, contains properties related to buttons, such as the frequency with which they are pressed. To handle key events, you need to override the <span class="EmphasisFontCategoryNonProportional">onKeyDown</span> function and add your own response-handling code.</div><div class="Para">Interestingly, although the <span class="EmphasisFontCategoryNonProportional">Activity</span> and <span class="EmphasisFontCategoryNonProportional">View</span> classes can receive key events, the view is often included in the activity. When the button is pressed, the event first sends external activity; that is, the activity receives the event sooner. The following example shows how you respond to the button press by rewriting the activity’s <span class="EmphasisFontCategoryNonProportional">onKeyDown</span> function.</div><div class="Para">This example shows how to use the arrow keys to move the circle in the application. The application interface is shown in Figure <span class="InternalRef"><a href="#Fig5">10-5</a></span>.<div class="Figure" id="Fig5"><div class="MediaObject" id="MO5"><img src="A978-1-4842-0100-8_10_Fig5_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig5_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-5.</span><div class="SimplePara">Using keys to control the movement of the circle in the application interface</div></div></div></div>
+          </div><div class="Para">The Lenovo phone on which we are testing has no keypad, so we chose to run the application on a virtual machine. The virtual machine has Left, Down, Right, and Up keys to achieve these circle movements. The application startup interface is shown in Figure <span class="InternalRef"><a href="#Fig5">10-5(a)</a></span>. Pressing the Left, Down, Right, or Up button makes the circle move in the corresponding direction. The interface examples are shown in Figure <span class="InternalRef"><a href="#Fig5">10-5(b) through (e)</a></span>.</div><div class="Para">This application is based on the example, created at the beginning of this chapter (Figure <span class="InternalRef"><a href="#Fig1">10-1</a></span>) and modified per the following procedure:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">4.</span><div class="ItemContent"><div class="Para">Modify the source code of <span class="EmphasisFontCategoryNonProportional">MyView.java</span> as follows:</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">2</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">3  import android.view.View;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">4  import android.graphics.Canvas;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">5  import android.graphics.Paint;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">6  import android.content.Context;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">7  public class MyView extends View {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">8      private float cx = 250;                 // X coordinate of the circle</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">9      private float cy = 250;                 // Y coordinate of the circle</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">10     private static final int radius = 120;  // Radius of the circle</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">11     private Paint paint;                    // define paint brush</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">12</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private static final int MOVESTEP = 10; // the step length for pressing direction key</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">13     public MyView(Context context) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">14         super(context);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">15         paint = new Paint();                // Paint brush initialization</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">16         paint.setAntiAlias(true);           // Set Anti Alias</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">17     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">18     @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">19     protected void onDraw(Canvas canvas) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">20         canvas.drawCircle(cx, cy, radius, paint);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">21     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">22     ////// Self-define function:press key to move graphic (circle) //////</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">23</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void moveCircleByPressKey(int horizon, int vertical){</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">24</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (horizon &lt; 0)                    // horizontal move</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">25</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cx -= MOVESTEP;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">26</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">else if (horizon &gt; 0)</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">27</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cx += MOVESTEP;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">28</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (vertical &lt; 0)</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">29</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cy += MOVESTEP;                 // vertical move</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">30</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">else if (vertical &gt; 0)</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">31</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">cy -= MOVESTEP;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">32</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">postInvalidate();                   // note to repaint</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">33</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">34 }</span>
+          </div><div class="Para">In lines 23–33, you add a function to the view class to move the image (the circle)by pressing the horizon or vertical key. This function takes two arguments: <span class="EmphasisFontCategoryNonProportional">horizon</span> and <span class="EmphasisFontCategoryNonProportional">vertical</span>. If <span class="EmphasisFontCategoryNonProportional">horizon</span> is less than 0, you decrease the X coordinate value of the circle, and as a result, the circle moves to the left. If <span class="EmphasisFontCategoryNonProportional">horizon</span> is greater than 0, you increase the X coordinate value of the circle, which moves the circle to the right. You do a similar operation for the vertical parameters to move the circle up and down. Line 32 updates the graphics routine with new parameters and trigger the view to redraw.
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">5.</span><div class="ItemContent"><div class="Para">Modify the source code of the main activity class <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span> as follows:</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.KeyEvent;     // Key press event class</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">6  public class MainActivity extends Activity {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">7</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private MyView theView =null;  // View object stored inside the variable</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">8      @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">9      public void onCreate(Bundle savedInstanceState) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">10         super.onCreate(savedInstanceState);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">11</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">theView = new MyView(this); // record the View class of the Activity</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">12</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">setContentView(theView);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">13     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">14     @Override</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">15     public boolean onCreateOptionsMenu(Menu menu) {</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">16         getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">17         return true;</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">18     }</span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">19</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override                     // Key down response function</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">20</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public boolean onKeyDown(int keyCode, KeyEvent event) {</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">21</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">int horizon = 0; int vertical = 0;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">22</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">switch (keyCode)</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">{</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">24</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case KeyEvent.KEYCODE_DPAD_LEFT:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">25</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">horizon = -1;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">26</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">27</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case KeyEvent.KEYCODE_DPAD_RIGHT:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">28</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">horizon = 1;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">29</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">30</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case KeyEvent.KEYCODE_DPAD_UP:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">31</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">vertical = 1;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">32</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">33</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case KeyEvent.KEYCODE_DPAD_DOWN:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">34</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">vertical = -1;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">35</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">36</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">default:</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">37</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super.onKeyDown(keyCode, event);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">38</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">39</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (!(horizon == 0</span></span>
+            <span class="EmphasisFontCategoryNonProportional">&amp;&amp;</span>
+            <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">vertical == 0))</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">40</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">theView.moveCircleByPressKey(horizon,vertical);</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">41</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">return true;</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">42</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+          </div><div class="Para ParaTypeProgramcode">
+            <span class="EmphasisFontCategoryNonProportional">43 }</span>
+          </div><div class="Para">In this code, you want the <span class="EmphasisFontCategoryNonProportional">Activity</span> class to receive and respond to key-down events, so you overwrite the <span class="EmphasisFontCategoryNonProportional">onKeyDown</span> function in lines 19–42 with the button-response code. Although the response function for key buttons is located in the <span class="EmphasisFontCategoryNonProportional">Activity</span> class, the display updates are to be implemented in the view <span class="EmphasisFontCategoryNonProportional">MyView</span> class, so you must make the <span class="EmphasisFontCategoryNonProportional">Activity</span> class aware of its corresponding view object. To do so, you add a record-view object variable <span class="EmphasisFontCategoryNonProportional">theView</span> in line 7. In lines 11 and 12, you let <span class="EmphasisFontCategoryNonProportional">theView</span> record this object when constructing the view object.</div><div class="Para">In the key-down response function <span class="EmphasisFontCategoryNonProportional">onKeyDown</span>, you use a <span class="EmphasisFontCategoryNonProportional">switchcase</span> statement (lines 22–38) and take different actions according to the different keys. The function’s <span class="EmphasisFontCategoryNonProportional">keyCode</span> parameter specifies the key number of the key that is pressed. For example, the code in lines 24–26 is the handling code for the Left key. It sets a horizontal flag to “left” and then calls the self-defined function <span class="EmphasisFontCategoryNonProportional">moveCircleByPressKey</span> of the view class to move the circle in lines 39 and 40. To allow other key-press-down events to be addressed, you call the system’s default handler to deal with other keys in lines 36 and 37.</div></div><div id="Sec5" class="Section1 RenderAsSection1"><h2 class="Heading">Dialog Boxes in Android</h2><div class="Para">There are three different ways to use dialog boxes in Android, as discussed in this section.</div><div id="Sec6" class="Section2 RenderAsSection2"><h3 class="Heading">Using an Activity’s Dialog Theme</h3><div class="Para">The <span class="EmphasisFontCategoryNonProportional">Dialog</span> class implements a simple floating window that can be created in an activity. By using a basic <span class="EmphasisFontCategoryNonProportional">Dialog</span> class, you can create a new instance and set its title and layout. Dialog themes can be applied to a normal activity to make it look similar to a dialog box.</div><div class="Para">In addition, the <span class="EmphasisFontCategoryNonProportional">Activity</span> class provides a convenient mechanism to create, save, and restore dialogs, such as <span class="EmphasisFontCategoryNonProportional">onCreateDialog(int)</span>, <span class="EmphasisFontCategoryNonProportional">onPrepareDialog(int, Dialog)</span>, <span class="EmphasisFontCategoryNonProportional">showDialog(int)</span>, <span class="EmphasisFontCategoryNonProportional">dismissDialog(int)</span>, and other functions. If you use these functions, the activity can return the <span class="EmphasisFontCategoryNonProportional">Activity</span> object that manages the dialog through the <span class="EmphasisFontCategoryNonProportional">getOwnerActivity()</span> method.</div><div class="Para">The following are specific instructions for using these functions.</div><div id="Sec7" class="Section3 RenderAsSection3"><h4 class="Heading">onCreateDialog(int) Function</h4><div class="Para">When you use this callback function, Android sets this activity as the owner of each dialog box, which automatically manages the state of each dialog box and anchors it to the activity. In this way, each dialog inherits the specific attributes of this activity. For example, when a dialog box is opened, the menu button displays the option menu defined for the activity. For example, you can use the volume keys to modify the audio stream that the activity uses.</div></div><div id="Sec8" class="Section3 RenderAsSection3"><h4 class="Heading">showDialog(int) Function</h4><div class="Para">When you want to display a dialog box, you call the <span class="EmphasisFontCategoryNonProportional">showDialog(intid)</span> method and pass an integer through this function call that uniquely identifies this dialog. When the dialog box is first requested, Android calls <span class="EmphasisFontCategoryNonProportional">onCreateDialog(intid)</span> from the activity. You should initialize this dialog box. This callback method is passed to the same ID that <span class="EmphasisFontCategoryNonProportional">showDialog(intid)</span> has. When you create the dialog box, the object is returned at the end of the activity.</div></div><div id="Sec9" class="Section3 RenderAsSection3"><h4 class="Heading">onPrepareDialog(int, Dialog) Function</h4><div class="Para">Before the dialog box is displayed, Android also calls the optional callback function <span class="EmphasisFontCategoryNonProportional">onPrepareDialog(int id, Dialog)</span>. If you want the properties to be changed every time a dialog box is opened, you can define this method. Unlike the <span class="EmphasisFontCategoryNonProportional">onCreateDialog(int)</span> function, which can only be called the first time you open the dialog box, this method is called each time you open the dialog box. If you do not define <span class="EmphasisFontCategoryNonProportional">onPrepareDialog()</span>, then the dialog remains the same as the last time it was opened. The dialog box’s ID and the dialog object created in <span class="EmphasisFontCategoryNonProportional">onCreateDialog()</span> can also be passed to the function by this method.</div></div><div id="Sec10" class="Section3 RenderAsSection3"><h4 class="Heading">dismissDialog(int) Function</h4><div class="Para">When you are ready to close the dialog box, you can call <span class="EmphasisFontCategoryNonProportional">dismiss()</span> through this dialog box method to eliminate it. If desired, you can also call <span class="EmphasisFontCategoryNonProportional">dismissDialog(int id)</span> method from the activity. If you want to use the <span class="EmphasisFontCategoryNonProportional">onCreateDialog(int id)</span> method to retain the state of your dialog box, then each time the dialog box is eliminated, the status of the object of this dialog box object is kept in the activity. If you decide that you no longer need this object or clear the state, then you should call <span class="EmphasisFontCategoryNonProportional">removeDialog(intid)</span>. This removes any internal object references, and even if the dialog box is being displayed, it is eliminated.</div></div></div><div id="Sec11" class="Section2 RenderAsSection2"><h3 class="Heading">Using a Specific Dialog Class</h3><div class="Para">Android provides multiple classes that are expansions of the <span class="EmphasisFontCategoryNonProportional">Dialog</span> class, such as <span class="EmphasisFontCategoryNonProportional">AlertDialog</span>, <span class="EmphasisFontCategoryNonProportional">ProgressDialog</span>, and so on. Each class is designed to provide specific dialog box functions. The screen interface based on the <span class="EmphasisFontCategoryNonProportional">Dialog</span> class is created in all activities that then call the specific class. So it does not need to be registered in the manifest file, and its life cycle is controlled by the activity that calls the class.</div></div><div id="Sec12" class="Section2 RenderAsSection2"><h3 class="Heading">Using Toast Reminders</h3><div class="Para">Toasts are special, nonmodular, transient message dialog boxes, usually used in the broadcast receiver and backgroundservices, and used to prompt user events.</div></div><div id="Sec13" class="Section2 RenderAsSection2"><h3 class="Heading">Dialog Box Example</h3><div class="Para">Of the dialog box methods discussed, if it is measured by how the implementation of the function is done, the first function is the most powerful, followed by the second and third. In terms of the degree of sophistication of the implementation code, the third method is the simplest, and the first and the second are more complex.</div><div class="Para">The following example demonstrates the second method. See Android’s help documentation and samples (in the <span class="EmphasisFontCategoryNonProportional">samples</span> directory located under the Android SDK installation directory) to learn more about the other implementation methods.</div><div class="Para">The specific dialog box class that this sample application uses is the <span class="EmphasisFontCategoryNonProportional">Builder</span> inner class of <span class="EmphasisFontCategoryNonProportional">AlertDialog</span>. When you press the Back button, a dialog box pops up, allowing you to decide whether to exit the application. The application interface is shown in Figure <span class="InternalRef"><a href="#Fig6">10-6</a></span>. Using the Android dialog box in this example will help you understand its usage.<div class="Figure" id="Fig6"><div class="MediaObject" id="MO6"><img src="A978-1-4842-0100-8_10_Fig6_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig6_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-6.</span><div class="SimplePara">The application interface with an Exit dialog box</div></div></div></div>
+            </div><div class="Para">The application starts and displays the main activity interface, as shown in Figure <span class="InternalRef"><a href="#Fig6">10-6(a)</a></span>. When you press the device’s Back button, the Exit dialog box pops up, as shown in Figure <span class="InternalRef"><a href="#Fig6">10-6(b)</a></span>. When you click the Exit button, the application exits, and the interface is also closed. When you click the Cancel button, the application returns to the previous screen, similar to Figure <span class="InternalRef"><a href="#Fig6">10-6(a)</a></span>.</div><div class="Para">Modify the source code of the activity class <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span> to read as follows:</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line#    Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5  import android.view.KeyEvent;            // Key event class</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.app.Dialog;               // Use Dialog class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.app.AlertDialog;          // Use AlertDialog class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.DialogInterface;  // Use DialogInterface interface</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9  public class MainActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10     private MyView theView =null;        // View objects stored inside the variable</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private AlertDialog.Builder exitAppChooseDlg = null; // Exit App dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private Dialog dlgExitApp = null;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13     @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14     public void onCreate(Bundle savedInstanceState) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15         super.onCreate(savedInstanceState);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16         theView = new MyView(this);  // View class of Record My Activity</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17         setContentView(theView);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg = new AlertDialog.Builder(this);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define  AlertDialog.Builder object</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg.setTitle("Exit Selection");</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define the title of the dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg.setMessage("Confirm to exit application</span></span>?<span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">");</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define the display text of the dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg.setIcon(android.R.drawable.ic_dialog_info);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define the icon of the dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set the leftmost button and click response class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg.setPositiveButton("Exit", new DialogInterface.OnClickListener() {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(DialogInterface dialog, int which) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">29</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">dialog.dismiss();        // Close Dialog Box</span></span>
+            </div><div class="Para ParaTypeProgramcode">                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">/*MainActivity.*/finish(); // Exit (main) Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">30</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">System.exit(0);          // Exit Application</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">31</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">32</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">33</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">34</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set the rightmost button and click response class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">35</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">exitAppChooseDlg.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">36</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(DialogInterface dialog, int which) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">37</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">dialog.cancel();          // Close dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">38</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">39</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">dlgExitApp = exitAppChooseDlg.create();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">40</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Create dialog box exit object</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">41     }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">42</span>
+            </div><div class="Para ParaTypeProgramcode">     <span class="EmphasisFontCategoryNonProportional">@Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">43     public boolean onCreateOptionsMenu(Menu menu) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">44         getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">45         return true;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">46     }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">47</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">48     @Override        // Key down response function</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">49     public boolean onKeyDown(int keyCode, KeyEvent event) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">50         int horizon = 0; int vertical = 0;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">51         switch (keyCode)</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">52         {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">53             case KeyEvent.KEYCODE_DPAD_LEFT:</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">54                 horizon = -1;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">55                 break;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">56             case KeyEvent.KEYCODE_DPAD_RIGHT:</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">57                 horizon = 1;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">58                 break;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">59             case KeyEvent.KEYCODE_DPAD_UP:</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">60                 vertical = 1;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">61                 break;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">62             case KeyEvent.KEYCODE_DPAD_DOWN:</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">63                 vertical = -1;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">64                 break;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">65</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">case KeyEvent.KEYCODE_BACK:</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">66</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (event.getRepeatCount() == 0) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">67</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">dlgExitApp.show();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">68</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Display AlertDialog.Builder dialog box</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">69</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">70</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">break;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">71             default:</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">72                 super.onKeyDown(keyCode, event);</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">if (!(horizon == 0 &amp;&amp; vertical == 0))</span>
+            </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisFontCategoryNonProportional">theView.moveCircleByPressKey(horizon,vertical);</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">return true;</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">Lines 11 and 12 define the <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder</span> class and its associated variable for the <span class="EmphasisFontCategoryNonProportional">Dialog</span> class in the <span class="EmphasisFontCategoryNonProportional">Activity</span> class. You modify the <span class="EmphasisFontCategoryNonProportional">onCreate</span> function code in lines 18–36 and define the code to prepare the dialog box. In line 18, you construct the <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder</span> class object; the prototype of this constructor function is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder(Context context)</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder(Context context, int theme)</span>
+            </div><div class="Para">You use the first prototype in this example to pass the <span class="EmphasisFontCategoryNonProportional">Activity</span> object, which constructs the dialog box as the context of the constructor function. This is followed by setting the title display text, icons, and other attributes of the dialog box in lines 19 and 21.</div><div class="Para">The <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder</span> dialog box can take up to three buttons: left, middle, and right. They are set up by the <span class="EmphasisFontCategoryNonProportional">setPositiveButton</span>, <span class="EmphasisFontCategoryNonProportional">setNeutralButton</span>, and <span class="EmphasisFontCategoryNonProportional">setNegativeButton</span> functions, respectively. You can specify how many dialog box buttons you need. This example uses two buttons: left and right.</div><div class="Para">Lines 23–29 set the left button of the dialog box and click-response code. The prototype of the function of the <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder</span> class is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder  setPositiveButton(int textId, DialogInterface.OnClickListener listener)</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder  setPositiveButton(CharSequence text, DialogInterface.OnClickListener listener)</span>
+            </div><div class="Para">You use a second prototype in the example, where the first parameter is text displayed by the button, and the second parameter is the interface object of the click response.</div><div class="Para">In line 25, you first call the dismissal or cancel function of the class to close the dialog box. <span class="EmphasisFontCategoryNonProportional">DialogInterface</span> is the operating interface of the dialog class (<span class="EmphasisFontCategoryNonProportional">AlertDialog</span>, <span class="EmphasisFontCategoryNonProportional">Dialog</span>, and so on). You use the <span class="EmphasisFontCategoryNonProportional">dismiss</span> function to close the dialog box in line 25 and use a <span class="EmphasisFontCategoryNonProportional">cancel</span> function to close the dialog box in line 33.</div><div class="Para">Lines 26–27 close the activity and application, as described in the section “Exit Activities and Application.” in <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>, Figure 8-16. Interestingly, the internal class <span class="EmphasisFontCategoryNonProportional">DialogInterface.OnClickListener</span> uses a member function of the non-dot external class <span class="EmphasisFontCategoryNonProportional">MainActivity</span> and does not need to add the prefix in front of “class name.”</div><div class="Para">You set the dialog box for the right button and click-response code in lines 36–35. The click-response code is relatively simple, using the <span class="EmphasisFontCategoryNonProportional">cancel</span> function of the <span class="EmphasisFontCategoryNonProportional">DialogInterface</span> class to close the dialog box in line 33.</div><div class="Para">Finally, line 36 calls the <span class="EmphasisFontCategoryNonProportional">create</span> function of the <span class="EmphasisFontCategoryNonProportional">AlertDialog.Builder</span> class to create the exit dialog box object <span class="EmphasisFontCategoryNonProportional">dlgExitApp</span>. The function returns an <span class="EmphasisFontCategoryNonProportional">AlertDialog</span> object, and its prototype is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">AlertDialog  create()</span>
+            </div><div class="Para">Because <span class="EmphasisFontCategoryNonProportional">AlertDialog</span> is derived from the <span class="EmphasisFontCategoryNonProportional">Dialog</span> class, the return value can be assigned to the <span class="EmphasisFontCategoryNonProportional">Dialog</span> variable.</div><div class="Para">You add the Back key response code for the response function on lines 60‒64. The code is relatively simple: you determine whether duplicate keys are pressed on line 61, and then you call the <span class="EmphasisFontCategoryNonProportional">show</span> function of the <span class="EmphasisFontCategoryNonProportional">Dialog</span> class to display a dialog box.</div></div></div><div id="Sec14" class="Section1 RenderAsSection1"><h2 class="Heading">Application Property Settings</h2><div class="Para">In Android device, there are two difference places where you can find out the information about the applications installed. One is the menu list (the interface after you press the setting button), the other is by going to the Settings ➤ Applications ➤ Manage Applications ➤ Downloaded menu item. See Figure <span class="InternalRef"><a href="#Fig7">10-7</a></span>:<div class="Figure" id="Fig7"><div class="MediaObject" id="MO7"><img src="A978-1-4842-0100-8_10_Fig7_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig7_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-7.</span><div class="SimplePara">The difference of Menulist and Application Setting display on target device</div></div></div></div>
+          </div><div class="Para">So far, almost all the examples have been based on the code framework of two applications: <span class="EmphasisFontCategoryNonProportional">GuiExam</span> and <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span>. But it is difficult to distinguish between them in the menu on the target device. These applications are indistinguishable in the menu list because you used the default settings instead of applying their own property settings. This section shows you how to apply property settings.</div><div class="Para">Figure <span class="InternalRef"><a href="#Fig8">10-8</a></span> shows the applications setting interface before and after applying property settings.<div class="Figure" id="Fig8"><div class="MediaObject" id="MO8"><img src="A978-1-4842-0100-8_10_Fig8_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig8_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-8.</span><div class="SimplePara">The application on the target device before and after applying property setting</div></div></div></div>
+          </div><div class="Para">This example uses the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application to show the steps for changing the application settings:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">Modify the icon of the application in the menu on the target machine. Based on the <span class="EmphasisFontCategoryNonProportional">ic_launcher.png</span> file size under the application <span class="EmphasisFontCategoryNonProportional">res\drawable-XXX</span> directory (where <span class="EmphasisFontCategoryNonProportional">XXX</span> represents different resolutions—for example, <span class="EmphasisFontCategoryNonProportional">drawable-hdpi</span> represents the directory for high-resolution images), edit your image file, and name it <span class="EmphasisFontCategoryNonProportional">ic_launcher.png</span>.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para">The common screen resolutions for Android devices and the directories where application icon files are stored are shown in Table <span class="InternalRef"><a href="#Tab2">10-2</a></span>.<div id="Tab2" class="Table"><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Table 10-2.</span><div class="SimplePara">Common Android Device Screen Resolutions and the Directories Containing Application Icon Sizes</div></div></div><table border="1"><colgroup><col/><col/><col/></colgroup><thead><tr class="header"><th><div class="SimplePara">Directory Name</div></th><th><div class="SimplePara">Size</div></th><th><div class="SimplePara">Description</div></th></tr></thead><tbody><tr class="noclass"><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">drawable-ldpi</span>
+                      </div></td><td><div class="SimplePara">36 × 36 dpi</div></td><td><div class="SimplePara">Low-resolution screen</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">drawable-mdpi</span>
+                      </div></td><td><div class="SimplePara">48 × 48 dpi</div></td><td><div class="SimplePara">Medium-resolution screen</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">drawable-hdpi</span>
+                      </div></td><td><div class="SimplePara">72 × 72 dpi</div></td><td><div class="SimplePara">High-resolution screen</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">drawable-xhdpi</span>
+                      </div></td><td><div class="SimplePara">96 × 96 dpi</div></td><td><div class="SimplePara">Super-high-resolution screen</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                        <span class="EmphasisFontCategoryNonProportional">drawable-xxhdpi</span>
+                      </div></td><td><div class="SimplePara">144 × 144 dpi</div></td><td><div class="SimplePara">Extra-extra-high-resolution screen</div></td></tr></tbody></table></div>
+            <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Put the custom picture file in the corresponding directory <span class="EmphasisFontCategoryNonProportional">res\drawable-XXX</span>, and replace the original file. For example, for the high-resolution screen application, replace the file <span class="EmphasisFontCategoryNonProportional">ic_launcher.png</span> in <span class="EmphasisFontCategoryNonProportional">res\drawable-xhdpi</span> with your own, as shown in Figure <span class="InternalRef"><a href="#Fig9">10-9</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para">
+            <div class="Figure" id="Fig9"><div class="MediaObject" id="MO9"><img src="A978-1-4842-0100-8_10_Fig9_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig9_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-9.</span><div class="SimplePara">Replacing the application icon</div></div></div></div>
+            <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">3.</span><div class="ItemContent"><div class="Para">Modify the application’s menu text annotation on the target machine.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para">Open the Package Explorer pane of the <span class="EmphasisFontCategoryNonProportional">\res\values\strings.xml</span> file. The <span class="EmphasisFontCategoryNonProportional">title_activity_my_main</span> string value is set to a custom string (in this case, “GUI examples”), as shown in Figure <span class="InternalRef"><a href="#Fig10">10-10</a></span>.<div class="Figure" id="Fig10"><div class="MediaObject" id="MO10"><img src="A978-1-4842-0100-8_10_Fig10_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig10_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-10.</span><div class="SimplePara">Modifying the icon text of the application</div></div></div></div>
+          </div><div class="Para">After completing these modifications, you can see that the target application’s menu item’s icon and text label have changed.</div><div class="Para">Note step 1 can also be implemented by another method that can generate its own set of icons when the application is created. The procedure is as follows:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">In the Configure Launcher Icon dialog box, click the Image button, and then click the Browse button to the right of Image File.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Select the picture file as the application icon (in this case, <span class="EmphasisFontCategoryNonProportional">graywolf.png</span>) in the Open dialog box, as shown in Figure <span class="InternalRef"><a href="#Fig11">10-11</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+          </div><div class="Para">
+            <div class="Figure" id="Fig11"><div class="MediaObject" id="MO11"><img src="A978-1-4842-0100-8_10_Fig11_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig11_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-11.</span><div class="SimplePara">Selecting the icon file when generating the application</div></div></div></div>
+          </div><div class="Para">The Configure Launcher Icon dialog box is shown in Figure <span class="InternalRef"><a href="#Fig12">10-12</a></span>.<div class="Figure" id="Fig12"><div class="MediaObject" id="MO12"><img src="A978-1-4842-0100-8_10_Fig12_HTML.jpg" alt="A978-1-4842-0100-8_10_Fig12_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 10-12.</span><div class="SimplePara">Configuring the launcher icon when generating the application</div></div></div></div>
+          </div><div class="Para">In other words, Eclipse can, based on the user-specified image file, automatically generate the various <span class="EmphasisFontCategoryNonProportional">ic_launcher.png</span> files with the appropriate dimensions in the <span class="EmphasisFontCategoryNonProportional">res\drawable-XXX</span> directory. This eliminates the need to manually edit the images.</div></div><div id="Sec15" class="Section1 RenderAsSection1"><h2 class="Heading">Summary</h2><div class="Para">In this last chapter covering Android GUI design, you are introduced to the basic framework of drawings in the view, the concept of how the drawing Framework responds to touch screen input, and how to control the display of the view as well as the multi-touch code framework. You use an example that illustrates the multi-touch programming framework and keyboard input response. You learn the methods to respond to keyboard input and hardware buttons that are available on Android devices, such as Volume +, Volume -, Power, Home, Menu, Back, Search, and so on. You are introduced to the three different dialog boxes for Android, which include the activity dialog theme, a specific class dialog, and Toast reminder. At the end of chapter you learn how to change the application property settings. In the next chapter, you will introduce the performance optimization for android application on x86. Android is a resource-limited system, and it therefore requires very strict resource utilization in space and time. Compared with a desktop system, the performance optimization for applications for Android is thus far more critical and urgent. You will first introduce the basic principles of SOC performance optimization, followed by the introduction of principles and methodology of performance optimization for Android-based development on Intel architecture.</div></div></div></body></html>

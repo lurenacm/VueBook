@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!-- v3.6 -->
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="2.0">
+ <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+  <dc:title>Sustainable Land Use and Rural Development in Southeast Asia: Innovations and Policies for Mountainous Areas</dc:title>
+   <dc:creator>Holger L. Fröhlich, Pepijn Schreinemachers, Karl Stahr and Gerhard Clemens</dc:creator>
+   <dc:language>En</dc:language>
+   <dc:rights></dc:rights>
+   <dc:publisher>Springer Berlin Heidelberg, Berlin, Heidelberg</dc:publisher>
+   <dc:identifier id="bookid">978-3-642-33377-4</dc:identifier>
+   <meta name="cover" content="A978-3-642-33377-4_CoverFigure"/>
+ </metadata>
+
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="css1" href="springer_epub.css" media-type="text/css"/>
+    <!--item id="css2" href="springer_classic.css" media-type="text/css"/-->
+    <item id="A308010_1_En_1_ChapterPart1" href="A308010_1_En_1_ChapterPart1.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_1_Chapter" href="A308010_1_En_1_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_2_ChapterPart2" href="A308010_1_En_2_ChapterPart2.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_2_Chapter" href="A308010_1_En_2_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_3_Chapter" href="A308010_1_En_3_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_4_Chapter" href="A308010_1_En_4_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_5_Chapter" href="A308010_1_En_5_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_6_ChapterPart3" href="A308010_1_En_6_ChapterPart3.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_6_Chapter" href="A308010_1_En_6_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_7_Chapter" href="A308010_1_En_7_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_8_Chapter" href="A308010_1_En_8_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_9_ChapterPart4" href="A308010_1_En_9_ChapterPart4.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_9_Chapter" href="A308010_1_En_9_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_10_Chapter" href="A308010_1_En_10_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_11_Chapter" href="A308010_1_En_11_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_12_Chapter" href="A308010_1_En_12_Chapter.html" media-type="application/xhtml+xml"/>
+<item id="A308010_1_En_BookFrontmatter_OnlinePDF" href="A308010_1_En_BookFrontmatter_OnlinePDF.html" media-type="application/xhtml+xml"/>
+<item id="ACoverHTML" href="ACoverHTML.html" media-type="application/xhtml+xml"/>
+
+    <item id="contact.gif" href="contact.gif" media-type="image/gif"/>
+<item id="sidebar.gif" href="sidebar.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig13_HTML" href="A308010_1_En_10_Fig13_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig11_HTML" href="A308010_1_En_2_Fig11_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig3_HTML" href="A308010_1_En_10_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig16_HTML" href="A308010_1_En_2_Fig16_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig4_HTML" href="A308010_1_En_10_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fige_HTML" href="A308010_1_En_2_Fige_HTML.gif" media-type="image/gif"/>
+<item id="A978-3-642-33377-4_CoverFigure" href="A978-3-642-33377-4_CoverFigure.jpg" media-type="image/jpeg"/>
+<item id="A308010_1_En_2_Figr_HTML" href="A308010_1_En_2_Figr_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig2_HTML" href="A308010_1_En_9_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig2_HTML" href="A308010_1_En_6_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig6_HTML" href="A308010_1_En_2_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Chapter_Equ00122" href="A308010_1_En_12_Chapter_Equ00122.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figh_HTML" href="A308010_1_En_2_Figh_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig21_HTML" href="A308010_1_En_10_Fig21_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig16_HTML" href="A308010_1_En_3_Fig16_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figl_HTML" href="A308010_1_En_2_Figl_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig1_HTML" href="A308010_1_En_9_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig5_HTML" href="A308010_1_En_10_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig9_HTML" href="A308010_1_En_9_Fig9_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_1_Fig1_HTML" href="A308010_1_En_1_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig13_HTML" href="A308010_1_En_3_Fig13_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig5_HTML" href="A308010_1_En_7_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig8_HTML" href="A308010_1_En_2_Fig8_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig15_HTML" href="A308010_1_En_10_Fig15_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figq_HTML" href="A308010_1_En_2_Figq_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig7_HTML" href="A308010_1_En_4_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig10_HTML" href="A308010_1_En_2_Fig10_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig20_HTML" href="A308010_1_En_10_Fig20_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figd_HTML" href="A308010_1_En_2_Figd_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig3_HTML" href="A308010_1_En_9_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig14b_HTML" href="A308010_1_En_10_Fig14b_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig4_HTML" href="A308010_1_En_3_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig1_HTML" href="A308010_1_En_10_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig2_HTML" href="A308010_1_En_3_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figa_HTML" href="A308010_1_En_2_Figa_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figt_HTML" href="A308010_1_En_2_Figt_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig3_HTML" href="A308010_1_En_6_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figp_HTML" href="A308010_1_En_2_Figp_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig10_HTML" href="A308010_1_En_10_Fig10_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig6_HTML" href="A308010_1_En_10_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig13_HTML" href="A308010_1_En_2_Fig13_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig8_HTML" href="A308010_1_En_7_Fig8_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_11_Fig1_HTML" href="A308010_1_En_11_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figk_HTML" href="A308010_1_En_2_Figk_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_IEq00074" href="A308010_1_En_7_Chapter_IEq00074.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig2_HTML" href="A308010_1_En_4_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig12_HTML" href="A308010_1_En_10_Fig12_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_8_Fig1_HTML" href="A308010_1_En_8_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Fig2_HTML" href="A308010_1_En_12_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig1_HTML" href="A308010_1_En_6_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig9_HTML" href="A308010_1_En_3_Fig9_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figu_HTML" href="A308010_1_En_2_Figu_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig18_HTML" href="A308010_1_En_2_Fig18_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_5_Fig1_HTML" href="A308010_1_En_5_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig4_HTML" href="A308010_1_En_9_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig17_HTML" href="A308010_1_En_3_Fig17_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig4_HTML" href="A308010_1_En_7_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_IEq00072" href="A308010_1_En_7_Chapter_IEq00072.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig6_HTML" href="A308010_1_En_3_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig14_HTML" href="A308010_1_En_3_Fig14_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig9_HTML" href="A308010_1_En_2_Fig9_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig15_HTML" href="A308010_1_En_3_Fig15_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Chapter_Equ00042" href="A308010_1_En_4_Chapter_Equ00042.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig6_HTML" href="A308010_1_En_6_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figf_HTML" href="A308010_1_En_2_Figf_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig3_HTML" href="A308010_1_En_4_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig4_HTML" href="A308010_1_En_2_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figj_HTML" href="A308010_1_En_2_Figj_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figo_HTML" href="A308010_1_En_2_Figo_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig1_HTML" href="A308010_1_En_2_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig2_HTML" href="A308010_1_En_7_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig1_HTML" href="A308010_1_En_3_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig5_HTML" href="A308010_1_En_2_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig2_HTML" href="A308010_1_En_2_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_Equ00072" href="A308010_1_En_7_Chapter_Equ00072.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig22_HTML" href="A308010_1_En_10_Fig22_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_BookFrontmatter_Figa_HTML" href="A308010_1_En_BookFrontmatter_Figa_HTML.png" media-type="image/png"/>
+<item id="A308010_1_En_3_Fig7_HTML" href="A308010_1_En_3_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig4_HTML" href="A308010_1_En_4_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig6_HTML" href="A308010_1_En_4_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig15_HTML" href="A308010_1_En_2_Fig15_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Tab2_HTML" href="A308010_1_En_3_Tab2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig19_HTML" href="A308010_1_En_10_Fig19_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig7_HTML" href="A308010_1_En_2_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figg_HTML" href="A308010_1_En_2_Figg_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_IEq00071" href="A308010_1_En_7_Chapter_IEq00071.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig12_HTML" href="A308010_1_En_2_Fig12_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_IEq00073" href="A308010_1_En_7_Chapter_IEq00073.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Tab1_HTML" href="A308010_1_En_3_Tab1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig8_HTML" href="A308010_1_En_3_Fig8_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig14a_HTML" href="A308010_1_En_10_Fig14a_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Chapter_Equ00121" href="A308010_1_En_12_Chapter_Equ00121.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Chapter_Equ00123" href="A308010_1_En_12_Chapter_Equ00123.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig17_HTML" href="A308010_1_En_10_Fig17_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig11_HTML" href="A308010_1_En_10_Fig11_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig5_HTML" href="A308010_1_En_4_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fign_HTML" href="A308010_1_En_2_Fign_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig5_HTML" href="A308010_1_En_6_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig7_HTML" href="A308010_1_En_6_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig18_HTML" href="A308010_1_En_10_Fig18_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig3_HTML" href="A308010_1_En_2_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig7_HTML" href="A308010_1_En_7_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig8_HTML" href="A308010_1_En_9_Fig8_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig5_HTML" href="A308010_1_En_9_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_8_Fig2_HTML" href="A308010_1_En_8_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Chapter_Equ00041" href="A308010_1_En_4_Chapter_Equ00041.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Fig1_HTML" href="A308010_1_En_12_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig9_HTML" href="A308010_1_En_10_Fig9_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig2_HTML" href="A308010_1_En_10_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_Equ00073" href="A308010_1_En_7_Chapter_Equ00073.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_Equ00071" href="A308010_1_En_7_Chapter_Equ00071.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig3_HTML" href="A308010_1_En_7_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig10_HTML" href="A308010_1_En_3_Fig10_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_Equ0007a" href="A308010_1_En_7_Chapter_Equ0007a.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig23_HTML" href="A308010_1_En_10_Fig23_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig16_HTML" href="A308010_1_En_10_Fig16_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig11_HTML" href="A308010_1_En_3_Fig11_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figs_HTML" href="A308010_1_En_2_Figs_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figb_HTML" href="A308010_1_En_2_Figb_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig5_HTML" href="A308010_1_En_3_Fig5_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig19_HTML" href="A308010_1_En_2_Fig19_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_4_Fig1_HTML" href="A308010_1_En_4_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_5_Fig2_HTML" href="A308010_1_En_5_Fig2_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig1_HTML" href="A308010_1_En_7_Fig1_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig12_HTML" href="A308010_1_En_3_Fig12_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig7_HTML" href="A308010_1_En_10_Fig7_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figw_HTML" href="A308010_1_En_2_Figw_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig18_HTML" href="A308010_1_En_3_Fig18_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figc_HTML" href="A308010_1_En_2_Figc_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig17_HTML" href="A308010_1_En_2_Fig17_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Chapter_IEq00075" href="A308010_1_En_7_Chapter_IEq00075.gif" media-type="image/gif"/>
+<item id="A308010_1_En_10_Fig8_HTML" href="A308010_1_En_10_Fig8_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figm_HTML" href="A308010_1_En_2_Figm_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figv_HTML" href="A308010_1_En_2_Figv_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Chapter_Equ00031" href="A308010_1_En_3_Chapter_Equ00031.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig6_HTML" href="A308010_1_En_9_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_7_Fig6_HTML" href="A308010_1_En_7_Fig6_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_12_Chapter_Equ00124" href="A308010_1_En_12_Chapter_Equ00124.gif" media-type="image/gif"/>
+<item id="A308010_1_En_3_Fig3_HTML" href="A308010_1_En_3_Fig3_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Fig14_HTML" href="A308010_1_En_2_Fig14_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_2_Figi_HTML" href="A308010_1_En_2_Figi_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_6_Fig4_HTML" href="A308010_1_En_6_Fig4_HTML.gif" media-type="image/gif"/>
+<item id="A308010_1_En_9_Fig7_HTML" href="A308010_1_En_9_Fig7_HTML.gif" media-type="image/gif"/>
+
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="ACoverHTML"/>
+<itemref idref="A308010_1_En_BookFrontmatter_OnlinePDF"/>
+<itemref idref="A308010_1_En_1_ChapterPart1"/>
+<itemref idref="A308010_1_En_1_Chapter"/>
+<itemref idref="A308010_1_En_2_ChapterPart2"/>
+<itemref idref="A308010_1_En_2_Chapter"/>
+<itemref idref="A308010_1_En_3_Chapter"/>
+<itemref idref="A308010_1_En_4_Chapter"/>
+<itemref idref="A308010_1_En_5_Chapter"/>
+<itemref idref="A308010_1_En_6_ChapterPart3"/>
+<itemref idref="A308010_1_En_6_Chapter"/>
+<itemref idref="A308010_1_En_7_Chapter"/>
+<itemref idref="A308010_1_En_8_Chapter"/>
+<itemref idref="A308010_1_En_9_ChapterPart4"/>
+<itemref idref="A308010_1_En_9_Chapter"/>
+<itemref idref="A308010_1_En_10_Chapter"/>
+<itemref idref="A308010_1_En_11_Chapter"/>
+<itemref idref="A308010_1_En_12_Chapter"/>
+
+  </spine>
+  <guide>
+    <reference type="toc" title="Table of Contents" href="A308010_1_En_BookFrontmatter_OnlinePDF.html#Toc"/>
+  </guide>
+</package>

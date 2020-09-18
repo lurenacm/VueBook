@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>TouchDevelop: Programming on the Go</title><link href="springer_epub.css" type="text/css" rel="styleSheet"/></head><body><div class="BookFrontmatter"><div class="BookContextInformation"><div class="ContextInformation"><span class="ContextInformationEditorsAuthors"><span class="Author"><span class="AuthorName">R. Nigel Horspool</span> and </span><span class="Author"><span class="AuthorName">Nikolai Tillmann</span></span></span><span class="ContextInformationBookTitles"><span class="BookTitle" xml:lang="en">TouchDevelop: Programming on the Go</span><span class="BookEdition">Third Edition</span></span><span class="ContextInformationDOI">10.1007/978-1-4302-6137-7</span><span class="BookCopyright">© Apress 2013</span></div></div><div class="BookTitlePage"><div class="BookAuthors"><span class="Author"><span class="AuthorName">R. Nigel Horspool</span> and </span><span class="Author"><span class="AuthorName">Nikolai Tillmann</span></span></div><div class="MainTitleSection"><span class="BookTitle" xml:lang="en">TouchDevelop: Programming on the Go</span></div><div class="PublisherLogo"><div class="Figure" id="Figa"><div class="MediaObject"><img src="A978-1-4302-6137-7_BookFrontmatter_Figa_HTML.png" alt="A978-1-4302-6137-7_BookFrontmatter_Figa_HTML.png"/></div></div></div></div><div class="CopyrightPage"><div class="AuthorGroup"><div class="Author"><span class="AuthorName">R. Nigel Horspool</span></div><div class="Author"><span class="AuthorName">Nikolai Tillmann</span></div></div><div class="CopyrightPageISBNs"><span class="CopyrightPagePrintISBN">
+					ISBN 978-1-4302-6136-0</span><span class="CopyrightPageElectronicISBN">e-ISBN 978-1-4302-6137-7</span></div><div class="CopyrightLine">© Apress 2013</div><div class="CopyrightComment"><span class="CopyrightComment">
+          <span class="SimplePara">
+            <span class="EmphasisTypeBoldItalic">TouchDevelop: Programming on the Go</span>
+          </span>
+          <span class="SimplePara">President and Publisher: Paul Manning</span>
+          <span class="SimplePara">Editor: Jeffrey Pepper</span>
+          <span class="SimplePara">Distributed to the book trade worldwide by Springer Science+Business Media New York, 233 Spring Street, 6th Floor, New York, NY 10013. Phone 1-800-SPRINGER, fax (201) 348-4505, e-mail <span class="EmphasisFontCategoryNonProportional">orders-ny@springer-sbm.com</span>, or visit <span class="ExternalRef"><a href="http://www.springeronline.com/"><span class="RefSource">
+                <span class="EmphasisFontCategoryNonProportional">www.springeronline.com</span>
+              </span></a></span>.</span>
+          <span class="SimplePara">For information on translations, please e-mail <span class="EmphasisFontCategoryNonProportional">rights@apress.com</span>, or visit <span class="ExternalRef"><a href="http://www.apress.com"><span class="RefSource">
+                <span class="EmphasisFontCategoryNonProportional">www.apress.com</span>
+              </span></a></span>.</span>
+          <span class="SimplePara">(1) License for Distribution of the Work: This Work is copyrighted by Apress Media, LLC, all rights reserved. Use of this Work other than as provided for in this license is prohibited. By exercising any of the rights herein, you are accepting the terms of this license. You have the non-exclusive right to copy, use and distribute this English language Work in its entirety, electronically without modification except for those modifications necessary for formatting on specific devices, for all non-commercial purposes, in all media and formats known now or hereafter. While the advice and information in this Work are believed to be true and accurate at the date of publication, neither the authors nor the editors nor the publisher can accept any legal responsibility for any errors or omissions that may be made. The publisher makes no warranty, express or implied, with respect to the material contained herein.</span>
+          <span class="SimplePara">If your distribution is solely Apress source code or uses Apress source code intact, the following licenses (2) and (3) must accompany the source code. If your use is an adaptation of the source code provided by Apress in this Work, then you must use only license (3).</span>
+          <span class="SimplePara">(2) <span class="EmphasisTypeBold">License for Direct Reproduction of Apress Source Code:</span> This source code, from <span class="EmphasisTypeBoldItalic">TouchDevelop</span>, <span class="EmphasisTypeBold">ISBN 978-1-4302-6136-0</span> is copyrighted by Apress Media, LLC, all rights reserved. Any direct reproduction of this Apress source code is permitted but must contain this license. The following license must be provided for any use of the source code from this product of greater than 5 lines wherein the code is adapted or altered from its original Apress form. This Apress code is presented AS IS and Apress makes no claims to, representations or warrantees as to the function, usability, accuracy or usefulness of this code.</span>
+          <span class="SimplePara">(3) <span class="EmphasisTypeBold">License for Distribution of Adaptation of Apress Source Code:</span> Portions of the source code provided are used or adapted from <span class="EmphasisTypeBoldItalic">TouchDevelop</span>, <span class="EmphasisTypeBold">ISBN 978-1-4302-6136-0</span> copyright Apress Media LLC. Any use or reuse of this Apress source code must contain this License. This Apress code is made available at Apress.com/9781430261360 as is and Apress makes no claims to, representations or warrantees as to the function, usability, accuracy or usefulness of this code.</span>
+        </span></div><div class="CopyrightStandardText" xml:lang="en">ApressOpen Rights: You have the right to copy, use and distribute this Work in its entirety, electronically without modification, for non-commercial purposes only. However, you have the additional right to use or alter any source code in this Work for any commercial or non-commercial purpose which must be accompanied by the licenses in (2) and (3) below to distribute the source code for instances of greater than 5 lines of code. Licenses (1), (2) and (3) below and the intervening text must be provided in any use of the text of the Work and fully describes the license granted herein to the Work.</div><div class="TrademarkQualifierText" xml:lang="en">Trademarked names, logos, and images may appear in this book. Rather than use a trademark symbol with every occurrence of a trademarked name, logo, or image we use the names, logos, and images only in an editorial fashion and to the benefit of the trademark owner, with no intention of infringement of the trademark. The use in this publication of trade names, trademarks, service marks, and similar terms, even if they are not identified as such, is not to be taken as an expression of opinion as to whether or not they are subject to proprietary rights.</div></div><div id="Preface1" class="Preface"><div class="PrefaceTitle" xml:lang="en">Preface</div><div class="PrefaceBody"><div class="Para">The sales figures for smartphones continue to rise exponentially. Tablet computers are showing a similarly phenomenal adoption rate and are replacing laptop computers in many areas of life. We can imagine a time when nearly everyone is carrying around a powerful computer in the form of a smartphone or a tablet. The term <span class="EmphasisTypeItalic">mobile device</span> is used to cover such devices. Typically, an <span class="EmphasisTypeItalic">app</span> (an application program) for a smartphone or tablet has to be developed in a PC and transferred to the mobile device later. But does it have to be that way? The TouchDevelop project at Microsoft Research has proved that the answer is No. TouchDevelop is a programming environment that runs on all mobile devices. It allows a script to be developed on a mobile device, or on a PC, and to be run on any mobile device or a PC. After releasing the app in 2011 when it was available only for the Windows Phone, the overwhelming response was a big surprised us: more than 200,000 users downloaded the app and they published more than 10,000 scripts written entirely on phones. Since then, TouchDevelop has been made available in a form that runs on PC, Mac and Linux platforms, and on iPad, iPhone, iPod Touch and Android devices. TouchDevelop is truly a portable development environment for creating portable apps.</div><div id="Sec1" class="Section1 RenderAsSection1"><h2 class="Heading">Who this book is for</h2><div class="Para">Mobile devices represent the latest in technology. Furthermore, many students actually own their own smartphone. High school teachers and college or university instructors love the idea of using the latest technology to engage their students. While they may be experts in the field of teaching programming, many teachers appreciate guidance on how to navigate a complex app like TouchDevelop: its visual program editor is designed for touchscreens and uses different editing paradigms from a traditional keyboard-based text processor. Another opportunity and challenge is how to make use of some of the sensors that a modern mobile device has to offer.</div><div class="Para">This book has much to offer to both both teachers and self-starting students who are learning how to program on their own. For teachers, it walks in detail through all of the screens of the app, and it points out similarities and differences of the TouchDevelop language compared to other programming languages that the teacher might already be familiar with. For students and enthusiasts, the book can serve as a handy reference which they keep next to the device they are using – it is particularly useful when that device has a small screen. The book systematically addresses all programming language constructs, starting from the very basic constructs such as variables and loops. The book also explores many of the phone sensors and data sources which make creating apps for mobile devices so rewarding.</div><div class="Para">If you are new to programming with TouchDevelop, or if you have not yet worked on touchscreen devices, we suggest that you read the book starting from <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html"><span class="RefSource">Chapter 1</span></a></span>. If you are already familiar with the basic paradigm of the TouchDevelop programming environment, then feel free to jump ahead to the later chapters that address particular topic areas.</div><div class="Para">This book is written from the perspective of a person developing their code using a browser. All screenshots and navigation instructions refer to the TouchDevelop Web App running in a browser and is applicable to all platforms except the Windows Phone. Only Appendix E, which covers the editor on the Windows Phone, uses screenshots and instructions specific to the Windows Phone.</div><div class="Para">This book is available online as well as being publish in print form by APress. Please email <span class="EmphasisFontCategoryNonProportional">touchdevelop@microsoft.com</span> to give feedback.</div></div><div id="Sec2" class="Section1 RenderAsSection1 SectionTypeIntroduction"><h2 class="Heading">Background to the book</h2><div class="Para">This edition of the book is the result of the year-long evolution of earlier book versions, incorporating feedback from tutorials and lectures given by the authors. The first version of the book was produced as limited edition of 75 copies for the ACM SIGCSE Conference in Raleigh, NC, March, 2012. That book was based on the recently released Version 2.6 of TouchDevelop. An updated copy of the book with 1000 copies, based on Version 2.10, was printed in January 2013. This book was made available via a Creative Commons Licence and put on the Amazon Bookstore as well as the TouchDevelop website. Much of the contents of the second book were also applicable to the Web App version of TouchDevelop, though all the screenshots were still of a phone. This third version has been retargeted at the Web App version of TouchDevelop.</div></div><div id="Sec3" class="Section1 RenderAsSection1 SectionTypeMaterialsAndMethods"><h2 class="Heading">Other learning materials</h2><div class="Para">On the TouchDevelop website, you can also find extensive videos, tutorials and slides to help you learn and teach TouchDevelop. Just tap (or click) on the large tile labeled “Docs” under the “Chat and Learn” heading once you have logged in to the TouchDevelop website to find these learning resources.</div><div class="Para">Comments are very welcome. To contact the TouchDevelop team or the authors, you can
+<div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">Send email to <span class="EmphasisFontCategoryNonProportional">touchdevelop@microsoft.com</span>
+                    </div></li><li><div class="Para">Post on <span class="ExternalRef"><a href="https://facebook.com/touchdevelop"><span class="RefSource">
+                          <span class="EmphasisFontCategoryNonProportional">https://facebook.com/touchdevelop</span>
+                        </span></a></span>
+                    </div></li><li><div class="Para">Post on the forum in the app</div></li></ul></div>
+              </div></div></div></div><div id="Preface2" class="Preface"><div class="PrefaceTitle" xml:lang="en">Important websites</div><div class="PrefaceBody"><div class="Para">
+              <span class="ExternalRef"><a href="https://www.touchdevelop.com/"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">https://www.touchdevelop.com</span>
+                </span></a></span>
+            </div><div class="Para">
+              <span class="ExternalRef"><a href="https://www.facebook.com/TouchDevelop"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">https://www.facebook.com/TouchDevelop</span>
+                </span></a></span>
+            </div><div class="Para">
+              <span class="ExternalRef"><a href="http://research.microsoft.com/touchdevelop"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">http://research.microsoft.com/touchdevelop</span>
+                </span></a></span>
+            </div></div></div><div id="Preface3" class="Preface"><div class="PrefaceTitle" xml:lang="en">The TouchDevelop Team</div><div class="PrefaceBody"><div class="Para">
+              <div class="Figure" id="Figb"><div class="MediaObject" id="MO1"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig1_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig1_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Thomas (Tom) Ball</span> is a principal researcher and research manager at Microsoft Research, Redmond, widely known for his work in program profiling, software model checking, program testing, and empirical software engineering. Ball is a 2011 ACM Fellow for "contributions to software analysis and defect detection." Since becoming a manager at Microsoft, he has nurtured and grown research areas such as automated theorem proving, program testing and verification, and empirical software engineering. He holds a B.A. in Computer Science from Cornell University and a M.S. and Ph.D. from the University of Wisconsin-Madison.</div><div class="Para">
+              <div class="Figure" id="Figc"><div class="MediaObject" id="MO2"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig2_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig2_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Judith Bishop</span> is Director of Computer Science at Microsoft Research, based in Redmond, USA. Her role is to create strong links between Microsoft’s research groups and universities globally, through encouraging projects, supporting conferences and engaging directly in research. Her expertise is in programming languages and distributed systems, with a strong practical bias and an interest in compilers and design patterns. She is the author or editor of 17 books on programming languages. She has a PhD from the University of Southampton, UK in Computer Science</div><div class="Para">
+              <div class="Figure" id="Figd"><div class="MediaObject" id="MO3"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig3_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig3_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Sebastian Burckhardt</span> is a Researcher at Microsoft Research. He was born and raised in Basel, Switzerland. His research interests revolve around the general problem of programming concurrent, parallel, and distributed systems conveniently, efficiently, and correctly. More specific interests include consistency models, concurrency testing, self-adjusting computation, and the concurrent revisions programming model. After a few years of industry experience at IBM, he earned his PhD in Computer Science at the University of Pennsylvania.</div><div class="Para">
+              <div class="Figure" id="Fige"><div class="MediaObject" id="MO4"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig4_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig4_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Juan Chen</span> is a Researcher in the RiSE group at Microsoft Research Redmond. Her main research areas include compilers, programming verification, and type systems. She has worked on certifying compilers for object-oriented languages, and design and implementation of a functional programming language for specifying and verifying program properties. She has a PhD in Computer Science from Princeton University.</div><div class="Para">
+              <div class="Figure" id="Figf"><div class="MediaObject" id="MO5"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig5_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig5_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Jonathan ‘Peli’ de Halleux</span> is a Software Engineer in the Research in Software Engineering group at Microsoft Research. Peli also volunteers at the local high school to teach mobile computer science. From 2004 to 2006, he worked in the Common Language Runtime (CLR) as a Software Design Engineer in Test in charge of the Just In Time compiler. He has a PhD in Applied Mathematics from the Catholic University of Louvain, Belgium.</div><div class="Para">
+              <div class="Figure" id="Figg"><div class="MediaObject" id="MO6"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig6_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig6_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Manuel Fähndrich</span> is a Senior Researcher in the RiSE group at Microsoft Research in Redmond. He works on programming language design, static type systems, program analysis and verification, as well as runtime techniques and optimizations. His past and current project involvements include the Singularity OS and Sing# language, CodeContracts for .NET, and TouchDevelop. He has a PhD from the University of California, Berkeley.</div><div class="Para">
+              <div class="Figure" id="Figh"><div class="MediaObject" id="MO7"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig7_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig7_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Nigel Horspool</span> is a professor of computer science at the University of Victoria. His main focus for research and teaching has been programming languages and compilers, though his main claim to fame is a string searching algorithm. He is the author or co-author of three books, which cover the C language, Unix and the C# language. He is currently the co-editor of the journal ‘Software: Practice and Experience’. He has a PhD from the University of Toronto, Canada in Computer Science.</div><div class="Para">
+              <div class="Figure" id="Figi"><div class="MediaObject" id="MO8"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig8_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig8_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Michał Moskal</span> is a Researcher in Redmond. He is in the RiSE group working on software verification, automated theorem proving, and programming languages. He works on a formal verifier for concurrent C programs called VCC, while also taking on other projects including Boogie intermediate verification language, SPUR tracing JIT, and DKAL authorization engine. He has a PhD from the University of Wrocław, Poland.</div><div class="Para">
+              <div class="Figure" id="Figj"><div class="MediaObject" id="MO9"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig9_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig9_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Arjmand Samuel</span> works with the academic community to foster research and collaborations in the devices and services research areas. He leads the mobile and cloud computing research and outreach for Microsoft Research (Project Hawaii and TouchDevelop). His recent research interests are in software architectures and programming paradigms for devices of all shapes and forms (TouchDevelop and HomeOS). He has published in a variety of publications on topics of security, privacy, location aware access control, and innovative use of mobile technology. Samuel has a Ph.D. in Information Security from Purdue University.</div><div class="Para">
+              <div class="Figure" id="Figk"><div class="MediaObject" id="MO10"><img src="A978-1-4302-6137-7_BookFrontmatter_Fig10_HTML.jpg" alt="A978-1-4302-6137-7_BookFrontmatter_Fig10_HTML.jpg"/></div></div>
+            </div><div class="Para">
+              <span class="EmphasisTypeBold">Nikolai Tillmann</span> is a Principal Research Software Design Engineer, Microsoft Research. His main areas of research are program authoring on mobile devices, program analysis, testing, optimization, and verification. He started the TouchDevelop project, which enables end-users to write programs for mobile devices on mobile devices. He also leads the Pex project, in which he develops together with Peli de Halleux a framework for runtime verification and automatic test case generation for .NET applications based on parameterized unit testing and dynamic symbolic execution. Nikolai has a Dipl. Inf. in Computer Science from TU Berlin, Germany.</div></div></div><div class="BookAcknowledgments"><div class="BookAcknowledgmentsTitle" xml:lang="en">Acknowledgments</div><div class="BookAcknowledgmentsBody"><div class="Para">As the TouchDevelop community grows, we are finding that we are learning from everyone who engages in the project – students at Hackathons, academics who write papers, and most of all developers of the amazing apps in the bazaar. Thanks to all of you.</div></div></div><div class="Toc" id="Toc"><div class="Headings"><div class="Heading">Contents</div></div><div class="TocBody"><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html"><span class="RefSource">Chapter 1 Introduction to TouchDevelop</span></a></span>
+            </span><span class="TocPageNumber">1</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec1"><span class="RefSource">1.​1 Computers want to be programmed</span></a></span>
+              </span><span class="TocPageNumber">1</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec2"><span class="RefSource">1.​2 What is TouchDevelop?​</span></a></span>
+              </span><span class="TocPageNumber">2</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec3"><span class="RefSource">1.​3 The TouchDevelop ecosystem</span></a></span>
+              </span><span class="TocPageNumber">4</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec4"><span class="RefSource">1.​4 History and Future</span></a></span>
+              </span><span class="TocPageNumber">6</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec5"><span class="RefSource">1.​5 Platforms</span></a></span>
+              </span><span class="TocPageNumber">7</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Sec8"><span class="RefSource">1.​6 The scripting language</span></a></span>
+              </span><span class="TocPageNumber">9</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html"><span class="RefSource">Chapter 2 The Scripting Language</span></a></span>
+            </span><span class="TocPageNumber">11</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec1"><span class="RefSource">2.​1 Introduction – the language flavor</span></a></span>
+              </span><span class="TocPageNumber">11</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec3"><span class="RefSource">2.​2 Datatypes and variables</span></a></span>
+              </span><span class="TocPageNumber">15</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec17"><span class="RefSource">2.​3 Expressions</span></a></span>
+              </span><span class="TocPageNumber">22</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec29"><span class="RefSource">2.​4 Statements</span></a></span>
+              </span><span class="TocPageNumber">28</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec36"><span class="RefSource">2.​5 Actions</span></a></span>
+              </span><span class="TocPageNumber">31</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec45"><span class="RefSource">2.​6 Events</span></a></span>
+              </span><span class="TocPageNumber">34</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec46"><span class="RefSource">2.​7 Pages</span></a></span>
+              </span><span class="TocPageNumber">36</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Sec47"><span class="RefSource">2.​8 Creating library scripts</span></a></span>
+              </span><span class="TocPageNumber">36</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html"><span class="RefSource">Chapter 3 The Wall – using the screen</span></a></span>
+            </span><span class="TocPageNumber">37</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec1"><span class="RefSource">3.​1 Output – the writing on the wall</span></a></span>
+              </span><span class="TocPageNumber">37</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec8"><span class="RefSource">3.​2 Input of values from the touchscreen</span></a></span>
+              </span><span class="TocPageNumber">42</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec9"><span class="RefSource">3.​3 Updating the wall’s content</span></a></span>
+              </span><span class="TocPageNumber">43</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec12"><span class="RefSource">3.​4 Events on the touchscreen</span></a></span>
+              </span><span class="TocPageNumber">45</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec15"><span class="RefSource">3.​5 Pushing and popping pages</span></a></span>
+              </span><span class="TocPageNumber">49</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec16"><span class="RefSource">3.​6 Titles and subtitles</span></a></span>
+              </span><span class="TocPageNumber">49</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec17"><span class="RefSource">3.​7 Wall buttons</span></a></span>
+              </span><span class="TocPageNumber">50</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Sec18"><span class="RefSource">3.​8 On-demand creation of output</span></a></span>
+              </span><span class="TocPageNumber">52</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html"><span class="RefSource">Chapter 4 The Web</span></a></span>
+            </span><span class="TocPageNumber">53</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Sec1"><span class="RefSource">4.​1 URLs and webpages</span></a></span>
+              </span><span class="TocPageNumber">53</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Sec6"><span class="RefSource">4.​2 Downloading and uploading files</span></a></span>
+              </span><span class="TocPageNumber">58</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Sec11"><span class="RefSource">4.​3 Downloading structured data</span></a></span>
+              </span><span class="TocPageNumber">62</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Sec14"><span class="RefSource">4.​4 REST guidelines and web requests</span></a></span>
+              </span><span class="TocPageNumber">69</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html"><span class="RefSource">Chapter 5 Audio</span></a></span>
+            </span><span class="TocPageNumber">73</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Sec1"><span class="RefSource">5.​1 Music</span></a></span>
+              </span><span class="TocPageNumber">73</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Sec6"><span class="RefSource">5.​2 Sounds</span></a></span>
+              </span><span class="TocPageNumber">79</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Sec7"><span class="RefSource">5.​3 Microphone</span></a></span>
+              </span><span class="TocPageNumber">81</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html"><span class="RefSource">Chapter 6 Camera, Graphics and Video</span></a></span>
+            </span><span class="TocPageNumber">83</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Sec1"><span class="RefSource">6.​1 Camera</span></a></span>
+              </span><span class="TocPageNumber">83</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Sec3"><span class="RefSource">6.​2 Working with pictures</span></a></span>
+              </span><span class="TocPageNumber">87</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Sec10"><span class="RefSource">6.​3 Static graphics drawing and display</span></a></span>
+              </span><span class="TocPageNumber">93</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Sec11"><span class="RefSource">6.​4 Playing videos from the internet</span></a></span>
+              </span><span class="TocPageNumber">96</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html"><span class="RefSource">Chapter 7 Sensors</span></a></span>
+            </span><span class="TocPageNumber">97</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec1"><span class="RefSource">7.​1 The sensors</span></a></span>
+              </span><span class="TocPageNumber">97</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec2"><span class="RefSource">7.​2 Sensor-driven events</span></a></span>
+              </span><span class="TocPageNumber">98</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec4"><span class="RefSource">7.​3 Accelerometer</span></a></span>
+              </span><span class="TocPageNumber">99</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec7"><span class="RefSource">7.​4 Compass</span></a></span>
+              </span><span class="TocPageNumber">104</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec9"><span class="RefSource">7.​5 Gyroscope</span></a></span>
+              </span><span class="TocPageNumber">105</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Sec10"><span class="RefSource">7.​6 Motion</span></a></span>
+              </span><span class="TocPageNumber">107</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html"><span class="RefSource">Chapter 8 Interactions</span></a></span>
+            </span><span class="TocPageNumber">111</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec1"><span class="RefSource">8.​1 Social messages</span></a></span>
+              </span><span class="TocPageNumber">111</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec4"><span class="RefSource">8.​2 Locations, places, maps</span></a></span>
+              </span><span class="TocPageNumber">113</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec5"><span class="RefSource">8.​3 Emails</span></a></span>
+              </span><span class="TocPageNumber">115</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec6"><span class="RefSource">8.​4 Phone Calls</span></a></span>
+              </span><span class="TocPageNumber">117</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec7"><span class="RefSource">8.​5 2D barcodes</span></a></span>
+              </span><span class="TocPageNumber">118</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec8"><span class="RefSource">8.​6 SMS messages (WP8 only)</span></a></span>
+              </span><span class="TocPageNumber">119</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec9"><span class="RefSource">8.​7 Calendar and appointments (WP8 only)</span></a></span>
+              </span><span class="TocPageNumber">120</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Sec10"><span class="RefSource">8.​8 Contacts (WP8 and Android only)</span></a></span>
+              </span><span class="TocPageNumber">121</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html"><span class="RefSource">Chapter 9 Game Board</span></a></span>
+            </span><span class="TocPageNumber">123</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec1"><span class="RefSource">9.​1 Introduction</span></a></span>
+              </span><span class="TocPageNumber">123</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec5"><span class="RefSource">9.​2 The Board datatype</span></a></span>
+              </span><span class="TocPageNumber">124</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec11"><span class="RefSource">9.​3 The Sprite datatype</span></a></span>
+              </span><span class="TocPageNumber">130</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec16"><span class="RefSource">9.​4 The Sprite Collection datatype</span></a></span>
+              </span><span class="TocPageNumber">135</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec17"><span class="RefSource">9.​5 Touching and board events</span></a></span>
+              </span><span class="TocPageNumber">136</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Sec26"><span class="RefSource">9.​6 Debugging games</span></a></span>
+              </span><span class="TocPageNumber">140</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html"><span class="RefSource">Chapter 10 UI with Boxes and Pages</span></a></span>
+            </span><span class="TocPageNumber">141</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec1"><span class="RefSource">10.​1 Page Overview</span></a></span>
+              </span><span class="TocPageNumber">141</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec2"><span class="RefSource">10.​2 Box Overview</span></a></span>
+              </span><span class="TocPageNumber">142</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec3"><span class="RefSource">10.​3 Examples of Boxes and Pages</span></a></span>
+              </span><span class="TocPageNumber">143</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec7"><span class="RefSource">10.​4 Working with Pages</span></a></span>
+              </span><span class="TocPageNumber">150</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec10"><span class="RefSource">10.​5 Live Editing of the User Interface</span></a></span>
+              </span><span class="TocPageNumber">152</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Sec11"><span class="RefSource">10.​6 API Support for Boxes and Pages</span></a></span>
+              </span><span class="TocPageNumber">153</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html"><span class="RefSource">Chapter 11 Authenticating Web Services</span></a></span>
+            </span><span class="TocPageNumber">157</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Sec1"><span class="RefSource">11.​1 Registering your app</span></a></span>
+              </span><span class="TocPageNumber">157</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Sec2"><span class="RefSource">11.​2 Authenticating</span></a></span>
+              </span><span class="TocPageNumber">158</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Sec3"><span class="RefSource">11.​3 Libraries</span></a></span>
+              </span><span class="TocPageNumber">160</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Sec4"><span class="RefSource">11.​4 Advanced topics</span></a></span>
+              </span><span class="TocPageNumber">161</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html"><span class="RefSource">Appendix A Editing TouchDevelop Scripts</span></a></span>
+            </span><span class="TocPageNumber">163</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Sec1"><span class="RefSource">A.​1 The starting point</span></a></span>
+              </span><span class="TocPageNumber">164</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Sec2"><span class="RefSource">A.​2 The editing steps</span></a></span>
+              </span><span class="TocPageNumber">166</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Sec10"><span class="RefSource">A.​3 Additional steps</span></a></span>
+              </span><span class="TocPageNumber">173</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Sec14"><span class="RefSource">A.​4 More advanced editing features</span></a></span>
+              </span><span class="TocPageNumber">174</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html"><span class="RefSource">Appendix B TouchDevelop Services</span></a></span>
+            </span><span class="TocPageNumber">178</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec1"><span class="RefSource">B.​1 bazaar</span></a></span>
+              </span><span class="TocPageNumber">178</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec2"><span class="RefSource">B.​2 box</span></a></span>
+              </span><span class="TocPageNumber">178</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec3"><span class="RefSource">B.​3 collections</span></a></span>
+              </span><span class="TocPageNumber">180</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec4"><span class="RefSource">B.​4 colors</span></a></span>
+              </span><span class="TocPageNumber">180</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec5"><span class="RefSource">B.​5 contract</span></a></span>
+              </span><span class="TocPageNumber">182</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec6"><span class="RefSource">B.​6 invalid</span></a></span>
+              </span><span class="TocPageNumber">182</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec7"><span class="RefSource">B.​7 languages</span></a></span>
+              </span><span class="TocPageNumber">184</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec8"><span class="RefSource">B.​8 locations</span></a></span>
+              </span><span class="TocPageNumber">184</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec9"><span class="RefSource">B.​9 maps</span></a></span>
+              </span><span class="TocPageNumber">185</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec10"><span class="RefSource">B.​10 math</span></a></span>
+              </span><span class="TocPageNumber">185</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec11"><span class="RefSource">B.​11 media</span></a></span>
+              </span><span class="TocPageNumber">187</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec12"><span class="RefSource">B.​12 phone</span></a></span>
+              </span><span class="TocPageNumber">188</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec13"><span class="RefSource">B.​13 player</span></a></span>
+              </span><span class="TocPageNumber">188</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec14"><span class="RefSource">B.​14 senses</span></a></span>
+              </span><span class="TocPageNumber">189</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec15"><span class="RefSource">B.​15 social</span></a></span>
+              </span><span class="TocPageNumber">190</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec16"><span class="RefSource">B.​16 tags</span></a></span>
+              </span><span class="TocPageNumber">191</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec17"><span class="RefSource">B.​17 tile</span></a></span>
+              </span><span class="TocPageNumber">191</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec18"><span class="RefSource">B.​18 time</span></a></span>
+              </span><span class="TocPageNumber">192</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec19"><span class="RefSource">B.​19 wall</span></a></span>
+              </span><span class="TocPageNumber">192</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_13_Chapter.html#Sec20"><span class="RefSource">B.​20 web</span></a></span>
+              </span><span class="TocPageNumber">194</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html"><span class="RefSource">Appendix C TouchDevelop Datatypes</span></a></span>
+            </span><span class="TocPageNumber">197</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec1"><span class="RefSource">C.​1 Appointment</span></a></span>
+              </span><span class="TocPageNumber">197</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec2"><span class="RefSource">C.​2 Appointment Collection</span></a></span>
+              </span><span class="TocPageNumber">197</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec3"><span class="RefSource">C.​3 Board</span></a></span>
+              </span><span class="TocPageNumber">198</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec4"><span class="RefSource">C.​4 Boolean</span></a></span>
+              </span><span class="TocPageNumber">199</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec5"><span class="RefSource">C.​5 Camera</span></a></span>
+              </span><span class="TocPageNumber">199</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec6"><span class="RefSource">C.​6 Color</span></a></span>
+              </span><span class="TocPageNumber">200</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec7"><span class="RefSource">C.​7 Contact</span></a></span>
+              </span><span class="TocPageNumber">200</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec8"><span class="RefSource">C.​8 Contact Collection</span></a></span>
+              </span><span class="TocPageNumber">201</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec9"><span class="RefSource">C.​9 DateTime</span></a></span>
+              </span><span class="TocPageNumber">202</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec10"><span class="RefSource">C.​10 Form Builder</span></a></span>
+              </span><span class="TocPageNumber">203</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec11"><span class="RefSource">C.​11 Json Builder</span></a></span>
+              </span><span class="TocPageNumber">203</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec12"><span class="RefSource">C.​12 Json Object</span></a></span>
+              </span><span class="TocPageNumber">204</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec13"><span class="RefSource">C.​13 Link</span></a></span>
+              </span><span class="TocPageNumber">204</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec14"><span class="RefSource">C.​14 Link Collection</span></a></span>
+              </span><span class="TocPageNumber">205</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec15"><span class="RefSource">C.​15 Location</span></a></span>
+              </span><span class="TocPageNumber">205</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec16"><span class="RefSource">C.​16 Location Collection</span></a></span>
+              </span><span class="TocPageNumber">206</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec17"><span class="RefSource">C.​17 Map</span></a></span>
+              </span><span class="TocPageNumber">206</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec18"><span class="RefSource">C.​18 Matrix</span></a></span>
+              </span><span class="TocPageNumber">207</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec19"><span class="RefSource">C.​19 Message</span></a></span>
+              </span><span class="TocPageNumber">208</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec20"><span class="RefSource">C.​20 Message Collection</span></a></span>
+              </span><span class="TocPageNumber">209</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec21"><span class="RefSource">C.​21 Motion</span></a></span>
+              </span><span class="TocPageNumber">210</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec22"><span class="RefSource">C.​22 Number</span></a></span>
+              </span><span class="TocPageNumber">210</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec23"><span class="RefSource">C.​23 Number Collection</span></a></span>
+              </span><span class="TocPageNumber">211</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec24"><span class="RefSource">C.​24 Number Map</span></a></span>
+              </span><span class="TocPageNumber">211</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec25"><span class="RefSource">C.​25 OAuth Response</span></a></span>
+              </span><span class="TocPageNumber">212</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec26"><span class="RefSource">C.​26 Page</span></a></span>
+              </span><span class="TocPageNumber">213</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec27"><span class="RefSource">C.​27 Page Button</span></a></span>
+              </span><span class="TocPageNumber">213</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec28"><span class="RefSource">C.​28 Page Collection</span></a></span>
+              </span><span class="TocPageNumber">213</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec29"><span class="RefSource">C.​29 Picture</span></a></span>
+              </span><span class="TocPageNumber">213</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec30"><span class="RefSource">C.​30 Picture Album</span></a></span>
+              </span><span class="TocPageNumber">215</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec31"><span class="RefSource">C.​31 Picture Albums</span></a></span>
+              </span><span class="TocPageNumber">216</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec32"><span class="RefSource">C.​32 Pictures</span></a></span>
+              </span><span class="TocPageNumber">216</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec33"><span class="RefSource">C.​33 Place</span></a></span>
+              </span><span class="TocPageNumber">216</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec34"><span class="RefSource">C.​34 Place Collection</span></a></span>
+              </span><span class="TocPageNumber">217</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec35"><span class="RefSource">C.​35 Playlist</span></a></span>
+              </span><span class="TocPageNumber">218</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec36"><span class="RefSource">C.​36 Playlists</span></a></span>
+              </span><span class="TocPageNumber">218</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec37"><span class="RefSource">C.​37 Song</span></a></span>
+              </span><span class="TocPageNumber">218</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec38"><span class="RefSource">C.​38 Songs</span></a></span>
+              </span><span class="TocPageNumber">219</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec39"><span class="RefSource">C.​39 Song Album</span></a></span>
+              </span><span class="TocPageNumber">219</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec40"><span class="RefSource">C.​40 Song Albums</span></a></span>
+              </span><span class="TocPageNumber">219</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec41"><span class="RefSource">C.​41 Songs</span></a></span>
+              </span><span class="TocPageNumber">220</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec42"><span class="RefSource">C.​42 Sound</span></a></span>
+              </span><span class="TocPageNumber">220</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec43"><span class="RefSource">C.​43 Sprite</span></a></span>
+              </span><span class="TocPageNumber">220</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec44"><span class="RefSource">C.​44 Sprite Set</span></a></span>
+              </span><span class="TocPageNumber">222</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec45"><span class="RefSource">C.​45 String</span></a></span>
+              </span><span class="TocPageNumber">223</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec46"><span class="RefSource">C.​46 String Collection</span></a></span>
+              </span><span class="TocPageNumber">225</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec47"><span class="RefSource">C.​47 String Map</span></a></span>
+              </span><span class="TocPageNumber">225</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec48"><span class="RefSource">C.​48 TextBox</span></a></span>
+              </span><span class="TocPageNumber">226</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec49"><span class="RefSource">C.​49 Vector3</span></a></span>
+              </span><span class="TocPageNumber">226</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec50"><span class="RefSource">C.​50 Web Request</span></a></span>
+              </span><span class="TocPageNumber">227</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec51"><span class="RefSource">C.​51 Web Response</span></a></span>
+              </span><span class="TocPageNumber">228</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_14_Chapter.html#Sec52"><span class="RefSource">C.​52 Xml Object</span></a></span>
+              </span><span class="TocPageNumber">228</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html"><span class="RefSource">Appendix D Platform Capabilities</span></a></span>
+            </span><span class="TocPageNumber">231</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html#Sec1"><span class="RefSource">D.​1 Supported Browsers</span></a></span>
+              </span><span class="TocPageNumber">231</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html#Sec2"><span class="RefSource">D.​2 General Features</span></a></span>
+              </span><span class="TocPageNumber">231</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html#Sec3"><span class="RefSource">D.​3 Supported Sensors and Devices</span></a></span>
+              </span><span class="TocPageNumber">232</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html#Sec4"><span class="RefSource">D.​4 Support for Services/​Resources</span></a></span>
+              </span><span class="TocPageNumber">233</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_15_Chapter.html#Sec5"><span class="RefSource">D.​5 Support for Created Apps</span></a></span>
+              </span><span class="TocPageNumber">233</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html"><span class="RefSource">Appendix E TouchDevelop Editor on a Windows Phone</span></a></span>
+            </span><span class="TocPageNumber">235</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Sec1"><span class="RefSource">E.​1 The sample program</span></a></span>
+              </span><span class="TocPageNumber">235</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Sec2"><span class="RefSource">E.​2 The back button, undo and mistakes</span></a></span>
+              </span><span class="TocPageNumber">235</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Sec3"><span class="RefSource">E.​3 The editing example</span></a></span>
+              </span><span class="TocPageNumber">236</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Sec13"><span class="RefSource">E.​4 Additional steps</span></a></span>
+              </span><span class="TocPageNumber">241</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Sec17"><span class="RefSource">E.​5 Refactoring code into a new action</span></a></span>
+              </span><span class="TocPageNumber">243</span></div></div></div><div class="TocBack"><span class="TocItem">Index</span><span class="TocPageNumber">245</span></div></div></div><div id="Loh1" class="Loh"><div class="Headings"><div class="Heading">List of figures</div></div><div class="LohBody"><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Fig1"><span class="RefSource">Figure 1-1:​ The TouchDevelop ecosystem</span></a></span>
+          </span><span class="LohPageNumber">4</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Fig2"><span class="RefSource">Figure 1-2:​ Viewing metadata of a script</span></a></span>
+          </span><span class="LohPageNumber">5</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_1_Chapter.html#Fig3"><span class="RefSource">Figure 1-3:​ Editing a script</span></a></span>
+          </span><span class="LohPageNumber">6</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Fig1"><span class="RefSource">Figure 2-1:​ The ‘new songs’ script (/​okzc)</span></a></span>
+          </span><span class="LohPageNumber">13</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig1"><span class="RefSource">Figure 3-1:​ Simple output, normal and reversed order</span></a></span>
+          </span><span class="LohPageNumber">37</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig2"><span class="RefSource">Figure 3-2:​ Displaying a string using a TextBox</span></a></span>
+          </span><span class="LohPageNumber">37</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig3"><span class="RefSource">Figure 3-3:​ Displaying composite values</span></a></span>
+          </span><span class="LohPageNumber">39</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig4"><span class="RefSource">Figure 3-4:​ Prompting for input</span></a></span>
+          </span><span class="LohPageNumber">42</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig5"><span class="RefSource">Figure 3-5:​ An updatable textbox (/​censaair)</span></a></span>
+          </span><span class="LohPageNumber">43</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig6"><span class="RefSource">Figure 3-6:​ Updating text using a board (/​wkoxnasz)</span></a></span>
+          </span><span class="LohPageNumber">44</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig7"><span class="RefSource">Figure 3-7:​ Using tap wall events</span></a></span>
+          </span><span class="LohPageNumber">45</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig8"><span class="RefSource">Figure 3-8:​ Using sprite events (/​akmcnpux)</span></a></span>
+          </span><span class="LohPageNumber">47</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig9"><span class="RefSource">Figure 3-9:​ Title and subtitle example</span></a></span>
+          </span><span class="LohPageNumber">49</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Fig10"><span class="RefSource">Figure 3-10:​ The ‘Question Mark’ page button</span></a></span>
+          </span><span class="LohPageNumber">50</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig1"><span class="RefSource">Figure 4-1:​ Posting a Webpage Link to the wall</span></a></span>
+          </span><span class="LohPageNumber">55</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig2"><span class="RefSource">Figure 4-2:​ Posting a link to an image on the wall</span></a></span>
+          </span><span class="LohPageNumber">56</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig3"><span class="RefSource">Figure 4-3:​ Downloading a text file</span></a></span>
+          </span><span class="LohPageNumber">58</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig4"><span class="RefSource">Figure 4-4:​ Picture download</span></a></span>
+          </span><span class="LohPageNumber">59</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig5"><span class="RefSource">Figure 4-5:​ Snapshot of a weather webpage</span></a></span>
+          </span><span class="LohPageNumber">62</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig6"><span class="RefSource">Figure 4-6:​ Weather data in JSON format</span></a></span>
+          </span><span class="LohPageNumber">64</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig7"><span class="RefSource">Figure 4-7:​ Accessing Twitter with a library</span></a></span>
+          </span><span class="LohPageNumber">66</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Fig8"><span class="RefSource">Figure 4-8:​ Weather data in JSON format</span></a></span>
+          </span><span class="LohPageNumber">67</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Fig1"><span class="RefSource">Figure 5-1:​ The ‘new songs’ script (WP8 and Android only)</span></a></span>
+          </span><span class="LohPageNumber">77</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Fig1"><span class="RefSource">Figure 6-1:​ A simplified camcorder script (/​xbhl)</span></a></span>
+          </span><span class="LohPageNumber">83</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Fig2"><span class="RefSource">Figure 6-2:​ Computing brightness</span></a></span>
+          </span><span class="LohPageNumber">88</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Fig3"><span class="RefSource">Figure 6-3:​ Blending two pictures</span></a></span>
+          </span><span class="LohPageNumber">90</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Fig4"><span class="RefSource">Figure 6-4:​ Using the draw ellipse method</span></a></span>
+          </span><span class="LohPageNumber">92</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig1"><span class="RefSource">Figure 7-1:​ A simple pedometer program (/​jbpv)</span></a></span>
+          </span><span class="LohPageNumber">98</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig2"><span class="RefSource">Figure 7-2:​ Accelerometer orientation</span></a></span>
+          </span><span class="LohPageNumber">100</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig3"><span class="RefSource">Figure 7-3:​ Accelerometer colors simplified (script /​tbcb)</span></a></span>
+          </span><span class="LohPageNumber">101</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig4"><span class="RefSource">Figure 7-4:​ Magnetic compass script (script /​drvu)</span></a></span>
+          </span><span class="LohPageNumber">103</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig5"><span class="RefSource">Figure 7-5:​ Methods of the Motion type</span></a></span>
+          </span><span class="LohPageNumber">106</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Fig6"><span class="RefSource">Figure 7-6:​ Yaw, pitch and roll</span></a></span>
+          </span><span class="LohPageNumber">106</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Fig1"><span class="RefSource">Figure 8-1:​ Examples of 2D barcodes</span></a></span>
+          </span><span class="LohPageNumber">115</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Fig2"><span class="RefSource">Figure 8-2:​ Sending an SMS message</span></a></span>
+          </span><span class="LohPageNumber">116</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Fig1"><span class="RefSource">Figure 9-1:​ Example script:​ a moving ball (/​nyuc)</span></a></span>
+          </span><span class="LohPageNumber">124</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig1"><span class="RefSource">Figure 10-1:​ Page Example 1 (/​bvhugenw)</span></a></span>
+          </span><span class="LohPageNumber">140</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig2"><span class="RefSource">Figure 10-2:​ (a) Result from Page Example 1</span></a></span>
+          </span><span class="LohPageNumber">141</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig3"><span class="RefSource">Figure 10-3:​ Page Example 2 (/​hnimxaiw)</span></a></span>
+          </span><span class="LohPageNumber">143</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig4"><span class="RefSource">Figure 10-4:​ Result of Running Page Example 2</span></a></span>
+          </span><span class="LohPageNumber">144</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig5"><span class="RefSource">Figure 10-5:​ Page Example 3 (/​wrsonnwh)</span></a></span>
+          </span><span class="LohPageNumber">145</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig6"><span class="RefSource">Figure 10-6:​ Translation produced by Page Example 3</span></a></span>
+          </span><span class="LohPageNumber">146</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Fig7"><span class="RefSource">Figure 10-7:​ Icons for User Interface Editing</span></a></span>
+          </span><span class="LohPageNumber">148</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Fig1"><span class="RefSource">Figure 11-2:​ Using Facebook Library</span></a></span>
+          </span><span class="LohPageNumber">156</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig1"><span class="RefSource">Figure A-1:​ The rotor program /​gtbd</span></a></span>
+          </span><span class="LohPageNumber">158</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig2"><span class="RefSource">Figure A-2:​ The first few script templates</span></a></span>
+          </span><span class="LohPageNumber">160</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig3"><span class="RefSource">Figure A-3:​ The editor webpage</span></a></span>
+          </span><span class="LohPageNumber">161</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig4"><span class="RefSource">Figure A-4:​ The left keypad</span></a></span>
+          </span><span class="LohPageNumber">164</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig5"><span class="RefSource">Figure A-5:​ The right keypad</span></a></span>
+          </span><span class="LohPageNumber">164</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig6"><span class="RefSource">Figure A-6:​ Add above and add below buttons</span></a></span>
+          </span><span class="LohPageNumber">166</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig7"><span class="RefSource">Figure A-7:​ The running script</span></a></span>
+          </span><span class="LohPageNumber">168</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig8"><span class="RefSource">Figure A-8:​ Selecting the first line</span></a></span>
+          </span><span class="LohPageNumber">170</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig9"><span class="RefSource">Figure A-9:​ Marking the first line to extract</span></a></span>
+          </span><span class="LohPageNumber">171</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_12_Chapter.html#Fig10"><span class="RefSource">Figure A-10:​ Marking the last line to extract</span></a></span>
+          </span><span class="LohPageNumber">171</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Fig1"><span class="RefSource">Figure A-11:​ Naming the extracted code</span></a></span>
+          </span><span class="LohPageNumber">171</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Fig1"><span class="RefSource">Figure E-1:​ The rotor program /​cqxk</span></a></span>
+          </span><span class="LohPageNumber">236</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Fig2"><span class="RefSource">Figure E-2:​ Getting started screenshots</span></a></span>
+          </span><span class="LohPageNumber">237</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Fig3"><span class="RefSource">Figure E-3:​ Editing the first line</span></a></span>
+          </span><span class="LohPageNumber">239</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_16_Chapter.html#Fig4"><span class="RefSource">Figure E-4:​ Running the script</span></a></span>
+          </span><span class="LohPageNumber">242</span></div><div class="ClearBoth"> </div></div></div><div id="Loh2" class="Loh"><div class="Headings"><div class="Heading">List of tables</div></div><div class="LohBody"><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab1"><span class="RefSource">Table 2-1:​ Special symbols used in scriptsy</span></a></span>
+          </span><span class="LohPageNumber">12</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab2"><span class="RefSource">Table 2-2:​ The Value types</span></a></span>
+          </span><span class="LohPageNumber">15</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab3"><span class="RefSource">Table 2-3:​ Reference types provided by the API</span></a></span>
+          </span><span class="LohPageNumber">17</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab4"><span class="RefSource">Table 2-4:​ Regular collection types</span></a></span>
+          </span><span class="LohPageNumber">19</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab5"><span class="RefSource">Table 2-5:​ Special collection types</span></a></span>
+          </span><span class="LohPageNumber">20</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab6"><span class="RefSource">Table 2-6:​ Operators</span></a></span>
+          </span><span class="LohPageNumber">26</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab7"><span class="RefSource">Table 2-7:​ Events</span></a></span>
+          </span><span class="LohPageNumber">33</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_2_Chapter.html#Tab8"><span class="RefSource">Table 2-8:​ Gameboard events</span></a></span>
+          </span><span class="LohPageNumber">34</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab1"><span class="RefSource">Table 3-1:​ Display of media values</span></a></span>
+          </span><span class="LohPageNumber">39</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab2"><span class="RefSource">Table 3-2:​ Display of social values</span></a></span>
+          </span><span class="LohPageNumber">40</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab3"><span class="RefSource">Table 3-3:​ Display of web values</span></a></span>
+          </span><span class="LohPageNumber">40</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab4"><span class="RefSource">Table 3-4:​ Prompting for input</span></a></span>
+          </span><span class="LohPageNumber">41</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab5"><span class="RefSource">Table 3-5:​ Tap wall events</span></a></span>
+          </span><span class="LohPageNumber">45</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_3_Chapter.html#Tab6"><span class="RefSource">Table 3-6:​ Methods of the Page Table datatype</span></a></span>
+          </span><span class="LohPageNumber">50</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Tab1"><span class="RefSource">Table 4-1:​ Converting URLs</span></a></span>
+          </span><span class="LohPageNumber">53</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Tab2"><span class="RefSource">Table 4-2:​ Creating web links</span></a></span>
+          </span><span class="LohPageNumber">54</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Tab3"><span class="RefSource">Table 4-3:​ Uploading/​downloading to websites</span></a></span>
+          </span><span class="LohPageNumber">57</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Tab4"><span class="RefSource">Table 4-4:​ Methods of Web Request datatype</span></a></span>
+          </span><span class="LohPageNumber">69</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_4_Chapter.html#Tab5"><span class="RefSource">Table 4-5:​ Methods of Web Response datatype</span></a></span>
+          </span><span class="LohPageNumber">70</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Tab1"><span class="RefSource">Table 5-1:​ Supported music formats</span></a></span>
+          </span><span class="LohPageNumber">71</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Tab2"><span class="RefSource">Table 5-2:​ Accessing media resources (WP8 and Android only)</span></a></span>
+          </span><span class="LohPageNumber">72</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Tab3"><span class="RefSource">Table 5-3:​ Using songs and song albums (WP8 and Android only)</span></a></span>
+          </span><span class="LohPageNumber">73</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Tab4"><span class="RefSource">Table 5-4:​ Methods of player resource for songs</span></a></span>
+          </span><span class="LohPageNumber">74</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_5_Chapter.html#Tab5"><span class="RefSource">Table 5-5:​ Methods of Sound datatype</span></a></span>
+          </span><span class="LohPageNumber">78</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab1"><span class="RefSource">Table 6-1:​ Methods for using the camera(s)</span></a></span>
+          </span><span class="LohPageNumber">81</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab2"><span class="RefSource">Table 6-2:​ Methods of the Camera datatype</span></a></span>
+          </span><span class="LohPageNumber">82</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab3"><span class="RefSource">Table 6-3:​ Methods of Picture Album and Pictures datatypes (WP8 and Android)</span></a></span>
+          </span><span class="LohPageNumber">85</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab4"><span class="RefSource">Table 6-4:​ General Picture methods</span></a></span>
+          </span><span class="LohPageNumber">86</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab5"><span class="RefSource">Table 6-5:​ Colorizing/​intensity picture effects</span></a></span>
+          </span><span class="LohPageNumber">89</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_6_Chapter.html#Tab6"><span class="RefSource">Table 6-6:​ Drawing methods of the Picture datatype</span></a></span>
+          </span><span class="LohPageNumber">91</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Tab1"><span class="RefSource">Table 7-1:​ Sensing methods of the senses service</span></a></span>
+          </span><span class="LohPageNumber">95</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_7_Chapter.html#Tab2"><span class="RefSource">Table 7-2:​ Sensor events</span></a></span>
+          </span><span class="LohPageNumber">96</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab1"><span class="RefSource">Table 8-1:​ Messaging methods of the social service</span></a></span>
+          </span><span class="LohPageNumber">108</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab2"><span class="RefSource">Table 8-2:​ Extra methods of the Message Collection datatype</span></a></span>
+          </span><span class="LohPageNumber">109</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab3"><span class="RefSource">Table 8-3:​ Methods of the locations service</span></a></span>
+          </span><span class="LohPageNumber">110</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab4"><span class="RefSource">Table 8-4:​ Methods of the maps service</span></a></span>
+          </span><span class="LohPageNumber">111</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab5"><span class="RefSource">Table 8-5:​ Methods of the Map datatype</span></a></span>
+          </span><span class="LohPageNumber">112</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab6"><span class="RefSource">Table 8-6:​ Methods for handling phone calls</span></a></span>
+          </span><span class="LohPageNumber">113</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab7"><span class="RefSource">Table 8-7:​ Barcode generation methods</span></a></span>
+          </span><span class="LohPageNumber">114</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab8"><span class="RefSource">Table 8-8:​ Methods of the Appointment datatype</span></a></span>
+          </span><span class="LohPageNumber">117</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_8_Chapter.html#Tab9"><span class="RefSource">Table 8-9:​ Methods for accessing and creating contacts</span></a></span>
+          </span><span class="LohPageNumber">117</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab1"><span class="RefSource">Table 9-1:​ Methods to create a board</span></a></span>
+          </span><span class="LohPageNumber">121</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab2"><span class="RefSource">Table 9-2:​ Methods of Board datatype:​ appearance</span></a></span>
+          </span><span class="LohPageNumber">122</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab3"><span class="RefSource">Table 9-3:​ Methods of Board datatype:​ creating /​ accessing sprites</span></a></span>
+          </span><span class="LohPageNumber">122</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab4"><span class="RefSource">Table 9-4:​ Methods of Board datatype:​ obstacles /​ boundaries</span></a></span>
+          </span><span class="LohPageNumber">124</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab5"><span class="RefSource">Table 9-5:​ Methods of Board datatype:​ forces /​ animation</span></a></span>
+          </span><span class="LohPageNumber">125</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab2"><span class="RefSource">Table 9-6:​ Methods of Sprite datatype:​ visual attributes</span></a></span>
+          </span><span class="LohPageNumber">126</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab7"><span class="RefSource">Table 9-7:​ Methods of Sprite datatype:​ position /​ velocity</span></a></span>
+          </span><span class="LohPageNumber">128</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab8"><span class="RefSource">Table 9-8:​ Methods of Sprite datatype:​ mass, friction, elasticity</span></a></span>
+          </span><span class="LohPageNumber">130</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab9"><span class="RefSource">Table 9-9:​ Methods of Sprite datatype:​ additional features</span></a></span>
+          </span><span class="LohPageNumber">130</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab10"><span class="RefSource">Table 9-10:​ Additional or modified Sprite Set methods</span></a></span>
+          </span><span class="LohPageNumber">132</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_9_Chapter.html#Tab11"><span class="RefSource">Table 9-11:​ Touch methods of the Board datatype</span></a></span>
+          </span><span class="LohPageNumber">133</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Tab1"><span class="RefSource">Table 10-1:​ General Methods of box Service</span></a></span>
+          </span><span class="LohPageNumber">150</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Tab2"><span class="RefSource">Table 10-2:​ Text Handling Methods of box Service</span></a></span>
+          </span><span class="LohPageNumber">150</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_10_Chapter.html#Tab3"><span class="RefSource">Table 10-3:​ Layout Methods of box Service</span></a></span>
+          </span><span class="LohPageNumber">151</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4302-6137-7_11_Chapter.html#Tab1"><span class="RefSource">Table 11-1:​ General methods related to OAuth 2.​0</span></a></span>
+          </span><span class="LohPageNumber">151</span></div><div class="ClearBoth"> </div></div></div></div></body></html>

@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>GUI Design for Android Apps, Part 3: Designing Complex Applications</title><link href="springer_epub.css" type="text/css" rel="styleSheet"/></head><body><div class="ChapterContextInformation"><div class="ContextInformation" id="Chap9"><div class="ChapterCopyright">© Ryan Cohen 2014</div><span class="ContextInformationAuthorEditorNames"><span class="Author"><span class="AuthorName">Ryan Cohen</span> and </span><span class="Author"><span class="AuthorName">Tao Wang</span></span></span><span class="ContextInformationBookTitles"><span class="BookTitle" xml:lang="en">Android Application Development for the Intel<sup>®</sup> Platform</span></span><span class="ChapterDOI">10.1007/978-1-4842-0100-8_9</span></div></div><!--Begin Abstract--><div class="MainTitleSection"><h1 class="ChapterTitle" xml:lang="en">9. GUI Design for Android Apps, Part 3: Designing Complex Applications</h1></div><div class="AuthorGroup"><div class="AuthorNames"><span class="Author"><span class="AuthorName">Ryan Cohen</span><sup>1 <span class="ContactIcon"/></sup> and </span><span class="Author"><span class="AuthorName">Tao Wang</span><sup>1 <span class="ContactIcon"/></sup></span></div><div class="Affiliations"><div class="Affiliation" id="Aff1"><span class="AffiliationNumber">(1)</span><div class="AffiliationText">OR, USA</div></div><div class="ClearBoth"> </div></div></div><!--End Abstract--><div class="Fulltext"><div class="Para">In the previous chapter, you learned about Android interface design by creating a simple application called <span class="EmphasisFontCategoryNonProportional">GuiExam</span>. The chapter also covered the state transition of activities, the <span class="EmphasisFontCategoryNonProportional">Context</span> class, and an introduction to intents and the relationship between applications and activities. You learned how to use a layout as an interface, and how button, event, and inner event listeners work. In this chapter, you learn how to create an application with multiple activities; examples introduce the explicit and implicit trigger mechanisms of activities. You see an example of an application with parameters triggered by an activity in a different application, which will help you understand the exchange mechanism for the activity’s parameters.</div><div id="Sec1" class="Section1 RenderAsSection1"><h2 class="Heading">Applications with Multiple Activities</h2><div class="Para">The application in the previous example has only one activity: the main activity, which is displayed when the application starts. This chapter demonstrates an application with multiple activities, using the activity-intent mechanism, and shows the changes needed in the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file.</div><div class="Para">As previously described, an activity is triggered by an intent. There are two kinds of intent-resolution methods: <span class="EmphasisTypeItalic">explicit match</span> (also known as <span class="EmphasisTypeItalic">direct intent</span>) and (also known as <span class="EmphasisTypeItalic">indirect intent</span>). A triggering activity can also have parameters and return values. Additionally, Android comes with a number of built-in activities, and therefore a triggered activity can come from Android itself, or it can be customized. Based on these situations, this chapter uses four examples to illustrate different activities. For the explicit match, you see an application with or without parameters and return values. For the implicit match, you see an application that uses activities that come from the Android system or are user defined.</div><div id="Sec2" class="Section2 RenderAsSection2"><h3 class="Heading">Triggering an Explicit Match of Activities with No Parameters</h3><div class="Para">Using explicit match without parameters is the simplest trigger mechanism of the activity intent. This section first uses an example to introduce this mechanism and later covers more complex mechanisms.</div><div class="Para">The code framework of the activity-intent triggering mechanism for explicit matching includes two parts: the activities of the callee (being triggered) and those of the caller (trigger). The trigger is not limited to activities; it can also be a service, such as a broadcast intent receiver. But because you have only seen the use of activities so far, the triggers for all the examples in this section are activities.<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">The source code framework for the activity of the callee does the following:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Defines a class that inherits from the activity.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">If there are parameters that need to be passed, then the source code framework of the activity calls the <span class="EmphasisFontCategoryNonProportional">Activity.getIntent()</span> function in the <span class="EmphasisFontCategoryNonProportional">onCreate</span> function to obtain the <span class="EmphasisFontCategoryNonProportional">Intent</span> object that triggers this activity, and then gets the parameters being passed through functions like <span class="EmphasisFontCategoryNonProportional">Intent.getData ()</span>, <span class="EmphasisFontCategoryNonProportional">Intent.getXXXExtra ()</span>, <span class="EmphasisFontCategoryNonProportional">Intent.getExtras ()</span>, and so on.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">c.</span><div class="ItemContent"><div class="Para">Writes code for the normal activity patterns.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">d.</span><div class="ItemContent"><div class="Para">If the trigger returns values, does the following before exiting the activity:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">i.</span><div class="ItemContent"><div class="Para">Defines an <span class="EmphasisFontCategoryNonProportional">Intent</span> object</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">ii.</span><div class="ItemContent"><div class="Para">Sets data values for the intent with functions like <span class="EmphasisFontCategoryNonProportional">Intent.putExtras()</span>
+                                    </div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">iii.</span><div class="ItemContent"><div class="Para">Sets the return code of the activity by calling the <span class="EmphasisFontCategoryNonProportional">Activity.setResult()</span> function</div></div><div class="ClearBoth"> </div></div></div>
+                            </div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">e.</span><div class="ItemContent"><div class="Para">Adds the code for the activity of the callee in the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">The code framework for the activity of the callee does the following:<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Defines the <span class="EmphasisFontCategoryNonProportional">Intent</span> object, and specifies the trigger’s context and the <span class="EmphasisFontCategoryNonProportional">class</span> attribute of the triggered activity.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">If parameters need to be passed to the activity, sets the parameters for the <span class="EmphasisFontCategoryNonProportional">Intent</span> object by calling functions of the intent like <span class="EmphasisFontCategoryNonProportional">setData()</span>, <span class="EmphasisFontCategoryNonProportional">putExtras()</span>, and so on.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">c.</span><div class="ItemContent"><div class="Para">Calls <span class="EmphasisFontCategoryNonProportional">Activity.startActivity(Intent intent)</span> function to trigger an activity without parameters, or call <span class="EmphasisFontCategoryNonProportional">Activity.startActivityForResult(Intent intent, int requestCode)</span> to trigger an activity with parameters.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">d.</span><div class="ItemContent"><div class="Para">If the activity needs to be triggered by the return value, then the code framework rewrites the <span class="EmphasisFontCategoryNonProportional">onActivityResult()</span> function of the <span class="EmphasisFontCategoryNonProportional">Activity</span> class, which takes different actions depending on the request code (<span class="EmphasisFontCategoryNonProportional">requestCode</span>), result code (<span class="EmphasisFontCategoryNonProportional">resultCode</span>), and intentions (<span class="EmphasisFontCategoryNonProportional">Intent</span>) values.</div></div><div class="ClearBoth"> </div></div></div>
+                            </div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">In step 2a, the class attribute of the triggered activity is used, which involves a Java mechanism called <span class="EmphasisTypeItalic">reflection.</span> This mechanism can create and return an object of the class according to the class name. The object of the triggered activity is not constructed before the triggering; therefore triggering the activity also means creating an object of that class so that subsequent operations can continue. That is, triggering the activity includes the operation of the newly created class objects.</div><div class="Para">The following two examples illustrate the code framework in detail. This section describes the first one. In this example, the triggered activity belongs to the same application as the activity of the trigger, and the triggered activity does not require any parameters and does not return any values. The new activity is triggered via a button, and its activity interface is similar to the interface of the example in the section “Exit Activities and Application.” in <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>, Figure 8-16. The entire application interface is shown in Figure <span class="InternalRef"><a href="#Fig1">9-1</a></span>.<div class="Figure" id="Fig1"><div class="MediaObject" id="MO1"><img src="A978-1-4842-0100-8_9_Fig1_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig1_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-1.</span><div class="SimplePara">The application interface with multiple activities in the same application without parameters</div></div></div></div>
+            </div><div class="Para">After the application starts, the application’s main activity is displayed, as shown in Figure <span class="InternalRef"><a href="#Fig1">9-1(a)</a></span>. When the Change To The New Interface Without Parameters button is clicked, the app displays the new activity, as shown in Figure <span class="InternalRef"><a href="#Fig1">9-1(b)</a></span>. Clicking the Close Activity button causes the interface to return to the application’s main activity, as shown in Figure <span class="InternalRef"><a href="#Fig1">9-1(c)</a></span>.</div><div class="Para">Create this example by modifying and rewriting the example in the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> section in <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>, as follows:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">Generate the corresponding layout file for the triggered activity:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Right-click the shortcut menu in the <span class="EmphasisFontCategoryNonProportional">res\layout</span> subdirectory of the application, and select New ➤ Other Items. A New dialog box pops up. Select the <span class="EmphasisFontCategoryNonProportional">\XML\XML File</span> subdirectory, and click Next to continue. In the New XML File dialog box, enter the file name (in this case <span class="EmphasisFontCategoryNonProportional">noparam_otheract.xml</span>), and click Finish. The entire process is shown in Figure <span class="InternalRef"><a href="#Fig2">9-2</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="FormalPara FormalParaRenderingStyle1 ParaTypeImportant"><div class="Heading">Note</div><div class="Para">The file name is the name of the layout file. You must use only lowercase letters for compilation to be successful; otherwise you will get the error “Invalid file name: must contain only a-z0-9_..”</div></div><div class="Figure" id="Fig2"><div class="MediaObject" id="MO2"><img src="A978-1-4842-0100-8_9_Fig2_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig2_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-2.</span><div class="SimplePara">The layout file for the triggered activity</div></div></div></div><div class="Para">You can see the newly added <span class="EmphasisFontCategoryNonProportional">xxx.xml</span> file (in this case, <span class="EmphasisFontCategoryNonProportional">noparam_otheract.xml</span>) in the project’s Package Explorer, as shown in Figure <span class="InternalRef"><a href="#Fig3">9-3</a></span>.</div><div class="FormalPara FormalParaRenderingStyle1 ParaTypeImportant"><div class="Heading">Note</div><div class="Para">The layout editor window on the right is still empty, and there is no visible interface so far.</div></div><div class="Para">
+              <div class="Figure" id="Fig3"><div class="MediaObject" id="MO3"><img src="A978-1-4842-0100-8_9_Fig3_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig3_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-3.</span><div class="SimplePara">Initial interface of the application’s newly added layout file</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">Select the <span class="EmphasisFontCategoryNonProportional">Layouts</span> subdirectory in the left palette, and drag the layout control (in this case, <span class="EmphasisFontCategoryNonProportional">RelativeLayout</span>) onto the window in the right pane. You immediately see a visible (phone-screen shaped) interface, as shown in Figure <span class="InternalRef"><a href="#Fig4">9-4</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig4"><div class="MediaObject" id="MO4"><img src="A978-1-4842-0100-8_9_Fig4_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig4_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-4.</span><div class="SimplePara">Drag-and-drop layout for the newly added layout file</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">c.</span><div class="ItemContent"><div class="Para">Based on the same methodology described in the section “Using ImageView” in <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>, place an <span class="EmphasisFontCategoryNonProportional">ImageView</span> and a button in the new layout file. Set the <span class="EmphasisFontCategoryNonProportional">ImageView</span> widget’s <span class="EmphasisFontCategoryNonProportional">ID</span> attribute to <span class="EmphasisFontCategoryNonProportional">@+id/picture</span> and the <span class="EmphasisFontCategoryNonProportional">Button</span> widget’s <span class="EmphasisFontCategoryNonProportional">ID</span> attribute to <span class="EmphasisFontCategoryNonProportional">@+id/closeActivity</span>. The <span class="EmphasisFontCategoryNonProportional">Text</span> property is “Close Activity,” as shown in Figure <span class="InternalRef"><a href="#Fig5">9-5</a></span>. Finally, save the layout file.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig5"><div class="MediaObject" id="MO5"><img src="A978-1-4842-0100-8_9_Fig5_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig5_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-5.</span><div class="SimplePara">Final configuration of the newly added layout file</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Add the corresponding <span class="EmphasisFontCategoryNonProportional">Activity</span> class for the layout file (Java source files). To do so, right-click <span class="EmphasisFontCategoryNonProportional">\src\com.example.XXX</span> under the project directory, and select New ➤ Class on the shortcut menu. In the New Java Class dialog box, for Name, enter the <span class="EmphasisFontCategoryNonProportional">Activity</span> class name corresponding to the new layout file (in this case, <span class="EmphasisFontCategoryNonProportional">TheNoParameterOtherActivity</span>). Click Finish to close the dialog box. The whole process is shown in Figure <span class="InternalRef"><a href="#Fig6">9-6</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig6"><div class="MediaObject" id="MO6"><img src="A978-1-4842-0100-8_9_Fig6_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig6_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-6.</span><div class="SimplePara">Corresponding class for the newly added layout file</div></div></div></div>
+            </div><div class="Para">You can see the newly added Java files (in this case, <span class="EmphasisFontCategoryNonProportional">TheNoParameterOtherActivity.java</span>) and the initial code, as shown in Figure <span class="InternalRef"><a href="#Fig7">9-7</a></span>.<div class="Figure" id="Fig7"><div class="MediaObject" id="MO7"><img src="A978-1-4842-0100-8_9_Fig7_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig7_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-7.</span><div class="SimplePara">Corresponding class and initial source code of the newly added layout</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">3.</span><div class="ItemContent"><div class="Para">Edit the newly added <span class="EmphasisFontCategoryNonProportional">.java</span> file (<span class="EmphasisFontCategoryNonProportional">TheNoParameterOtherActivity.java</span>). This class executes the activity of the triggered activity (callee). Its source code is as follows (bold text is added or modified):</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.os.Bundle;                   // Use Bundle class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.app.Activity;                // Use Activity Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;               // Use Button class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;                   // Use View class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;   // Use OnClickListener Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7  public class TheNoParameterOtherActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8  // Define Activity subclass</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">protected void onCreate(Bundle savedInstanceState) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define onCreate method</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super.onCreate(savedInstanceState);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// onCreate method of calling parent class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">setContentView(R.layout.noparam_otheract);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set layout file</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.closeActivity);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set responding code for &lt;Close Activity&gt; Button</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">                   <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">finish();</span></span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Close this activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">In line 7, you add the superclass <span class="EmphasisFontCategoryNonProportional">Activity</span> for the newly created class. The code in lines 8 through 18 is similar to the application’s main activity. Note that in line 14, the code calls the <span class="EmphasisFontCategoryNonProportional">setContentView()</span> function to set the layout for <span class="EmphasisFontCategoryNonProportional">Activity</span>, where the parameter is the prefix name of the new layout XML file created in the first step.
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">4.</span><div class="ItemContent"><div class="Para">Edit the code for the trigger (caller) activity. The trigger activity is the main activity of the application. The source code is <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span>, and the layout file is <span class="EmphasisFontCategoryNonProportional">activity_main.xml</span>. The steps for editing are as follows: <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Edit the layout file, delete the original <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets, and add a button. Set its <span class="EmphasisFontCategoryNonProportional">ID</span> property to <span class="EmphasisFontCategoryNonProportional">@+id/goTONoParamNewAct</span> and its <span class="EmphasisFontCategoryNonProportional">Text</span> property to “Change to interface without Parameter,” as shown in Figure <span class="InternalRef"><a href="#Fig8">9-8</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig8"><div class="MediaObject" id="MO8"><img src="A978-1-4842-0100-8_9_Fig8_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig8_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-8.</span><div class="SimplePara">Layout configuration for the trigger activity</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">Edit the source code file of the trigger activity (in this case, <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span>) as follows (bold text is either added or modified):</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Intent;           // Use Intent class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;            // Use Button class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9  public class MainActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10    @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11    public void onCreate(Bundle savedInstanceState) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12      super.onCreate(savedInstanceState);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13      setContentView(R.layout.activity_main);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.goTONoParamNewAct);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = new Intent(MainActivity.this, TheNoParameterOtherActivity.class);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">startActivity(intent);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21    }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22     @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23     public boolean onCreateOptionsMenu(Menu menu) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24       getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25       return true;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26     }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27 }</span>
+            </div><div class="Para">The code in line 17 defines an intent. The constructor function prototype in this case is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Intent(Context packageContext, Class&lt;?&gt; cls)</span>
+            </div><div class="Para">The first parameter is the trigger activity, in this case the main activity; <span class="EmphasisFontCategoryNonProportional">this</span>, because it is used inside the inner classes, is preceded by class-name modifiers. The second parameter is the class of the callee (being triggered) activity. It uses the <span class="EmphasisFontCategoryNonProportional">.class</span> attribute to construct its object (all Java classes have the <span class="EmphasisFontCategoryNonProportional">.class</span> attribute).</div><div class="Para">Line 18 calls <span class="EmphasisFontCategoryNonProportional">startActivity</span>, which runs the intent. This function does not pass any parameters to the triggered activity. The function prototype is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">void Activity.startActivity(Intent intent)</span>
+            </div><div class="Para">
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">5.</span><div class="ItemContent"><div class="Para">Edit the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file. Add descriptive information for the callee activity (bold text is added) to register the new <span class="EmphasisFontCategoryNonProportional">Activity</span> class:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1 &lt;manifest xmlns:android="</span>
+              <span class="ExternalRef"><a href="http://schemas.android.com/apk/res/android"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">http://schemas.android.com/apk/res/android</span>
+                </span></a></span>
+              <span class="EmphasisFontCategoryNonProportional">"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2     package="com.example.guiexam"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3     android:versionCode="1"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4     android:versionName="1.0" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">...     ... ...</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10     &lt;application</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11         android:icon="@drawable/ic_launcher"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12         android:label="@string/app_name"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13         android:theme="@style/AppTheme" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14         &lt;activity</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15             android:name=".MainActivity"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16             android:label="@string/title_activity_main" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17             &lt;intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18                 &lt;action android:name="android.intent.action.MAIN" /&gt;
+19</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20                 &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+21             &lt;/intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22         &lt;/activity&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;activity android:name=".TheNoParameterOtherActivity" android:label="the other Activity"/&gt;</span></span>
+              <span class="EmphasisFontCategoryNonProportional">24     &lt;/application&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26 &lt;/manifest&gt;</span>
+            </div><div class="Para">You can also replace this XML code with the following methods:
+<div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">Method 1:</div></li></ul></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">&lt;activity android:name="TheNoParameterOtherActivity" android:label=" the other Activity"&gt; &lt;/activity&gt;</span>
+            </div><div class="Para">
+              <div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">Method 2:</div></li></ul></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">&lt;activity android:name=".TheNoParameterOtherActivity " /&gt;</span>  
+<div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">Method 3:</div></li></ul></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">&lt;activity android:name=".TheNoParameterOtherActivity"&gt;&lt;/activity&gt;</span>
+            </div><div class="Para">The content of the <span class="EmphasisFontCategoryNonProportional">android: name</span> text field is the class name of the callee’s activity: <span class="EmphasisFontCategoryNonProportional">TheNoParameterOtherActivity</span>.</div><div class="Para">Note that if a period (<span class="EmphasisFontCategoryNonProportional">.</span>) is added before the name of the <span class="EmphasisFontCategoryNonProportional">Activity</span> class <span class="EmphasisFontCategoryNonProportional">android: name</span>, the compiler will give you the following warning at this line in the XML file (only a warning, not a compile error):</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Exported activity does not require permission</span>
+            </div></div><div id="Sec3" class="Section2 RenderAsSection2"><h3 class="Heading">Triggering Explicit Matching of an Activity with Parameters of Different Applications</h3><div class="Para">The previous sections introduced triggering another activity without parameters in the same application. The activity of the trigger is that the callee allows the exchange of parameters: the trigger can specify certain parameters to the callee, and the callee can return those parameter values to the trigger on exit. Additionally, the callee and the trigger can be in completely different applications. This section shows an example of an application with parameters triggered by an activity in a different application. This example will help you understand the exchange mechanism for the activity’s parameters.</div><div class="Para">Use the same <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application from <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>. The interface is shown in Figure <span class="InternalRef"><a href="#Fig9">9-9</a></span>.<div class="Figure" id="Fig9"><div class="MediaObject" id="MO9"><img src="A978-1-4842-0100-8_9_Fig9_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig9_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-9.</span><div class="SimplePara">The interface of multiple activities in different applications</div></div></div></div>
+            </div><div class="Para">As shown in Figure <span class="InternalRef"><a href="#Fig9">9-9</a></span>, the trigger activity is in the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application, where there is a variable to accept the weather condition entry. The interface in Figure <span class="InternalRef"><a href="#Fig9">9-9(a)</a></span> displays when the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application is opened. Click the Enter New Interface To Modify The Weather box to trigger the activity in <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span>. When this activity starts, it displays the new weather condition passed in the Set New Weather text box, as shown in Figure <span class="InternalRef"><a href="#Fig9">9-9(b)</a></span>. Now enter a new weather condition value in the Set New Weather, and click OK Change to close the trigger’s activity. The new value returned from Set New Weather refreshes the <span class="EmphasisFontCategoryNonProportional">Weather</span> variable in the trigger’s activity, as shown in Figure <span class="InternalRef"><a href="#Fig9">9-9(d)</a></span>. If you click Cancel Change, it does the same thing and closes the activity, but the value <span class="EmphasisFontCategoryNonProportional">Weather</span> does not change, as shown in Figure <span class="InternalRef"><a href="#Fig9">9-9(f)</a></span>.</div><div class="Para">The process list for the executing application is shown in Figure <span class="InternalRef"><a href="#Fig10">9-10</a></span> (displayed in the DDMS window of the host machine in Eclipse).<div class="Figure" id="Fig10"><div class="MediaObject" id="MO10"><img src="A978-1-4842-0100-8_9_Fig10_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig10_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-10.</span><div class="SimplePara">Process list in DDMS for the multiple-activity application</div></div></div></div>
+            </div><div class="Para">Figure <span class="InternalRef"><a href="#Fig10">9-10</a></span> shows that when the application starts, only the process for the trigger, <span class="EmphasisFontCategoryNonProportional">GuiExam</span>, is running. But when you click Enter New Interface To Modify The Weather, the new activity is triggered and the process for the new activity <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> runs, as shown in Figure <span class="InternalRef"><a href="#Fig10">9-10(b)</a></span>. When you click Confirm Change or Cancel Change, the triggered activity turns off, but the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> process does not quit, as shown in Figure <span class="InternalRef"><a href="#Fig10">9-10(c)</a></span>. Interestingly, even though the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> trigger process exits, the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> process to which the triggered activity belongs is still in the running state.</div><div class="Para">The build steps are as follows:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">Modify the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> code of the trigger application:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Edit the main layout file (<span class="EmphasisFontCategoryNonProportional">activity_main.xml</span> in this case) by deleting the original <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets; then add three new <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets and a button. Set their properties as follows: set the <span class="EmphasisFontCategoryNonProportional">Text</span> property for two <span class="EmphasisFontCategoryNonProportional">TextView</span>s to “This interface is the activity of the Caller in GuiExam application” and “Today’s Weather:”. Set the third <span class="EmphasisFontCategoryNonProportional">TextView</span>’s <span class="EmphasisFontCategoryNonProportional">ID</span> property to <span class="EmphasisFontCategoryNonProportional">@+id/weatherInfo</span>. The <span class="EmphasisFontCategoryNonProportional">Text</span> property of the button is “Enter New Interface to Change Weather”, and its <span class="EmphasisFontCategoryNonProportional">ID</span> attribute is <span class="EmphasisFontCategoryNonProportional">@+id/modifyWeather</span>. Adjust the size and position of each widget as shown in Figure <span class="InternalRef"><a href="#Fig11">9-11</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig11"><div class="MediaObject" id="MO11"><img src="A978-1-4842-0100-8_9_Fig11_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig11_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-11.</span><div class="SimplePara">The main layout design for the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> trigger application</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">Modify the content of <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span> as shown here:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;            // Use Button class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;                // Use View class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener; // Use View.OnClickListener class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.TextView;          // Use TextView class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Intent;           // Use Intentclass</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10 public class MainActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public static final String INITWEATHER = "</span></span>Sunny<span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">; // /Initial Weather</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public static final int MYREQUESTCODE =100;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Request Code of triggered Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private TextView tv_weather;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// The TextView Widget that displays Weather info</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16     @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17     public void onCreate(Bundle savedInstanceState) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18         super.onCreate(savedInstanceState);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19         setContentView(R.layout.activity_main);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">tv_weather = (TextView)findViewById(R.id.weatherInfo);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">tv_weather.setText(INITWEATHER);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.modifyWeather);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Get Button object according to resource ID #</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set responding code click event</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = new Intent();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">intent.setClassName("com.example.helloandroid",</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">29</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// the package ( application) that the triggered Activity is located</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">30</span>                     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">"com.example.helloandroid.TheWithParameterOtherActivity");</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">31</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// triggered class ( full name)</span></span>
+            </div><div class="Para ParaTypeProgramcode">                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">String wthr = tv_weather.getText().toString();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">32</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Acquire the value of weather TextView</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">33</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">intent.putExtra("weather",wthr); // Set parameter being passed to Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">34                 startActivityForResult(intent,</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">MYREQUESTCODE);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">35</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Trigger Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">36</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">37</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">38     }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">39</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">40</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">41</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">protected void onActivityResult(int requestCode, int resultCode, Intent data) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">42</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Triggered Activity finish return</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">43</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super.onActivityResult(requestCode, resultCode, data);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">44</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (requestCode == MYREQUESTCODE) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">45</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Determine whether the specified Activity end of the run</span></span>
+            </div><div class="Para ParaTypeProgramcode">             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">if (resultCode == RESULT_CANCELED)</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">46</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">{       }</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">47</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Select "Cancel" to exit the code, this case is empty</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">48</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">else if (resultCode == RESULT_OK) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">49</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Select &lt;OK&gt; to exit code</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">50</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">String wthr = null;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">51</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">wthr = data.getStringExtra("weather");</span></span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">// Get return value</span>
+            </div><div class="Para ParaTypeProgramcode">                   <span class="EmphasisFontCategoryNonProportional">if (wthr != null)</span>
+            </div><div class="Para ParaTypeProgramcode">                       <span class="EmphasisFontCategoryNonProportional">tv_weather.setText(wthr);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">  // Update TextView display of weather content</span>
+            </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">@Override</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">public boolean onCreateOptionsMenu(Menu menu) {</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">return true;</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">The code in lines 23–28 triggers the activity with parameters in other applications. Lines 23–25 establish the trigger intent, which uses the <span class="EmphasisFontCategoryNonProportional">Intent.setClassName()</span> function. The prototype is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Intent Intent.setClassName(String packageName, String className);</span>
+            </div><div class="Para">The first parameter is the name of the package where the triggered activity is located, and the second parameter is the class name (required to use the full name) of the triggered activity. By using the <span class="EmphasisFontCategoryNonProportional">startActivity ...</span> function to trigger the activity, the system can accurately locate the application and activity classes.</div><div class="Para">Line 28 attaches the parameter as additional data to the intent. <span class="EmphasisFontCategoryNonProportional">Intent</span> has a series of <span class="EmphasisFontCategoryNonProportional">putExtra</span> functions to attach additional data and another series of <span class="EmphasisFontCategoryNonProportional">getXXXExtra</span> functions to extract data from the intent. Additional data can also be assembled by the <span class="EmphasisFontCategoryNonProportional">Bundle</span> class. <span class="EmphasisFontCategoryNonProportional">Intent</span> provides a <span class="EmphasisFontCategoryNonProportional">putExtras</span> function to add data and a <span class="EmphasisFontCategoryNonProportional">getExtras</span> function to get the data. <span class="EmphasisFontCategoryNonProportional">putExtra</span> uses a <span class="EmphasisTypeItalic">property-value</span> data pairing or <span class="EmphasisTypeItalic">variable name-value</span> data pairing to add and retrieve data. In this example, <span class="EmphasisFontCategoryNonProportional">Intent.putExtra("weather", "XXX")</span> saves the data pair consisting of the name of the <span class="EmphasisFontCategoryNonProportional">weather</span> variable and the value “XXX” as additional data for the intent.</div><div class="Para">The code line with <span class="EmphasisFontCategoryNonProportional">Intent.getStringExtra("weather")</span> gets the value of the <span class="EmphasisFontCategoryNonProportional">weather</span> variable from the attached intent data and returns the string type.</div><div class="Para">More details about these functions and the <span class="EmphasisFontCategoryNonProportional">Bundle</span> class can be found in the documentation on the Android web site. They are not discussed any further here.</div><div class="Para">In lines 33–46, you rewrite the <span class="EmphasisFontCategoryNonProportional">onActivityResult</span> function of the <span class="EmphasisFontCategoryNonProportional">Activity</span> class. This function is called when the triggered activity is closed. In line 36, you first determine which activity is closed and returned according to the request code. Then you judge whether it is returned by an OK or a Cancel click, based on the result code and the request code. Lines 40–50 get the negotiated variable values from the returned intent. Line 42 updates the interface based on the return value of the variable. In this function, if the user clicks Cancel to return, you do nothing.<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Modify the code of the callee application <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> as shown in Figure <span class="InternalRef"><a href="#Fig12">9-12</a></span>:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Using the method described in the section “Triggering Explicit Matching of an Activity with Parameters of Different Applications earlier in this chapter, add a layout file (in this case named <span class="EmphasisFontCategoryNonProportional">param_otheract.xml</span>), and drag and drop a <span class="EmphasisFontCategoryNonProportional">RelativeLayout</span> layout into the file.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">Edit this layout file by adding two <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets, an <span class="EmphasisFontCategoryNonProportional">EditText</span>, and two <span class="EmphasisFontCategoryNonProportional">Button</span> widgets. Set their properties as follows:
+<div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">Text</span> property for the two <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets: “This interface is the activity of the caller in HelloAndroid application” and “Set new weather as:”</div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">ID</span> property for the <span class="EmphasisFontCategoryNonProportional">EditText</span>: <span class="EmphasisFontCategoryNonProportional">@+id/editText_NewWeather</span>
+                                  </div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">Text</span> property for the two <span class="EmphasisFontCategoryNonProportional">Button</span>s: “Confirm Changes” and “Cancel Changes”</div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">ID</span> attribute for the two <span class="EmphasisFontCategoryNonProportional">Button</span>s: <span class="EmphasisFontCategoryNonProportional">@+id/button_Modify</span> and <span class="EmphasisFontCategoryNonProportional">@+id/button_Cancel</span>
+                                  </div></li></ul></div>
+                            </div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">Then adjust their size and position.<div class="Figure" id="Fig12"><div class="MediaObject" id="MO12"><img src="A978-1-4842-0100-8_9_Fig12_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig12_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-12.</span><div class="SimplePara">New layout design of the triggered (callee) application</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">c.</span><div class="ItemContent"><div class="Para">As described in the section “Triggering Explicit Matching of an Activity with Parameters of Different Applications,” add the corresponding class (in this case, <span class="EmphasisFontCategoryNonProportional">TheWithParameterOtherActivity)</span> for the new layout file, as shown in Figure <span class="InternalRef"><a href="#Fig13">9-13</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig13"><div class="MediaObject" id="MO13"><img src="A978-1-4842-0100-8_9_Fig13_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig13_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-13.</span><div class="SimplePara">Add the corresponding class for the newly added layout file in the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> project</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">d.</span><div class="ItemContent"><div class="Para">Edit the class file for the newly added layout file (in this example, <span class="EmphasisFontCategoryNonProportional">TheWithParameterOtherActivity.java</span>). The content is as follows:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.helloandroid;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional"> import android.os.Bundle;                   // Use Bundle Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.app.Activity;</span></span>                <span class="EmphasisFontCategoryNonProportional">// Use Activity Class</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Intent;              // Use Intent Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;               // Use Button Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional"> import android.view.View;                   // Use View Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;   // Use OnClickListener Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.EditText;             // Use  EditText Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9  public class TheWithParameterOtherActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">private String m_weather;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Save new weather variable</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">protected void onCreate(Bundle savedInstanceState) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Define onCreate method</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super.onCreate(savedInstanceState);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// method of call onCreate Super Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">setContentView(R.layout.withparam_otheract); // Set layout file</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = getIntent();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Get Intent of triggering this Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">m_weather = intent.getStringExtra("weather");</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Get extra data from Intent</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">final EditText et_weather = (EditText) findViewById(R.id.editText_NewWeather);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">et_weather.setText(m_weather,null);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set initial value of "New Weather" EditText according to extra data of the Intent</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn_modify = (Button) findViewById(R.id.button_Modify);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn_modify.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set corresponding code of &lt;Confirm Change&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">29</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = new Intent();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">30</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Create and return the Intent of Data storage</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">31</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">String wthr = et_weather.getText().toString();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">32</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Get new weather value from EditText</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">33</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">intent.putExtra("weather",wthr);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">34</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Put new weather value to return Intent</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">35</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">setResult(RESULT_OK, intent);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">36</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set &lt;Confirm&gt; and return data</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">37</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">finish();         // Close Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">});</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">Button btn_cancel = (Button) findViewById(R.id.button_Cancel);</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">btn_cancel.setOnClickListener(new /*View.*/OnClickListener(){</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">  //Set corresponding code for &lt;Cancel Change&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">               <span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span>
+            </div><div class="Para ParaTypeProgramcode">                   <span class="EmphasisFontCategoryNonProportional">setResult(RESULT_CANCELED, null);</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">// Set return value for &lt;Cancel&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">                   <span class="EmphasisFontCategoryNonProportional">finish();     // Close this Activity</span>
+            </div><div class="Para ParaTypeProgramcode">              <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">           <span class="EmphasisFontCategoryNonProportional">});</span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">This code follows the framework of an activity. It sets the activity layout in line 11 such that the layout name is the same as the layout file name created in step 1 (no extension). In lines 19‒22, it first constructs an intent for the return and then adds extra data to the <span class="EmphasisFontCategoryNonProportional">Intent</span> object as the return data. In line 21, it sets the return value of the activity and the intent as a return data carrier. The prototype of the <span class="EmphasisFontCategoryNonProportional">setResult</span> function is</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">final void Activity.setResult(int resultCode, Intent data);</span>
+            </div><div class="Para">If <span class="EmphasisFontCategoryNonProportional">resultCode</span> is <span class="EmphasisFontCategoryNonProportional">RESULT_OK</span>, the user has clicked OK to return; and if it is <span class="EmphasisFontCategoryNonProportional">RESULT_CANCELLED</span>, the user has clicked Cancel to return. In this condition, the return data carrier intent can be null, which is set in line 27.
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">3.</span><div class="ItemContent"><div class="Para">Modify <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span>, which is triggered by the application, with the following code:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1 &lt;manifest xmlns:android="</span>
+              <span class="ExternalRef"><a href="http://schemas.android.com/apk/res/android"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">http://schemas.android.com/apk/res/android</span>
+                </span></a></span>
+              <span class="EmphasisFontCategoryNonProportional">"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2     package="com.example.helloandroid"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3     android:versionCode="1"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4     android:versionName="1.0" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6     &lt;uses-sdk</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7         android:minSdkVersion="8"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8         android:targetSdkVersion="15" /&gt;
+9</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10     &lt;application</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11         android:icon="@drawable/ic_launcher"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12         android:label="@string/app_name"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13         android:theme="@style/AppTheme" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14         &lt;activity</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15             android:name=".MainActivity"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16             android:label="@string/title_activity_main" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17             &lt;intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18                 &lt;action android:name="android.intent.action.MAIN" /&gt;
+19</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20                 &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+21             &lt;/intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22         &lt;/activity&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">android:name="TheWithParameterOtherActivity"&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;intent-filter&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;action android:name="android.intent.action.DEFAULT" /&gt;</span></span>
+              <span class="EmphasisFontCategoryNonProportional">27</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;/intent-filter&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;/activity&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">29     &lt;/application&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">30</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">31 &lt;/manifest&gt;</span>
+            </div><div class="Para">
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">4.</span><div class="ItemContent"><div class="Para">Lines 24–29 are new. As in previous sections, you add an additional activity description and specify its class name, which is the class name of the triggered activity generated in the second step. See the section “Triggering an Explicit Match of Activities with No Parameters” for information about modifying the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file. Unlike in that section, you add not only an activity and the documentation of its <span class="EmphasisFontCategoryNonProportional">name</span> attribute, but also the intent-filter instructions and state to accept the default actions described in the <span class="EmphasisFontCategoryNonProportional">Action</span> element and trigger this <span class="EmphasisFontCategoryNonProportional">Activity</span> class. The activity cannot be activated in the absence of the intent-filter description of the activity.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">5.</span><div class="ItemContent"><div class="Para">Run the callee application to register components of the activity. The modifications to <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file are not registered to the Android system until the callee application, <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span>, is executed once. Thus this is an essential step to complete the registration of its included activity.</div></div><div class="ClearBoth"> </div></div></div>
+            </div></div><div id="Sec4" class="Section2 RenderAsSection2"><h3 class="Heading">Implicit Matching of Built-In Activities</h3><div class="Para">In the examples in the previous two sections, before you trigger the activity of the same application or different applications through the <span class="EmphasisFontCategoryNonProportional">Activity.startActivity()</span> function or the function, the constructor of the <span class="EmphasisFontCategoryNonProportional">Intent</span> objects explicitly specifies the class, either through the <span class="EmphasisFontCategoryNonProportional">.class</span> attribute or through the class name in a string. This way, the system can find the class to be triggered. This approach is called <span class="EmphasisTypeItalic">explicit intent matching</span>. The next example shows how to trigger a class that is not specified. Instead, the system figures it out using an approach called <span class="EmphasisTypeItalic">implicit intent matching</span>.</div><div class="Para">In addition, Android has a number of activities that have already been implemented, such as dialing, sending text messages, and so on. Examples in this section explain how you use can implicit matching to trigger these built-in activities. The application interface is shown in Figure <span class="InternalRef"><a href="#Fig14">9-14</a></span>.<div class="Figure" id="Fig14"><div class="MediaObject" id="MO14"><img src="A978-1-4842-0100-8_9_Fig14_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig14_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-14.</span><div class="SimplePara">The application interface when using implicit intent to trigger a built-in activity</div></div></div></div>
+            </div><div class="Para">The user start the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application and clicks the Enter Dialing Activity button on the screen. It triggers dial-up activities that come with the system.</div><div class="Para">In this case, you modify the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> project and use this application as a trigger. The implicit match triggered activity is the dial-up activity. The steps to build this example are as follows.
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">In the layout file (<span class="EmphasisFontCategoryNonProportional">activity_main.xml</span>) of the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application, delete the original <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets, add a button, and set its <span class="EmphasisFontCategoryNonProportional">ID</span> attribute to <span class="EmphasisFontCategoryNonProportional">@+id/goTODialAct</span> and its <span class="EmphasisFontCategoryNonProportional">Text</span> property to “Enter Dialing Activity”. Adjust its size and position as shown in Figure <span class="InternalRef"><a href="#Fig15">9-15</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig15"><div class="MediaObject" id="MO15"><img src="A978-1-4842-0100-8_9_Fig15_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig15_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-15.</span><div class="SimplePara">Layout file of the application for the implicit match built-in activity</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Modify the source code file (<span class="EmphasisFontCategoryNonProportional">MainActivity.java</span>) as follows:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;            // Use Button Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;                // Use View Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;  // Use View.OnClickListener Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Intent;           // Use Intent Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.net.Uri;                  // Use URI Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10 public class MainActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11     @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12     public void onCreate(Bundle savedInstanceState) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13       super.onCreate(savedInstanceState);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14       setContentView(R.layout.activity_main);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.goTODialAct);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set corresponding Code for Click Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>          <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:13800138000"));</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>          <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">startActivity(intent); // Trigger corresponding Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22</span>       <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24     @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25     public boolean onCreateOptionsMenu(Menu menu) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26       getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27       return true;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28     }</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">The code in line 16 defines an <span class="EmphasisTypeItalic">indirect intent</span> (that is, intent of implicit match. It is called an indirect intent because the class that needs to be triggered is not specified in the constructor of the object; the constructor only describes the function of the class that needs to be triggered to complete dialing. The constructor functions for the indirect intent are as follows:</div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Intent(String action)</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Intent(String action, Uri uri)</span>
+            </div><div class="Para">These functions require the classes (activities) that can complete the specified action when they are called . The only difference between the two is that the second function also comes with data.</div><div class="Para">This example uses the second constructor, which requires the activity that can complete the dialing and extra data as a string of phone numbers. Because the application does not specify the trigger type, Android finds the class to handle this action (for example, <span class="EmphasisFontCategoryNonProportional">Activity</span>) from the registered class list and triggers the start of the event.</div><div class="Para">If multiple classes can handle the specified action, Android pops up a selection menu, and users can select which one to run.</div><div class="Para">The parameter <span class="EmphasisFontCategoryNonProportional">action</span> can use the system-predefined string. In the previous example, <span class="EmphasisFontCategoryNonProportional">Intent.ACTION_DIAL</span> is the string constant of <span class="EmphasisFontCategoryNonProportional">ACTION_DIAL</span>, which is defined by the <span class="EmphasisFontCategoryNonProportional">Intent</span> class. Some system-predefined <span class="EmphasisFontCategoryNonProportional">ACTION</span> examples are shown in Table <span class="InternalRef"><a href="#Tab1">9-1</a></span>.<div id="Tab1" class="Table"><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Table 9-1.</span><div class="SimplePara">Some System-Predefined Constants</div></div></div><table border="1"><colgroup><col/><col/><col/></colgroup><thead><tr class="header"><th><div class="SimplePara">ACTION Constant Name</div></th><th><div class="SimplePara">Value</div></th><th><div class="SimplePara">Description</div></th></tr></thead><tbody><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_MAIN</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.MAIN</span>
+                        </div></td><td><div class="SimplePara">Start up as the initial activity of a task with no data input and no returned output.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_VIEW</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.VIEW</span>
+                        </div></td><td><div class="SimplePara">Display the data in the intent URI.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_EDIT</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.EDIT</span>
+                        </div></td><td><div class="SimplePara">Request an activity to edit data.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_DIAL</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.DIAL</span>
+                        </div></td><td><div class="SimplePara">Start a phone dialer, and use preset numbers in the data to dial.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_CALL</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.CALL</span>
+                        </div></td><td><div class="SimplePara">Initiate a phone call, and immediately use the number in the data URI to initiate a call.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_SEND</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.SEND</span>
+                        </div></td><td><div class="SimplePara">Start an activity to send specific data (the recipient is selected by activity resolution).</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_SENDTO</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.SENDTO</span>
+                        </div></td><td><div class="SimplePara">Generally, start an activity to send a message to a contact designated in the URI.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_ANSWER</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.ANSWER</span>
+                        </div></td><td><div class="SimplePara">Open an activity to process an incoming call. Currently it is handled by a local phone-dialing tool.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_INSERT</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.INSERT</span>
+                        </div></td><td><div class="SimplePara">Open an activity that can insert a new project at the addition cursor in a specific data field. When it is called as the child activity, it must return the URI of the newly inserted project.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_DELETE</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.DELETE</span>
+                        </div></td><td><div class="SimplePara">Start an activity to delete a data port at the URI position.</div></td></tr><tr class="noclass"><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">ACTION_WEB_SEARCH</span>
+                        </div></td><td><div class="SimplePara">
+                          <span class="EmphasisFontCategoryNonProportional">android.intent.action.WEB_SEARCH</span>
+                        </div></td><td><div class="SimplePara">Open an activity, and run a web page search based on the text in the URI data.</div></td></tr></tbody></table></div>
+            </div><div class="Para">The <span class="EmphasisFontCategoryNonProportional">ACTION</span> constant name is the first parameter used in the constructor of the implicit-match intent. The value of the <span class="EmphasisFontCategoryNonProportional">ACTION</span> constant, used in the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> statement of the activity that receives this action, is not used in this section, but is used in the next section. You can find more information about predefined <span class="EmphasisFontCategoryNonProportional">ACTION</span> values in the <span class="EmphasisFontCategoryNonProportional">android.content.Intent</span> help documentation.</div></div><div id="Sec5" class="Section2 RenderAsSection2"><h3 class="Heading">Implicit Match that Uses a Custom Activity</h3><div class="Para">The previous example used implicit matching to trigger activities that come with the Android system. In this section, you see an example of how to use an implicit match to trigger a custom activity.</div><div class="Para">The configuration of this example application is similar to the one in the section “Triggering Explicit Matching of an Activity with Parameters of Different Applications.” The triggering application is hosted in the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> project, and the custom activity triggered by implicit match is in the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> application. The interface is shown in Figure <span class="InternalRef"><a href="#Fig16">9-16</a></span>.<div class="Figure" id="Fig16"><div class="MediaObject" id="MO16"><img src="A978-1-4842-0100-8_9_Fig16a_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig16a_HTML.jpg"/><img src="A978-1-4842-0100-8_9_Fig16b_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig16b_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-16.</span><div class="SimplePara">The interface of implicit match that uses a custom activity</div></div></div></div>
+            </div><div class="Para">Figure <span class="InternalRef"><a href="#Fig16">9-16(a)</a></span> shows the interface when the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> trigger application starts. When you click the Display Activity Of Implicit Intent button, the system finds qualified candidates for activities according to the requirements of the <span class="EmphasisFontCategoryNonProportional">ACTION_EDIT</span> action and displays a list of events of these candidates (b). When the user-defined <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> application is selected, the activity that can receive the <span class="EmphasisFontCategoryNonProportional">ACTION_EDIT</span> action as claimed in the intent-filter in <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> application is displayed (c). When you click the Close Activity button, the application returns to the original <span class="EmphasisFontCategoryNonProportional">GuiExam</span> activity interface (d).</div><div class="Para">Like the previous ones, this example is based on modifying the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> project. The steps are as follows:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">1.</span><div class="ItemContent"><div class="Para">Edit the main layout file (<span class="EmphasisFontCategoryNonProportional">activity_main.xml</span>). Delete the original <span class="EmphasisFontCategoryNonProportional">TextView</span> widgets, and then add a <span class="EmphasisFontCategoryNonProportional">TextView</span> and a button. Set the <span class="EmphasisFontCategoryNonProportional">TextView</span>’s <span class="EmphasisFontCategoryNonProportional">Text</span> property to “This application is the Activity triggered by Caller using Implicit Intent”. Set the button’s <span class="EmphasisFontCategoryNonProportional">Text</span> property to “Display Activity triggered by Implicit Intent” and its <span class="EmphasisFontCategoryNonProportional">ID</span> attribute to <span class="EmphasisFontCategoryNonProportional">@+id/goToIndirectAct</span>, as shown in Figure <span class="InternalRef"><a href="#Fig17">9-17</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig17"><div class="MediaObject" id="MO17"><img src="A978-1-4842-0100-8_9_Fig17_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig17_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-17.</span><div class="SimplePara">The main layout design for the <span class="EmphasisFontCategoryNonProportional">GuiExam</span> trigger application</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">2.</span><div class="ItemContent"><div class="Para">Edit <span class="EmphasisFontCategoryNonProportional">MainActivity.java</span> as follows:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1  package com.example.guiexam;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2  import android.os.Bundle;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3  import android.app.Activity;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4  import android.view.Menu;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;             // Use Button Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;</span></span>                 <span class="EmphasisFontCategoryNonProportional">// Use View class</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;  // Use View.OnClickListener class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>  <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.content.Intent;            // Use Intent Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9  public class MainActivity extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10    @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11    public void onCreate(Bundle savedInstanceState) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12      super.onCreate(savedInstanceState);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13      setContentView(R.layout.activity_main);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.goToIndirectAct);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>      <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set respond Code for Button Click event</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>          <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Intent intent = new Intent(Intent.ACTION_EDIT);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Construct implicit Inent</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20</span>          <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">startActivity(intent);      // Trigger Activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">22    }</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">24    @Override</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25    public boolean onCreateOptionsMenu(Menu menu) {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26      getMenuInflater().inflate(R.menu.activity_main, menu);</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27      return true;</span>
+            </div><div class="Para ParaTypeProgramcode">      <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">The code in lines 16 and 17 defines the implicit intent and triggers the corresponding activity, which is basically the same as the earlier code that triggers implicit activity, but here it uses the constructor function of the intent that has no data.
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">3.</span><div class="ItemContent"><div class="Para">Modify the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> application that includes a custom activity with the corresponding implicit intent:
+<div class="OrderedList"><div class="ListItem"><span class="ItemNumber">a.</span><div class="ItemContent"><div class="Para">Based on the method described in the section “Triggering an Explicit Match of Activities with No Parameters,” earlier in the chapter, add a layout file (<span class="EmphasisFontCategoryNonProportional">implicit_act.xml</span>) to the project and drag and drop a <span class="EmphasisFontCategoryNonProportional">RelativeLayout</span> layout into the file.</div></div><div class="ClearBoth"> </div></div><div class="ListItem"><span class="ItemNumber">b.</span><div class="ItemContent"><div class="Para">Edit the layout file, and add <span class="EmphasisFontCategoryNonProportional">TextView</span>, <span class="EmphasisFontCategoryNonProportional">ImageView</span>, and <span class="EmphasisFontCategoryNonProportional">Button</span> widgets. Set the attributes as follows:
+<div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">Text</span> property of the <span class="EmphasisFontCategoryNonProportional">TextView</span>: “This interface is an Activity of the HelloAndroid, which is responsible for action triggered by the ACTION_EDIT”.</div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">ImageView</span>: Set up exactly as in the section “Using ImageView” in <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8</span></a></span>.</div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">Text</span> property of the <span class="EmphasisFontCategoryNonProportional">Button</span>: “Close Activity”.</div></li><li><div class="Para">
+                                    <span class="EmphasisFontCategoryNonProportional">ID</span> property of the <span class="EmphasisFontCategoryNonProportional">Button</span>: <span class="EmphasisFontCategoryNonProportional">@+id/closeActivity</span>.</div></li></ul></div>
+                            </div></div><div class="ClearBoth"> </div></div></div>
+                    </div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">Then adjust their respective size and position, as shown in Figure <span class="InternalRef"><a href="#Fig18">9-18</a></span>.<div class="Figure" id="Fig18"><div class="MediaObject" id="MO18"><img src="A978-1-4842-0100-8_9_Fig18_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig18_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-18.</span><div class="SimplePara">Layout file for the custom activity of the corresponding implicit intent</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">4.</span><div class="ItemContent"><div class="Para">Similar to the process described in the section “Triggering an Explicit Match of Activities with No Parameters,” add the corresponding class to the project for the new layout file (<span class="EmphasisFontCategoryNonProportional">TheActivityToImplicitIntent</span>), as shown in Figure <span class="InternalRef"><a href="#Fig19">9-19</a></span>.</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para">
+              <div class="Figure" id="Fig19"><div class="MediaObject" id="MO19"><img src="A978-1-4842-0100-8_9_Fig19_HTML.jpg" alt="A978-1-4842-0100-8_9_Fig19_HTML.jpg"/></div><div class="Caption" xml:lang="en"><div class="CaptionContent"><span class="CaptionNumber">Figure 9-19.</span><div class="SimplePara">New class for the custom activity of the corresponding implicit intent</div></div></div></div>
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">5.</span><div class="ItemContent"><div class="Para">Edit the class file for the newly added layout file (<span class="EmphasisFontCategoryNonProportional">TheActivityToImplicitIntent.java</span>), which reads as follows:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1 package com.example.helloandroid;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.os.Bundle;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.app.Activity;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.widget.Button;             // Use Button Class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View;                 // Use View class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">import android.view.View.OnClickListener;  // Use View.OnClickListener class</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7 public class TheActivityToImplicitIntent extends Activity {</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">@Override</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9</span>     <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onCreate(Bundle savedInstanceState) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">super.onCreate(savedInstanceState);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">setContentView(R.layout.implicit_act);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">12</span>    <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">Button btn = (Button) findViewById(R.id.closeActivity);</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13</span>    <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">btn.setOnClickListener(new /*View.*/OnClickListener(){</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14</span>
+              <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">// Set response code for &lt;Close Activity&gt; Click</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">public void onClick(View v) {</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">finish();</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17</span>        <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18</span>    <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">});</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19</span>    <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">}</span></span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">}</span>
+            </div><div class="Para">
+              <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">6.</span><div class="ItemContent"><div class="Para">Modify the <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file of the <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span> custom application containing the corresponding implicit intent, as follows:</div></div><div class="ClearBoth"> </div></div></div>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">Line #        Source Code</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">1 &lt;manifest xmlns:android="</span>
+              <span class="ExternalRef"><a href="http://schemas.android.com/apk/res/android"><span class="RefSource">
+                  <span class="EmphasisFontCategoryNonProportional">http://schemas.android.com/apk/res/android</span>
+                </span></a></span>
+              <span class="EmphasisFontCategoryNonProportional">"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">2</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">3     package="com.example.helloandroid"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">4</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">5     android:versionCode="1"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">6</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">7     android:versionName="1.0" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">8</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">9     &lt;uses-sdk</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">10         android:minSdkVersion="8"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">11         android:targetSdkVersion="15" /&gt;
+12</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">13     &lt;application</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">14         android:icon="@drawable/ic_launcher"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">15         android:label="@string/app_name"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">16         android:theme="@style/AppTheme" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">17         &lt;activity</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">18             android:name=".MainActivity"</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">19             android:label="@string/title_activity_main" &gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">20             &lt;intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">21                 &lt;action android:name="android.intent.action.MAIN" /&gt;
+22</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">23                 &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+24             &lt;/intent-filter&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">25         &lt;/activity&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">26</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;activity</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">27</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">android:name="TheActivityToImplicitIntent"&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">28</span>             <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;intent-filter&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">29</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;action android:name="android.intent.action.DEFAULT" /&gt;</span></span>
+              <span class="EmphasisFontCategoryNonProportional">30</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;action android:name="android.intent.action.EDIT" /&gt;</span></span>
+              <span class="EmphasisFontCategoryNonProportional">31</span>                 <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;category android:name="android.intent.category.DEFAULT" /&gt;</span></span>
+              <span class="EmphasisFontCategoryNonProportional">32</span>                <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;/intent-filter&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">
+              <span class="EmphasisFontCategoryNonProportional">33</span>         <span class="EmphasisTypeBold"><span class="EmphasisFontCategoryNonProportional">&lt;/activity&gt;</span></span>
+            </div><div class="Para ParaTypeProgramcode">       <span class="EmphasisFontCategoryNonProportional">&lt;/application&gt;</span>
+            </div><div class="Para ParaTypeProgramcode">   <span class="EmphasisFontCategoryNonProportional">&lt;/manifest&gt;</span>
+            </div><div class="Para">The code in lines 24–32 (in bold) gives the activity information for receiving the implicit intent. Line 26 specifies that you can receive an <span class="EmphasisFontCategoryNonProportional">android.intent.action.EDIT</span> action. This value corresponds to the constant value of the <span class="EmphasisFontCategoryNonProportional">ACTION</span> parameter <span class="EmphasisFontCategoryNonProportional">Intent.ACTION_EDIT</span> of the trigger’s intent constructor function (the <span class="EmphasisFontCategoryNonProportional">MainActivity</span> class of <span class="EmphasisFontCategoryNonProportional">GuiExam</span> ). This is a predetermined contact signal between the trigger and the callee. Line 27 further specifies that the default data type can also be received. <div class="OrderedList"><div class="ListItem"><span class="ItemNumber">7.</span><div class="ItemContent"><div class="Para">Run the application <span class="EmphasisFontCategoryNonProportional">HelloAndroid</span>, which now contains a custom activity for the corresponding implicit intent and registers its <span class="EmphasisFontCategoryNonProportional">AndroidManifest.xml</span> file in the system.</div></div><div class="ClearBoth"> </div></div></div>
+            </div></div></div><div id="Sec6" class="Section1 RenderAsSection1"><h2 class="Heading">Summary</h2><div class="Para">So far, three chapters have covered Android interface design. The simple <span class="EmphasisFontCategoryNonProportional">GuiExam</span> application has demonstrated the state transition of an activity, the <span class="EmphasisFontCategoryNonProportional">Context</span> class, intents, and the relationship between applications and activities. You also learned how to use a layout as an interface and how the button, event, and inner event listener work. Examples with multiple activities introduced the explicit and implicit trigger mechanisms for activities. You saw an example of an application with parameters triggered by an activity in a different application, and you now understand the exchange mechanism for the activity’s parameters.</div><div class="Para">The application interface discussed so far is basically similar to a dialog interface. The drawback of this mode is that it is difficult to obtain accurate touchscreen input, making it difficult to display accurate images based on the input interface. The next chapter, which covers the last part of Android interface design, introduces the view-based interaction style interface. In this interface, you can enter information with accurate touchscreen input and display detailed images, as required by many game applications.</div></div></div></body></html>

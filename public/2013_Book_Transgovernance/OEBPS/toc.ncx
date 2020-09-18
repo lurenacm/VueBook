@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd" >
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:totalPageCount" content="0"/>
+  </head>
+  <docTitle>
+    <text>Transgovernance</text>
+  </docTitle>
+<docAuthor>
+<text>Louis Meuleman</text>
+</docAuthor>
+<navMap>
+    <navPoint id="navpoint-1" playOrder="1">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="ACoverHTML.html"/>
+    </navPoint>
+    <navPoint id="navpoint-2" playOrder="2">
+      <navLabel>
+        <text>Frontmatter</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_BookFrontMatter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-3" playOrder="3">
+      <navLabel>
+        <text>1. Reflections on sustainability governance</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_1Part1.html"/>
+    <navPoint id="navpoint-4" playOrder="4">
+      <navLabel>
+        <text>1. Sustainable Development Within Knowledge Democracies: An Emerging Governance Problem</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_1.html"/>
+    </navPoint>
+    <navPoint id="navpoint-5" playOrder="5">
+      <navLabel>
+        <text>2. Cultural Diversity and Sustainability Metagovernance</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_2.html"/>
+    </navPoint>
+    <navPoint id="navpoint-6" playOrder="6">
+      <navLabel>
+        <text>3. Growth: A Discussion of the Margins of Economic and Ecological Thought</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_3.html"/>
+    </navPoint>
+    <navPoint id="navpoint-7" playOrder="7">
+      <navLabel>
+        <text>4. Development, Sustainability and International Politics</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_4.html"/>
+    </navPoint>
+
+    </navPoint>
+    <navPoint id="navpoint-8" playOrder="8">
+      <navLabel>
+        <text>2. sustainability governance: topical themes</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_5Part2.html"/>
+    <navPoint id="navpoint-9" playOrder="9">
+      <navLabel>
+        <text>5. Governing Planetary Boundaries: Limiting or Enabling Conditions for Transitions Towards Sustainability?</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_5.html"/>
+    </navPoint>
+    <navPoint id="navpoint-10" playOrder="10">
+      <navLabel>
+        <text>6. Emergency Response: Clustering Change</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_6.html"/>
+    </navPoint>
+    <navPoint id="navpoint-11" playOrder="11">
+      <navLabel>
+        <text>7. Taking Boundary Work Seriously: Towards a Systemic Approach to the Analysis of Interactions Between Knowledge Production and Decision-Making on Sustainable Development</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_7.html"/>
+    </navPoint>
+    <navPoint id="navpoint-12" playOrder="12">
+      <navLabel>
+        <text>8. Transgovernance: The Quest for Governance of Sustainable Development</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_Chapter_8.html"/>
+    </navPoint>
+    </navPoint>
+    <navPoint id="navpoint-13" playOrder="13">
+      <navLabel>
+        <text>Backmatter</text>
+      </navLabel>
+      <content src="A978-3-642-28009-2_BookBackMatter.html"/>
+    </navPoint>
+</navMap>
+</ncx>

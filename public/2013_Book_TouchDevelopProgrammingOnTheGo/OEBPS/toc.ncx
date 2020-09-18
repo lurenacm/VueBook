@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:uid" content="978-1-4302-6137-7"/>
+  </head>
+  <docTitle>
+     <text>TouchDevelop: Programming on the Go</text>
+  </docTitle>
+  <docAuthor>
+     <text>R. Nigel Horspool and Nikolai Tillmann</text>
+  </docAuthor>
+<navMap>
+    <navPoint id="navpoint-1" playOrder="1">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="ACoverHTML.html"/>
+    </navPoint>
+    <navPoint id="navpoint-2" playOrder="2">
+      <navLabel>
+        <text>Frontmatter</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_BookFrontmatter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-3" playOrder="3">
+      <navLabel>
+        <text>1. Introduction to TouchDevelop</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_1_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-4" playOrder="4">
+      <navLabel>
+        <text>2. The Scripting Language</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_2_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-5" playOrder="5">
+      <navLabel>
+        <text>3. The Wall – using the screen</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_3_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-6" playOrder="6">
+      <navLabel>
+        <text>4. The Web</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_4_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-7" playOrder="7">
+      <navLabel>
+        <text>5. Audio</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_5_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-8" playOrder="8">
+      <navLabel>
+        <text>6. Camera, Graphics and Video</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_6_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-9" playOrder="9">
+      <navLabel>
+        <text>7. Sensors</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_7_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-10" playOrder="10">
+      <navLabel>
+        <text>8. Interactions</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_8_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-11" playOrder="11">
+      <navLabel>
+        <text>9. Game Board</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_9_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-12" playOrder="12">
+      <navLabel>
+        <text>10. UI with Boxes and Pages</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_10_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-13" playOrder="13">
+      <navLabel>
+        <text>11. Authenticating Web Services</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_11_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-14" playOrder="14">
+      <navLabel>
+        <text>Editing TouchDevelop Scripts</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_12_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-15" playOrder="15">
+      <navLabel>
+        <text>TouchDevelop Services</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_13_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-16" playOrder="16">
+      <navLabel>
+        <text>TouchDevelop Datatypes</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_14_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-17" playOrder="17">
+      <navLabel>
+        <text>Platform Capabilities</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_15_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-18" playOrder="18">
+      <navLabel>
+        <text>TouchDevelop Editor on a Windows Phone</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_16_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-19" playOrder="19">
+      <navLabel>
+        <text>Backmatter</text>
+      </navLabel>
+      <content src="A978-1-4302-6137-7_BookBackmatter.html"/>
+    </navPoint>
+</navMap>
+</ncx>

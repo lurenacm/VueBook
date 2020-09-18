@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd" >
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:totalPageCount" content="0"/>
+  </head>
+  <docTitle>
+    <text>Sustainable Land Use and Rural Development in Southeast Asia: Innovations and Policies for Mountainous Areas</text>
+  </docTitle>
+<docAuthor>
+<text>Holger L. Fröhlich, Pepijn Schreinemachers, Karl Stahr and Gerhard Clemens</text>
+</docAuthor>
+<navMap>
+    <navPoint id="navpoint-1" playOrder="1">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="ACoverHTML.html"/>
+    </navPoint>
+    <navPoint id="navpoint-2" playOrder="2">
+      <navLabel>
+        <text>Frontmatter</text>
+      </navLabel>
+      <content src="A308010_1_En_BookFrontmatter_OnlinePDF.html"/>
+    </navPoint>
+    <navPoint id="navpoint-3" playOrder="3">
+      <navLabel>
+        <text>1. Introduction</text>
+      </navLabel>
+      <content src="A308010_1_En_1_ChapterPart1.html"/>
+    <navPoint id="navpoint-4" playOrder="4">
+      <navLabel>
+        <text>1. From Challenges to Sustainable Solutions for Upland Agriculture in Southeast Asia</text>
+      </navLabel>
+      <content src="A308010_1_En_1_Chapter.html"/>
+    </navPoint>
+
+    </navPoint>
+    <navPoint id="navpoint-5" playOrder="5">
+      <navLabel>
+        <text>2. Environmental and Social Challenges</text>
+      </navLabel>
+      <content src="A308010_1_En_2_ChapterPart2.html"/>
+    <navPoint id="navpoint-6" playOrder="6">
+      <navLabel>
+        <text>2. Beyond the Horizons: Challenges and Prospects for Soil Science and Soil Care in Southeast Asia</text>
+      </navLabel>
+      <content src="A308010_1_En_2_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-7" playOrder="7">
+      <navLabel>
+        <text>3. Water and Matter Flows in Mountainous Watersheds of Southeast Asia: Processes and Implications for Management</text>
+      </navLabel>
+      <content src="A308010_1_En_3_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-8" playOrder="8">
+      <navLabel>
+        <text>4. Agricultural Pesticide Use in Mountainous Areas of Thailand and Vietnam: Towards Reducing Exposure and Rationalizing Use</text>
+      </navLabel>
+      <content src="A308010_1_En_4_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-9" playOrder="9">
+      <navLabel>
+        <text>5. Linkages Between Agriculture, Poverty and Natural Resource Use in Mountainous Regions of Southeast Asia</text>
+      </navLabel>
+      <content src="A308010_1_En_5_Chapter.html"/>
+    </navPoint>
+
+    </navPoint>
+    <navPoint id="navpoint-10" playOrder="10">
+      <navLabel>
+        <text>3. Technology-Based Innovation Processes</text>
+      </navLabel>
+      <content src="A308010_1_En_6_ChapterPart3.html"/>
+    <navPoint id="navpoint-11" playOrder="11">
+      <navLabel>
+        <text>6. Mango and Longan Production in Northern Thailand: The Role of Water Saving Irrigation and Water Stress Monitoring</text>
+      </navLabel>
+      <content src="A308010_1_En_6_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-12" playOrder="12">
+      <navLabel>
+        <text>7. Soil Conservation on Sloping Land: Technical Options and Adoption Constraints</text>
+      </navLabel>
+      <content src="A308010_1_En_7_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-13" playOrder="13">
+      <navLabel>
+        <text>8. Improved Sustainable Aquaculture Systems for Small-Scale Farmers in Northern Vietnam</text>
+      </navLabel>
+      <content src="A308010_1_En_8_Chapter.html"/>
+    </navPoint>
+
+    </navPoint>
+    <navPoint id="navpoint-14" playOrder="14">
+      <navLabel>
+        <text>4. Policies and Institutional Innovations</text>
+      </navLabel>
+      <content src="A308010_1_En_9_ChapterPart4.html"/>
+    <navPoint id="navpoint-15" playOrder="15">
+      <navLabel>
+        <text>9. Participatory Approaches to Research and Development in the Southeast Asian Uplands: Potential and Challenges</text>
+      </navLabel>
+      <content src="A308010_1_En_9_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-16" playOrder="16">
+      <navLabel>
+        <text>10. Integrated Modeling of Agricultural Systems in Mountainous Areas</text>
+      </navLabel>
+      <content src="A308010_1_En_10_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-17" playOrder="17">
+      <navLabel>
+        <text>11. Rethinking Knowledge Provision for the Marginalized: Rural Networks and Novel Extension Approaches in Vietnam</text>
+      </navLabel>
+      <content src="A308010_1_En_11_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-18" playOrder="18">
+      <navLabel>
+        <text>12. Policies for Sustainable Development: The Commercialization of Smallholder Agriculture</text>
+      </navLabel>
+      <content src="A308010_1_En_12_Chapter.html"/>
+    </navPoint>
+    </navPoint>
+</navMap>
+</ncx>

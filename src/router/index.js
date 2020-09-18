@@ -8,6 +8,10 @@ const routes = [
     path: '/',
     redirect: '/ebook'
   },
+  // {
+  //   path: '/Ebook',
+  //   component: () => import('../ebook.vue')
+  // },
   {
     path: '/ebook',
     component: () => import('@/views/ebook/index.vue'),

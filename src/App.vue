@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./assets/styles/global.scss";
-#app {
-  width: 100%;
-  height: 100;
-  overflow: hidden;
-}
+  #app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 </style>

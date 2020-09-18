@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>Android Application Development for the Intel® Platform</title><link href="springer_epub.css" type="text/css" rel="styleSheet"/></head><body><div class="BookFrontmatter"><div class="BookTitlePage"><div class="BookAuthors"><span class="Author"><span class="AuthorName">Ryan Cohen</span> and </span><span class="Author"><span class="AuthorName">Tao Wang</span></span></div><div class="MainTitleSection"><span class="BookTitle" xml:lang="en">Android Application Development for the Intel<sup>®</sup> Platform</span></div><div class="PublisherLogo"><div class="Figure" id="Figa"><div class="MediaObject"><img src="A978-1-4842-0100-8_BookFrontmatter_Figa_HTML.png" alt="A978-1-4842-0100-8_BookFrontmatter_Figa_HTML.png"/></div></div></div></div><div class="CopyrightPage"><div class="AuthorGroup"><div class="Author"><span class="AuthorName">Ryan Cohen</span></div><div class="Author"><span class="AuthorName">Tao Wang</span></div></div><div class="CopyrightPageISBNs"><span class="CopyrightPagePrintISBN">
+					ISBN 978-1-4842-0101-5</span><span class="CopyrightPageElectronicISBN">e-ISBN 978-1-4842-0100-8</span></div><div class="BookDOI">DOI 10.1007/978-1-4842-0100-8</div><div class="CopyrightLine">© Apress 2014</div><div class="CopyrightComment">
+          <div class="SimplePara">
+            <span class="EmphasisTypeBold">Android Application Development for the Intel</span>
+            <sup>®</sup>
+            <span class="EmphasisTypeBold">Platform</span>
+          </div>
+          <div class="SimplePara">Ryan Cohen &amp; Tao Wang</div>
+          <div class="SimplePara">Copyright © 2014 by Apress Media, LLC, all rights reserved</div>
+          <div class="SimplePara">
+            <span class="EmphasisTypeBold">ApressOpen Rights</span>: You have the right to copy, use and distribute this Work in its entirety, electronically without modification, for non-commercial purposes only. However, you have the additional right to use or alter any source code in this Work for any commercial or non-commercial purpose which must be accompanied by the licenses in (2) and (3) below to distribute the source code for instances of greater than 5 lines of code. Licenses (1), (2) and (3) below and the intervening text must be provided in any use of the text of the Work and fully describes the license granted herein to the Work.</div>
+          <div class="SimplePara">(1) <span class="EmphasisTypeBold">License for Distribution of the Work</span>: This Work is copyrighted by Apress Media, LLC, all rights reserved. Use of this Work other than as provided for in this license is prohibited. By exercising any of the rights herein, you are accepting the terms of this license. You have the non-exclusive right to copy, use and distribute this English language Work in its entirety, electronically without modification except for those modifications necessary for formatting on specific devices, for all non-commercial purposes, in all media and formats known now or hereafter. While the advice and information in this Work are believed to be true and accurate at the date of publication, neither the authors nor the editors nor the publisher can accept any legal responsibility for any errors or omissions that may be made. The publisher makes no warranty, express or implied, with respect to the material contained herein.</div>
+          <div class="SimplePara">If your distribution is solely Apress source code or uses Apress source code intact, the following licenses (2) and (3) must accompany the source code. If your use is an adaptation of the source code provided by Apress in this Work, then you must use only license (3).</div>
+          <div class="SimplePara">(2) <span class="EmphasisTypeBold">License for Direct Reproduction of Apress Source Code</span>: This source code, from <span class="EmphasisTypeBoldItalic">Android Application Development for the Intel</span>
+            <sup>®</sup>
+            <span class="EmphasisTypeBoldItalic">Platform, ISBN 978-1-4842-0101-5</span> is copyrighted by Apress Media, LLC, all rights reserved. Any direct reproduction of this Apress source code is permitted but must contain this license. The following license must be provided for any use of the source code from this product of greater than 5 lines wherein the code is adapted or altered from its original Apress form. This Apress code is presented AS IS and Apress makes no claims to, representations or warrantees as to the function, usability, accuracy or usefulness of this code.</div>
+          <div class="SimplePara">(3) <span class="EmphasisTypeBold">License for Distribution of Adaptation of Apress Source Code</span>: Portions of the source code provided are used or adapted from <span class="EmphasisTypeBoldItalic">Android Application Development for the Intel</span>
+            <sup>®</sup>
+            <span class="EmphasisTypeBoldItalic">Platform, ISBN 978-1-4842-0101-5</span> copyright Apress Media LLC. Any use or reuse of this Apress source code must contain this License. This Apress code is made available at <span class="ExternalRef"><a href="http://Apress.com/9781483201015"><span class="RefSource">
+                <span class="EmphasisFontCategoryNonProportional">Apress.com/9781483201015</span>
+              </span></a></span> as is and Apress makes no claims to, representations or warrantees as to the function, usability, accuracy or usefulness of this code.</div>
+          <div class="SimplePara">ISBN-13 (pbk): 978-1-4842-0101-5</div>
+          <div class="SimplePara">ISBN-13 (electronic): 978-1-4842-0100-8</div>
+          <div class="SimplePara">Trademarked names, logos, and images may appear in this book. Rather than use a trademark symbol with every occurrence of a trademarked name, logo, or image we use the names, logos, and images only in an editorial fashion and to the benefit of the trademark owner, with no intention of infringement of the trademark.</div>
+          <div class="SimplePara">The use in this publication of trade names, trademarks, service marks, and similar terms, even if they are not identified as such, is not to be taken as an expression of opinion as to whether or not they are subject to proprietary rights.</div>
+          <div class="SimplePara">While the advice and information in this book are believed to be true and accurate at the date of publication, neither the authors nor the editors nor the publisher can accept any legal responsibility for any errors or omissions that may be made. The publisher makes no warranty, express or implied, with respect to the material contained herein.</div>
+          <div class="SimplePara">Publisher: Heinz Weinheimer</div>
+          <div class="SimplePara">Associate Publisher: Jeffrey Pepper</div>
+          <div class="SimplePara">Lead Editors: Steve Weiss (Apress); Stuart Douglas and Paul Cohen (Intel)</div>
+          <div class="SimplePara">Coordinating Editor: Melissa Maldonado</div>
+          <div class="SimplePara">Cover Designer: Anna Ishchenko</div>
+          <div class="SimplePara">Distributed to the book trade worldwide by Springer Science+Business Media New York, 233 Spring Street, 6th Floor, New York, NY 10013. Phone 1-800-SPRINGER, fax (201) 348-4505, e-mail <span class="EmphasisFontCategoryNonProportional">orders-ny@springer-sbm.com</span>, or visit <span class="ExternalRef"><a href="http://www.springeronline.com"><span class="RefSource">
+                <span class="EmphasisFontCategoryNonProportional">www.springeronline.com</span>
+              </span></a></span>. </div>
+          <div class="SimplePara">For information on translations, please e-mail <span class="EmphasisFontCategoryNonProportional">rights@apress.com</span>, or visit <span class="ExternalRef"><a href="http://www.apress.com"><span class="RefSource">
+                <span class="EmphasisFontCategoryNonProportional">www.apress.com</span>
+              </span></a></span>.</div>
+        </div><div class="PaperInfo" xml:lang="en">Printed on acid-free paper</div></div><div id="Preface1" class="Preface"><div class="PrefaceTitle" xml:lang="en">About ApressOpen</div><div class="PrefaceBody"><div id="Sec1" class="Section1 RenderAsSection1"><h2 class="Heading">What Is ApressOpen?</h2><div id="Par1" class="Para">
+                <div class="UnorderedList"><ul class="UnorderedListMarkBullet"><li><div id="Par2" class="Para">ApressOpen is an open access book program that publishes high-quality technical and business information.</div></li><li><div id="Par3" class="Para">ApressOpen eBooks are available for global, free, noncommercial use.</div></li><li><div id="Par4" class="Para">ApressOpen eBooks are available in PDF, ePub, and Mobi formats.</div></li><li><div id="Par5" class="Para">The user-friendly ApressOpen free eBook license is presented on the copyright page of this book.</div></li></ul></div>
+              </div></div></div></div><div id="Preface2" class="Preface"><div class="PrefaceTitle" xml:lang="en">About the Lead Project Editor</div><div class="PrefaceBody"><div id="Par6" class="Para">
+              <img src="A978-1-4842-0100-8_BookFrontmatter_Fig1_HTML.jpg" alt="A978-1-4842-0100-8_BookFrontmatter_Fig1_HTML.jpg"/>
+              <span class="EmphasisTypeBold">Ryan Cohen</span> is the contributing editor responsible for leading the international team of content contributors who created this Intel learning resource; he's also an Android enthusiast and Portland State graduate. Ryan has been following Android since 2011 when he made the switch from Apple iOS. When he is not writing about Android, he spends his time researching anything and everything new in the world of Android.</div></div></div><div id="Preface3" class="Preface"><div class="PrefaceTitle" xml:lang="en">About the Lead Contributing Author</div><div class="PrefaceBody"><div id="Par7" class="Para">
+              <img src="A978-1-4842-0100-8_BookFrontmatter_Fig2_HTML.jpg" alt="A978-1-4842-0100-8_BookFrontmatter_Fig2_HTML.jpg"/>
+              <span class="EmphasisTypeBold">Tao Wang</span> came to the United States as a Ph.D. student to study at Oregon State University in 1993. He has been a software engineer with Intel Corporation since 2002. Tao began blogging and writing about Android in 2008; and, since 2011, he has served as a technical collateral manager for the Intel Android Developer Zone, the developer resource for all things Android at Intel. In his spare time, Tao also runs his own mobile app/client education startup called E-k12. He follows closely the latest progress in application development, as well as testing/debugging/performance optimization for mobile devices and Android on x86 platforms. Tao is skilled in many platforms, including Android SDK and NDK; Intel Android tools, game engines such as Cocos2D-x, AndEngine, and libgdx; OpenGL ES; RenderScript; and Android Runtime. His other areas of interest include mobile Internet technologies such as online content management, cloud-based mobile technologies, embedded devices, robotics, and mobile learning on the go.</div></div></div><div id="Preface4" class="Preface"><div class="PrefaceTitle" xml:lang="en">About the Technical Reviewer</div><div class="PrefaceBody"><div id="Par8" class="Para">
+              <img src="A978-1-4842-0100-8_BookFrontmatter_Fig3_HTML.jpg" alt="A978-1-4842-0100-8_BookFrontmatter_Fig3_HTML.jpg"/>
+              <span class="EmphasisTypeBold">Xavier Hallade</span> is Developer Evangelist for the Intel Software and Services Group in Paris, France. Since 2012 and the public release of the first Android smartphone based on an Intel platform, he has been helping Android developers improve their support for new hardware and technologies made or supported by Intel.</div></div></div><div id="Preface5" class="Preface"><div class="PrefaceTitle" xml:lang="en">Introduction</div><div class="PrefaceBody"><div id="Par9" class="Para">The number of Android devices running on Intel processors has gradually increased ever since Intel and Google announced, in late 2011, that they would be working together to optimize future versions of Android for Intel Atom processors. Today, Intel processors can be found in Android smartphones and tablets made by some of the top manufacturers of Android devices, such as Samsung, Lenovo, and Asus.</div><div id="Par10" class="Para">The increase in Android devices featuring Intel processors has created a demand for Android applications optimized for Intel architecture. This book was written to help introduce developers of all skill levels to the tools they need to develop and optimize applications for the Intel platform.</div><div id="Sec2" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 1</h2><div id="Par11" class="Para">This chapter discusses principles for embedded systems, the architecture of SoC, and some pros and cons of platforms such as ARM and x86/x64.</div></div><div id="Sec3" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 2</h2><div id="Par12" class="Para">This chapter goes into detail about specific Intel hardware platforms. It covers Intel Atom processors, Intel SoCs, and retail devices.</div></div><div id="Sec4" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 3</h2><div id="Par13" class="Para">This chapter introduces Android application development on Intel hardware platforms. It also covers installing the development environment tools for an emulator target machine by showing each tool and application and how to download and install them.</div></div><div id="Sec5" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 4</h2><div id="Par14" class="Para">This chapter discusses how to set up and configure the application development software on a host system and install USB drivers for a real Android device, so that you can build the connection between the device and host system to allow testing and debugging of applications. It also discusses how to use the Intel emulator and the steps required to accelerate the emulator and work with it.</div></div><div id="Sec6" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 5</h2><div id="Par15" class="Para">This chapter covers the Android OS and helps build your understanding for subsequent development of embedded applications.</div></div><div id="Sec7" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 6</h2><div id="Par16" class="Para">This chapter discusses customization in an embedded OS and then explains how to customize Android, specifically.</div></div><div id="Sec8" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 7</h2><div id="Par17" class="Para">This chapter introduces the general GUI design method for desktop systems and then shows how designing the UI and UX for embedded systems is different. It also discusses general methods and principles of GUI design for Android applications.</div></div><div id="Sec9" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 8</h2><div id="Par18" class="Para">This chapter introduces Android interface design by having you create a simple application called GuiExam. You learn about the state transitions of activities, the Context class, intents, and the relationship between applications and activities. Finally, the chapter shows how to use the layout as an interface by changing the layout file activity_main.xml, and how the button, event, and inner event listeners work.</div></div><div id="Sec10" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 9</h2><div id="Par19" class="Para">In this chapter, you learn how to create an application with multiple activities. This application is used to introduce the explicit and implicit trigger mechanisms of activities. Next, you see an example of an application with parameters triggered by an activity in a different application, which will help you understand of the exchange mechanism for the activity’s parameters.</div></div><div id="Sec11" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 10</h2><div id="Par20" class="Para">This chapter introduces the basic framework of drawing in the view, how the drawing framework responds to touchscreen input, and how to control the display of the view as well as the multi-touch code framework. Examples illustrate the multi-touch programming framework and keyboard-input responses. You also learn how to respond to hardware buttons on Android devices, such as Volume +, Volume -, Power, Home, Menu, Back, and Search. After that, you see the three different dialog boxes for Android, including the activity dialog theme, specific dialog classes, and toast reminders. Finally, you learn how to change application property settings.</div></div><div id="Sec12" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 11</h2><div id="Par21" class="Para">This chapter introduces the basic principles of performance optimization, optimization methods, and related tools for Android application development.</div></div><div id="Sec13" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 12</h2><div id="Par22" class="Para">This chapter introduces the Android NDK for C/C++ application development, along with related optimization methods and optimization tools. It talks about how the Intel mobile hardware and software provide a basis for low-power design and how the Intel Atom processor provides hardware support for low power, which is a major feature of the Android operating system.</div></div><div id="Sec14" class="Section1 RenderAsSection1"><h2 class="Heading">Chapter 13</h2><div id="Par23" class="Para">This chapter provides an overview of and introduction to low-power design, followed by a discussion of Android power-control mechanisms. Finally, it covers how to achieve the goal of low-power application design.</div><div id="Par24" class="Para">The hope is that this book will help developers to create amazing Android applications that are optimized for the Intel platform. You can find further information on developing applications for Intel architecture at the Intel Developer Zone web site (<span class="ExternalRef"><a href="https://software.intel.com/en-us/android"><span class="RefSource">https://​software.​intel.​com/​en-us/​android</span></a></span>).</div></div></div></div><div class="Toc" id="Toc"><div class="Headings"><div class="Heading">Contents</div></div><div class="TocBody"><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html"><span class="RefSource">Chapter 1:​ Ove r view of Embedded Application Developmentfor Intel Architecture</span></a></span>
+            </span><span class="TocPageNumber">1</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec1"><span class="RefSource">Introduction to Embedded Systems</span></a></span>
+              </span><span class="TocPageNumber">1</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec2"><span class="RefSource">Mobile Phones</span></a></span>
+                </span><span class="TocPageNumber">3</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec3"><span class="RefSource">Consumer Electronics and Information Appliances</span></a></span>
+                </span><span class="TocPageNumber">3</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec4"><span class="RefSource">Definition of an Embedded System</span></a></span>
+              </span><span class="TocPageNumber">4</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec5"><span class="RefSource">Limited Resources</span></a></span>
+                </span><span class="TocPageNumber">4</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec6"><span class="RefSource">Real-Time Performance</span></a></span>
+                </span><span class="TocPageNumber">4</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec7"><span class="RefSource">Robustness</span></a></span>
+                </span><span class="TocPageNumber">5</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec8"><span class="RefSource">Integrated Hardware and Software</span></a></span>
+                </span><span class="TocPageNumber">5</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec9"><span class="RefSource">Power Constraints</span></a></span>
+                </span><span class="TocPageNumber">5</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec10"><span class="RefSource">Difficult Development and Debugging</span></a></span>
+                </span><span class="TocPageNumber">5</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec11"><span class="RefSource">Typical Architecture of an Embedded System</span></a></span>
+              </span><span class="TocPageNumber">6</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec12"><span class="RefSource">Typical Hardware Architecture</span></a></span>
+                </span><span class="TocPageNumber">6</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec15"><span class="RefSource">Microprocessor Architecture of Embedded Systems</span></a></span>
+                </span><span class="TocPageNumber">9</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec22"><span class="RefSource">Typical Software Architecture</span></a></span>
+                </span><span class="TocPageNumber">15</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec27"><span class="RefSource">Special Difficulties of Embedded Application Development</span></a></span>
+              </span><span class="TocPageNumber">17</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html#Sec28"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">18</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html"><span class="RefSource">Chapter 2:​ Intel Embedded Hardware Platform</span></a></span>
+            </span><span class="TocPageNumber">19</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec1"><span class="RefSource">Intel Atom Processor</span></a></span>
+              </span><span class="TocPageNumber">19</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec2"><span class="RefSource">Intel Atom Processor Architecture</span></a></span>
+                </span><span class="TocPageNumber">20</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec4"><span class="RefSource">Features of the Intel Atom Processor</span></a></span>
+                </span><span class="TocPageNumber">24</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec12"><span class="RefSource">Other Technologies Used by the Intel Atom Processor</span></a></span>
+                </span><span class="TocPageNumber">28</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec13"><span class="RefSource">Intel Embedded Chipset</span></a></span>
+              </span><span class="TocPageNumber">29</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec14"><span class="RefSource">Intel System on Chip (SoC)</span></a></span>
+              </span><span class="TocPageNumber">30</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec15"><span class="RefSource">Medfield</span></a></span>
+                </span><span class="TocPageNumber">31</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec16"><span class="RefSource">Bay Trail</span></a></span>
+                </span><span class="TocPageNumber">32</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec17"><span class="RefSource">64-Bit Android OS on Intel Architecture</span></a></span>
+              </span><span class="TocPageNumber">32</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec18"><span class="RefSource">64 Bits vs 32-bit Android</span></a></span>
+                </span><span class="TocPageNumber">32</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec19"><span class="RefSource">Memory and CPU Register Size</span></a></span>
+                </span><span class="TocPageNumber">33</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec20"><span class="RefSource">Reference Platform for Intel Embedded Systems</span></a></span>
+              </span><span class="TocPageNumber">34</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec21"><span class="RefSource">Internet of Things (IoT) and Next Unit of Computing (NUC)</span></a></span>
+                </span><span class="TocPageNumber">34</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec23"><span class="RefSource">Smartphones</span></a></span>
+                </span><span class="TocPageNumber">36</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec26"><span class="RefSource">Tablets</span></a></span>
+                </span><span class="TocPageNumber">39</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec31"><span class="RefSource">In-Vehicle Infotainment</span></a></span>
+                </span><span class="TocPageNumber">42</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec32"><span class="RefSource">Other Application Platforms and Fields</span></a></span>
+                </span><span class="TocPageNumber">42</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec34"><span class="RefSource">Robotics </span></a></span>
+                </span><span class="TocPageNumber">43</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html#Sec50"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">45</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html"><span class="RefSource">Chapter 3: Android Application Development Processesand Tool Chains for Intel<sup>®</sup>Architecture </span></a></span>
+            </span><span class="TocPageNumber">47</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec1"><span class="RefSource">Android Application Development</span></a></span>
+              </span><span class="TocPageNumber">47</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec2"><span class="RefSource">Development Environment of Android Applications</span></a></span>
+                </span><span class="TocPageNumber">48</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec5"><span class="RefSource">The Android Application Development Process</span></a></span>
+                </span><span class="TocPageNumber">51</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec10"><span class="RefSource">Debugging and Simulation of Android Systems</span></a></span>
+                </span><span class="TocPageNumber">55</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec16"><span class="RefSource">Typical Development Tool Chains </span></a></span>
+              </span><span class="TocPageNumber">60</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec17"><span class="RefSource">Editor</span></a></span>
+                </span><span class="TocPageNumber">62</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec18"><span class="RefSource">Compiler and Linker</span></a></span>
+                </span><span class="TocPageNumber">62</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec19"><span class="RefSource">Debugger</span></a></span>
+                </span><span class="TocPageNumber">63</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec20"><span class="RefSource">Build Manager</span></a></span>
+                </span><span class="TocPageNumber">63</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec21"><span class="RefSource">Makefile Auto Generation Tool</span></a></span>
+                </span><span class="TocPageNumber">63</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec22"><span class="RefSource">Optimizing Tools -- gprof</span></a></span>
+                </span><span class="TocPageNumber">64</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec23"><span class="RefSource">Overview, Installation, and Configuration of Android Application Development Tool Chains on Intel<sup>®</sup>Architecture</span></a></span>
+              </span><span class="TocPageNumber">65</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec33"><span class="RefSource">Intel Environment Setup for Android (OS X Host)</span></a></span>
+              </span><span class="TocPageNumber">72</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec34"><span class="RefSource">Android Development on Linux-based Host Machines</span></a></span>
+              </span><span class="TocPageNumber">73</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec35"><span class="RefSource">Intel<sup>®</sup>Integrated Native Developer Experience beta</span></a></span>
+              </span><span class="TocPageNumber">73</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec36"><span class="RefSource">Tools and Libraries</span></a></span>
+                </span><span class="TocPageNumber">74</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec37"><span class="RefSource">Setup</span></a></span>
+                </span><span class="TocPageNumber">75</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec38"><span class="RefSource">Intel INDE Installation</span></a></span>
+                </span><span class="TocPageNumber">75</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html#Sec43"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">83</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html"><span class="RefSource">Chapter 4:​ Real Device Environment Installation</span></a></span>
+            </span><span class="TocPageNumber">85</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec1"><span class="RefSource">Mobile Phone Setting</span></a></span>
+              </span><span class="TocPageNumber">85</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec2"><span class="RefSource">Installing the USB Driver on the Host Machine </span></a></span>
+                </span><span class="TocPageNumber">85</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec3"><span class="RefSource">Interaction between the Host Machine and the Target Machine</span></a></span>
+                </span><span class="TocPageNumber">88</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec4"><span class="RefSource">Developing Android Applications</span></a></span>
+                </span><span class="TocPageNumber">88</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec8"><span class="RefSource">Debugging Android Applications</span></a></span>
+                </span><span class="TocPageNumber">110</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec16"><span class="RefSource">Intel Auxiliary Tools for Android Application Development</span></a></span>
+              </span><span class="TocPageNumber">124</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec17"><span class="RefSource">Intel C++ Compiler (Intel ICC) </span></a></span>
+                </span><span class="TocPageNumber">125</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec18"><span class="RefSource">Intel Graphics Performance Analyzers for Android OS</span></a></span>
+                </span><span class="TocPageNumber">126</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec19"><span class="RefSource">Intel System Studio</span></a></span>
+                </span><span class="TocPageNumber">127</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec20"><span class="RefSource">Intel Project Anarchy:​ a Free Mobile Game Engine by Havok</span></a></span>
+                </span><span class="TocPageNumber">129</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec21"><span class="RefSource">Intel Performance Libraries </span></a></span>
+                </span><span class="TocPageNumber">129</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html#Sec22"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">130</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html"><span class="RefSource">Chapter 5:​ The Android OS</span></a></span>
+            </span><span class="TocPageNumber">131</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec1"><span class="RefSource">Android Overview</span></a></span>
+              </span><span class="TocPageNumber">131</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec2"><span class="RefSource">Android Architecture </span></a></span>
+              </span><span class="TocPageNumber">133</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec3"><span class="RefSource">Basic Android Functionality from a Programming Perspective</span></a></span>
+              </span><span class="TocPageNumber">134</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec4"><span class="RefSource">Android System Interface</span></a></span>
+                </span><span class="TocPageNumber">134</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec10"><span class="RefSource">Common Linux Commands and Operations</span></a></span>
+                </span><span class="TocPageNumber">140</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec25"><span class="RefSource">Using the Android Development and Auxiliary Tools</span></a></span>
+              </span><span class="TocPageNumber">151</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec26"><span class="RefSource">Using the Emulator</span></a></span>
+                </span><span class="TocPageNumber">151</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec30"><span class="RefSource">Accept “yes” for custom hw and choose x86 for hwcpuarch propertyUsingthe​ Help File</span></a></span>
+                </span><span class="TocPageNumber">156</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec31"><span class="RefSource">Using DDMS</span></a></span>
+                </span><span class="TocPageNumber">160</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec43"><span class="RefSource">Using adb at Command Prompt</span></a></span>
+                </span><span class="TocPageNumber">177</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec50"><span class="RefSource">Using Android Commands</span></a></span>
+                </span><span class="TocPageNumber">183</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec55"><span class="RefSource">Using Telnet for Emulator Commands</span></a></span>
+                </span><span class="TocPageNumber">186</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html#Sec65"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">190</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html"><span class="RefSource">Chapter 6:​ Customization and Installation of Android</span></a></span>
+            </span><span class="TocPageNumber">191</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec1"><span class="RefSource">Tailoring and Customization of an Embedded OS</span></a></span>
+              </span><span class="TocPageNumber">191</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec2"><span class="RefSource">Overview of Android Customization</span></a></span>
+              </span><span class="TocPageNumber">192</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec3"><span class="RefSource">ROM Package/​Image</span></a></span>
+                </span><span class="TocPageNumber">193</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec4"><span class="RefSource">Overview of Android Image Customization</span></a></span>
+                </span><span class="TocPageNumber">196</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec5"><span class="RefSource">Example of Android Image Customization</span></a></span>
+                </span><span class="TocPageNumber">196</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec6"><span class="RefSource">Installation/​Reflash of the Android Image</span></a></span>
+                </span><span class="TocPageNumber">199</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec7"><span class="RefSource">Image Installation Example</span></a></span>
+                </span><span class="TocPageNumber">200</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec9"><span class="RefSource">Intel Build Tools Suite</span></a></span>
+                </span><span class="TocPageNumber">201</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html#Sec10"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">202</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html"><span class="RefSource">Chapter 7:​ GUI Design for Android Apps, Part 1:​General Overview</span></a></span>
+            </span><span class="TocPageNumber">203</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec1"><span class="RefSource">Overview of GUIs for Embedded Applications</span></a></span>
+              </span><span class="TocPageNumber">203</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec2"><span class="RefSource">Characteristics of Interaction Modalities of Android Devices</span></a></span>
+                </span><span class="TocPageNumber">204</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec9"><span class="RefSource">UI Design Principles for Embedded Systems</span></a></span>
+              </span><span class="TocPageNumber">208</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec10"><span class="RefSource">Considerations of Screen Size</span></a></span>
+                </span><span class="TocPageNumber">208</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec13"><span class="RefSource">Size of Application Windows</span></a></span>
+                </span><span class="TocPageNumber">209</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec14"><span class="RefSource">Considerations Arising from Touch Screens and Styluses</span></a></span>
+                </span><span class="TocPageNumber">210</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec19"><span class="RefSource">Keyboard Input Problems</span></a></span>
+                </span><span class="TocPageNumber">213</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec22"><span class="RefSource">Software Distribution and Copyright Protection Problems</span></a></span>
+                </span><span class="TocPageNumber">214</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec23"><span class="RefSource">Android Application Overview</span></a></span>
+              </span><span class="TocPageNumber">214</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec24"><span class="RefSource">Application File Framework </span></a></span>
+                </span><span class="TocPageNumber">214</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec30"><span class="RefSource">Component Structure of Applications</span></a></span>
+                </span><span class="TocPageNumber">228</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec35"><span class="RefSource">Content Provider</span></a></span>
+                </span><span class="TocPageNumber">231</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec36"><span class="RefSource">Android Emulator</span></a></span>
+                </span><span class="TocPageNumber">231</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec37"><span class="RefSource">Introducing Android Runtime (ART)</span></a></span>
+                </span><span class="TocPageNumber">232</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html#Sec38"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">233</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8:​ GUI Design for Android Apps, Part 2:​The Android-Specific GUI</span></a></span>
+            </span><span class="TocPageNumber">235</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec1"><span class="RefSource">State Transitions of Activities</span></a></span>
+              </span><span class="TocPageNumber">235</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec2"><span class="RefSource">Activity States</span></a></span>
+                </span><span class="TocPageNumber">235</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec3"><span class="RefSource">Important Functions of Activities</span></a></span>
+                </span><span class="TocPageNumber">237</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec12"><span class="RefSource">The Context Class</span></a></span>
+              </span><span class="TocPageNumber">240</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec13"><span class="RefSource">Introduction to Intent</span></a></span>
+              </span><span class="TocPageNumber">243</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec14"><span class="RefSource">The Main Roles of Intent</span></a></span>
+                </span><span class="TocPageNumber">244</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec18"><span class="RefSource">Intent Resolution</span></a></span>
+                </span><span class="TocPageNumber">244</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec22"><span class="RefSource">The Relationship between Applications and Activities</span></a></span>
+              </span><span class="TocPageNumber">247</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec23"><span class="RefSource">The Basic Android Application Interface </span></a></span>
+              </span><span class="TocPageNumber">247</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec24"><span class="RefSource">GuiExam Application Code Analysis</span></a></span>
+                </span><span class="TocPageNumber">248</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec25"><span class="RefSource">Using Layouts as Interfaces</span></a></span>
+                </span><span class="TocPageNumber">253</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec26"><span class="RefSource">Using the View Directly as an Interface</span></a></span>
+                </span><span class="TocPageNumber">255</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec27"><span class="RefSource">Component ID</span></a></span>
+                </span><span class="TocPageNumber">257</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec28"><span class="RefSource">Buttons and Events</span></a></span>
+              </span><span class="TocPageNumber">259</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec29"><span class="RefSource">Inner Class Listener</span></a></span>
+                </span><span class="TocPageNumber">260</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec30"><span class="RefSource">Using ImageView</span></a></span>
+                </span><span class="TocPageNumber">262</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec31"><span class="RefSource">Exit Activities and Application</span></a></span>
+                </span><span class="TocPageNumber">266</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html#Sec32"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">269</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html"><span class="RefSource">Chapter 9:​ GUI Design for Android Apps, Part 3:​Designing Complex Applications</span></a></span>
+            </span><span class="TocPageNumber">271</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec1"><span class="RefSource">Applications with Multiple Activities</span></a></span>
+              </span><span class="TocPageNumber">271</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec2"><span class="RefSource">Triggering an Explicit Match of Activities with No Parameters</span></a></span>
+                </span><span class="TocPageNumber">272</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec3"><span class="RefSource">Triggering Explicit Matching of an Activity with Parameters of Different Applications</span></a></span>
+                </span><span class="TocPageNumber">281</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec4"><span class="RefSource">Implicit Matching of Built-In Activities</span></a></span>
+                </span><span class="TocPageNumber">292</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec5"><span class="RefSource">Implicit Match that Uses a Custom Activity</span></a></span>
+                </span><span class="TocPageNumber">297</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html#Sec6"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">304</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html"><span class="RefSource">Chapter 10:​ GUI Design for Android Apps, Part 4:​Graphic Interface and Touchscreen Input</span></a></span>
+            </span><span class="TocPageNumber">305</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec1"><span class="RefSource">Display Output Framework</span></a></span>
+              </span><span class="TocPageNumber">305</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec2"><span class="RefSource">Drawing Framework for Responding to Touchscreen Input</span></a></span>
+              </span><span class="TocPageNumber">310</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec3"><span class="RefSource">Multi-Touch Code Framework</span></a></span>
+              </span><span class="TocPageNumber">313</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec4"><span class="RefSource">Responding to Keyboard Input</span></a></span>
+              </span><span class="TocPageNumber">317</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec5"><span class="RefSource">Dialog Boxes in Android</span></a></span>
+              </span><span class="TocPageNumber">322</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec6"><span class="RefSource">Using an Activity’s Dialog Theme</span></a></span>
+                </span><span class="TocPageNumber">322</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec11"><span class="RefSource">Using a Specific Dialog Class</span></a></span>
+                </span><span class="TocPageNumber">323</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec12"><span class="RefSource">Using Toast Reminders</span></a></span>
+                </span><span class="TocPageNumber">323</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec13"><span class="RefSource">Dialog Box Example</span></a></span>
+                </span><span class="TocPageNumber">323</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec14"><span class="RefSource">Application Property Settings</span></a></span>
+              </span><span class="TocPageNumber">328</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html#Sec15"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">333</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html"><span class="RefSource">Chapter 11:​ Performance Optimization for AndroidApplicati​ons on x86</span></a></span>
+            </span><span class="TocPageNumber">335</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec1"><span class="RefSource">Principles of Performance Optimization</span></a></span>
+              </span><span class="TocPageNumber">335</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec2"><span class="RefSource">Reducing Instructions and Execution Frequency</span></a></span>
+                </span><span class="TocPageNumber">336</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec3"><span class="RefSource">Selecting Faster Instructions</span></a></span>
+                </span><span class="TocPageNumber">336</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec4"><span class="RefSource">Improving the Degree of Parallelism</span></a></span>
+                </span><span class="TocPageNumber">337</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec5"><span class="RefSource">Using the Register Cache Effectively</span></a></span>
+                </span><span class="TocPageNumber">337</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec6"><span class="RefSource">Performance Optimization Methodology </span></a></span>
+                </span><span class="TocPageNumber">338</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec7"><span class="RefSource">Performance Optimization Approaches</span></a></span>
+              </span><span class="TocPageNumber">338</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec12"><span class="RefSource">Intel Graphics Performance Analyzers (Intel GPA)</span></a></span>
+              </span><span class="TocPageNumber">341</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec13"><span class="RefSource">Introduction to Intel GPA</span></a></span>
+                </span><span class="TocPageNumber">341</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec14"><span class="RefSource">Installing Intel GPA</span></a></span>
+                </span><span class="TocPageNumber">344</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec15"><span class="RefSource">Using Intel GPA on Android</span></a></span>
+                </span><span class="TocPageNumber">345</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec16"><span class="RefSource">Android Multithreaded Design</span></a></span>
+              </span><span class="TocPageNumber">355</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec17"><span class="RefSource">Android Framework of a Thread</span></a></span>
+                </span><span class="TocPageNumber">356</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec25"><span class="RefSource">Thread Synchronization</span></a></span>
+                </span><span class="TocPageNumber">367</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec26"><span class="RefSource">Thread Communication</span></a></span>
+                </span><span class="TocPageNumber">370</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec27"><span class="RefSource">Principles of Multithreaded Optimization for the Intel Atom Processor</span></a></span>
+                </span><span class="TocPageNumber">372</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec28"><span class="RefSource">Case Study:​ Intel GPA-Assisted Multithreaded Optimization for an Android Application</span></a></span>
+              </span><span class="TocPageNumber">373</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec29"><span class="RefSource">Original Application and Intel GPA Analysis</span></a></span>
+                </span><span class="TocPageNumber">374</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec30"><span class="RefSource">Optimized Application and Intel GPA Analysis</span></a></span>
+                </span><span class="TocPageNumber">381</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html#Sec31"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">390</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html"><span class="RefSource">Chapter 12:​ NDK and C/​C++ Optimization</span></a></span>
+            </span><span class="TocPageNumber">391</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec1"><span class="RefSource">Introduction to JNI</span></a></span>
+              </span><span class="TocPageNumber">391</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec2"><span class="RefSource">Java Methods and C Function Prototype Java</span></a></span>
+                </span><span class="TocPageNumber">394</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec6"><span class="RefSource">Introduction to NDK</span></a></span>
+                </span><span class="TocPageNumber">397</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec7"><span class="RefSource">Installing NDK and Setting Up the Environment</span></a></span>
+              </span><span class="TocPageNumber">401</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec8"><span class="RefSource">Installing CDT</span></a></span>
+                </span><span class="TocPageNumber">401</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec9"><span class="RefSource">NDK Examples</span></a></span>
+              </span><span class="TocPageNumber">403</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec10"><span class="RefSource">Using the Command Line to Generate a Library File</span></a></span>
+                </span><span class="TocPageNumber">403</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec11"><span class="RefSource">Generating a Library File in the IDE</span></a></span>
+                </span><span class="TocPageNumber">411</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec12"><span class="RefSource">Workflow Analysis for NDK Application Development </span></a></span>
+                </span><span class="TocPageNumber">417</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec13"><span class="RefSource">NDK Compiler Optimization</span></a></span>
+              </span><span class="TocPageNumber">419</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec14"><span class="RefSource">Machine-Independent Compiler Switch Options</span></a></span>
+                </span><span class="TocPageNumber">420</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec19"><span class="RefSource">Intel Processor-Related Compiler Switch Options</span></a></span>
+                </span><span class="TocPageNumber">422</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec20"><span class="RefSource">Optimization with Intel Integrated Performance Primitives (Intel IPP)</span></a></span>
+              </span><span class="TocPageNumber">426</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec21"><span class="RefSource">NDK Integrated Optimization Examples</span></a></span>
+              </span><span class="TocPageNumber">427</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec22"><span class="RefSource">C/​C++:​ Accelerating the Original Application</span></a></span>
+                </span><span class="TocPageNumber">427</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec23"><span class="RefSource">Extending Compiler Optimization </span></a></span>
+                </span><span class="TocPageNumber">436</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec24"><span class="RefSource">Comparing Compiler Optimizations</span></a></span>
+                </span><span class="TocPageNumber">441</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html#Sec26"><span class="RefSource">Summary</span></a></span>
+              </span><span class="TocPageNumber">443</span></div></div></div><div class="TocChapter"><div class="TocEntry"><span class="TocItem">
+              <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html"><span class="RefSource">Chapter 13:​ The Low-Power Design of Android Applicationand Intel Graphics Performance Analyzers (Intel GPA):​ Assisted Power Optimization</span></a></span>
+            </span><span class="TocPageNumber">445</span></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec1"><span class="RefSource">Overview of Low-Power Design</span></a></span>
+              </span><span class="TocPageNumber">445</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec2"><span class="RefSource">The Basics of Consumption</span></a></span>
+                </span><span class="TocPageNumber">446</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec3"><span class="RefSource">Power Consumption Control Technology</span></a></span>
+                </span><span class="TocPageNumber">447</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec16"><span class="RefSource">Linux Power-Control Mechanism</span></a></span>
+              </span><span class="TocPageNumber">454</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec17"><span class="RefSource">Tickless Idle</span></a></span>
+                </span><span class="TocPageNumber">454</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec18"><span class="RefSource">PowerTOP</span></a></span>
+                </span><span class="TocPageNumber">455</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec19"><span class="RefSource">Intel Power-Optimization Aids</span></a></span>
+              </span><span class="TocPageNumber">456</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec20"><span class="RefSource">Low-Power Considerations in Application Design</span></a></span>
+              </span><span class="TocPageNumber">459</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec21"><span class="RefSource">The Most Basic Principle of Low-Power Optimization</span></a></span>
+                </span><span class="TocPageNumber">459</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec22"><span class="RefSource">General Recommendations:​ High Performance =​ Low Power Consumption</span></a></span>
+                </span><span class="TocPageNumber">460</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec23"><span class="RefSource">Use Low-Power Hardware as Much as Possible to Achieve the Task</span></a></span>
+                </span><span class="TocPageNumber">460</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec24"><span class="RefSource">Polling Is the Enemy of Low-Power Optimization</span></a></span>
+                </span><span class="TocPageNumber">460</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec25"><span class="RefSource">Event-Driven Programming</span></a></span>
+                </span><span class="TocPageNumber">462</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec26"><span class="RefSource">Reduce Periodic Operations Similar to Polling in Application Programs</span></a></span>
+                </span><span class="TocPageNumber">462</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec27"><span class="RefSource">Low-Power Recommendations for Data Acquisition and Communications</span></a></span>
+                </span><span class="TocPageNumber">463</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec28"><span class="RefSource">Establishing a Power-Aware Program</span></a></span>
+                </span><span class="TocPageNumber">463</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec29"><span class="RefSource">Case Study 1:​ Intel GPA Assisted Power Optimization for an Android Application</span></a></span>
+              </span><span class="TocPageNumber">463</span></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec30"><span class="RefSource">Original Application and Intel GPA Power Analysis</span></a></span>
+                </span><span class="TocPageNumber">464</span></div></div><div class="TocSection2"><div class="TocEntry"><span class="TocItem">
+                  <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec31"><span class="RefSource">Optimized Applications and an Intel GPA Power Analysis</span></a></span>
+                </span><span class="TocPageNumber">470</span></div></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec32"><span class="RefSource">Case Study 2:​ Timer Optimization and Intel GPA Power Analysis</span></a></span>
+              </span><span class="TocPageNumber">475</span></div></div><div class="TocSection1"><div class="TocEntry"><span class="TocItem">
+                <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html#Sec33"><span class="RefSource">Book Summary</span></a></span>
+              </span><span class="TocPageNumber">481</span></div></div></div><div class="TocBack"><span class="TocItem">Index</span><span class="TocPageNumber">483</span></div></div></div><div id="Loh1" class="Loh"><div class="Headings"><div class="Heading">Contents at a Glance</div></div><div class="LohBody"><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_1_Chapter.html"><span class="RefSource">Chapter 1:​ Ove r view of Embedded Application Developmentfor Intel Architecture</span></a></span>
+          </span><span class="LohPageNumber">1</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_2_Chapter.html"><span class="RefSource">Chapter 2:​ Intel Embedded Hardware Platform</span></a></span>
+          </span><span class="LohPageNumber">19</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_3_Chapter.html"><span class="RefSource">Chapter 3: Android Application Development Processesand Tool Chains for Intel<sup>®</sup>Architecture</span></a></span>
+          </span><span class="LohPageNumber">47</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_4_Chapter.html"><span class="RefSource">Chapter 4:​ Real Device Environment Installation</span></a></span>
+          </span><span class="LohPageNumber">85</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_5_Chapter.html"><span class="RefSource">Chapter 5:​ The Android OS</span></a></span>
+          </span><span class="LohPageNumber">131</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_6_Chapter.html"><span class="RefSource">Chapter 6:​ Customization and Installation of Android</span></a></span>
+          </span><span class="LohPageNumber">191</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_7_Chapter.html"><span class="RefSource">Chapter 7:​ GUI Design for Android Apps, Part 1:​General Overview</span></a></span>
+          </span><span class="LohPageNumber">203</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_8_Chapter.html"><span class="RefSource">Chapter 8:​ GUI Design for Android Apps, Part 2:​The Android-Specific GUI</span></a></span>
+          </span><span class="LohPageNumber">235</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_9_Chapter.html"><span class="RefSource">Chapter 9:​ GUI Design for Android Apps, Part 3:​Designing Complex Applications</span></a></span>
+          </span><span class="LohPageNumber">271</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_10_Chapter.html"><span class="RefSource">Chapter 10:​ GUI Design for Android Apps, Part 4:​Graphic Interface and Touchscreen Input</span></a></span>
+          </span><span class="LohPageNumber">305</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_11_Chapter.html"><span class="RefSource">Chapter 11:​ Performance Optimization for AndroidApplicati​ons on x86</span></a></span>
+          </span><span class="LohPageNumber">335</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_12_Chapter.html"><span class="RefSource">Chapter 12:​ NDK and C/​C++ Optimization</span></a></span>
+          </span><span class="LohPageNumber">391</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">
+            <span class="ExternalRef"><a href="A978-1-4842-0100-8_13_Chapter.html"><span class="RefSource">Chapter 13:​ The Low-Power Design of Android Applicationand Intel Graphics Performance Analyzers (Intel GPA):​ Assisted Power Optimization</span></a></span>
+          </span><span class="LohPageNumber">445</span></div><div class="ClearBoth"> </div><div class="LohEntry"><span class="LohItem">Index</span><span class="LohPageNumber">483</span></div><div class="ClearBoth"> </div></div></div></div></body></html>

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:uid" content="978-1-4842-0100-8"/>
+  </head>
+  <docTitle>
+     <text>Android Application Development for the Intel® Platform</text>
+  </docTitle>
+  <docAuthor>
+     <text>Ryan Cohen and Tao Wang</text>
+  </docAuthor>
+<navMap>
+    <navPoint id="navpoint-1" playOrder="1">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="ACoverHTML.html"/>
+    </navPoint>
+    <navPoint id="navpoint-2" playOrder="2">
+      <navLabel>
+        <text>Frontmatter</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_BookFrontmatter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-3" playOrder="3">
+      <navLabel>
+        <text>1. Overview of Embedded Application Development for Intel Architecture</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_1_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-4" playOrder="4">
+      <navLabel>
+        <text>2. Intel Embedded Hardware Platform</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_2_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-5" playOrder="5">
+      <navLabel>
+        <text>3. Android Application Development Processes and Tool Chains for Intel® Architecture</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_3_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-6" playOrder="6">
+      <navLabel>
+        <text>4. Real Device Environment Installation</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_4_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-7" playOrder="7">
+      <navLabel>
+        <text>5. The Android OS</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_5_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-8" playOrder="8">
+      <navLabel>
+        <text>6. Customization and Installation of Android</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_6_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-9" playOrder="9">
+      <navLabel>
+        <text>7. GUI Design for Android Apps, Part 1: General Overview</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_7_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-10" playOrder="10">
+      <navLabel>
+        <text>8. GUI Design for Android Apps, Part 2: The Android-Specific GUI</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_8_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-11" playOrder="11">
+      <navLabel>
+        <text>9. GUI Design for Android Apps, Part 3: Designing Complex Applications</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_9_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-12" playOrder="12">
+      <navLabel>
+        <text>10. GUI Design for Android Apps, Part 4: Graphic Interface and Touchscreen Input</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_10_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-13" playOrder="13">
+      <navLabel>
+        <text>11. Performance Optimization for Android Applications on x86</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_11_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-14" playOrder="14">
+      <navLabel>
+        <text>12. NDK and C/C++ Optimization</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_12_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-15" playOrder="15">
+      <navLabel>
+        <text>13. The Low-Power Design of Android Application and Intel Graphics Performance Analyzers (Intel GPA): Assisted Power Optimization</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_13_Chapter.html"/>
+    </navPoint>
+    <navPoint id="navpoint-16" playOrder="16">
+      <navLabel>
+        <text>Backmatter</text>
+      </navLabel>
+      <content src="A978-1-4842-0100-8_BookBackmatter.html"/>
+    </navPoint>
+</navMap>
+</ncx>
