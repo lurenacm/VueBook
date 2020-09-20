@@ -1,0 +1,49 @@
+<template>
+  <transition name="slide-up">
+    <div class="ebookbar"  v-show="showTitle">
+      <div class="icon">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="icon">
+        <span class="icon-progress"></span>
+      </div>
+      <div class="icon">
+        <span class="icon-bright"></span>
+      </div>
+      <div class="icon">
+        <span class="icon-A"></span>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script>
+import { mapGetters } from "vuex"
+export default {
+  name: "EbookBar",
+  computed: {
+    ...mapGetters(["showTitle"])
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/global.scss";
+.ebookbar {
+  width: 100%;
+  height: px2rem(48);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, 0.15);
+  .icon {
+      font-size: px2rem(22);
+      margin: auto px2rem(30);
+  }
+}
+</style>

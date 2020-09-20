@@ -52,7 +52,7 @@ export default {
   align-items: center;
   box-shadow: 0 px2rem(8) px2rem(8) rgba(0, 0, 0, 0.15);
   .leftArrow {
-    margin: 0 px2rem(10);
+    margin: 0 px2rem(20);
   }
   .rigthContainer {
     flex: 1;
