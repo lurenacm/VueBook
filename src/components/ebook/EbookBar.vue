@@ -18,12 +18,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import mixins from '@/utils/mixins'
 export default {
   name: "EbookBar",
-  computed: {
-    ...mapGetters(["showTitle"])
-  }
+  mixins: [mixins]
 }
 </script>
 

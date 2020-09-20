@@ -20,12 +20,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import mixins from '@/utils/mixins'
 export default {
   name: "EbookTitle",
-  computed: {
-    ...mapGetters(["showTitle"])
-  },
+  mixins: [mixins],
   methods: {
     back(event) {
       console.log("back")
