@@ -12,22 +12,19 @@ global.epub = Epub
 export default {
   name: "EbookRead",
   computed: {
-    ...mapGetters(["fileName"])
+    ...mapGetters(["fileName", "showTitle"])
   },
   methods: {
     initEbook() {
       const url = "http://localhost:8081/epub/" + this.fileName + ".epub"
-      // console.log(url)
-      // const baseUrl = "http://localhost:8081/epub/History/2016_Book_AHistoryOfForceFeeding.epub"
       this.book = new Epub(url)
-      // console.log(this.book)
       // 通过Book.renderTo生成Rendition对象
       this.rendition = this.book.renderTo('read', {
         // width: window.innerWidth,
         // height: window.innerHeight,
         // method: 'default'
       })
-      // 通过Rendtion.display渲染电子书
+      // 通过Rendtion.display渲染打开电子书
       this.rendition.display()
       this.rendition.on('touchstart', event => {
         this.touchstartX = event.changedTouches[0].clientX
@@ -40,7 +37,7 @@ export default {
         console.log(offsetx, time)
         if (time<500 && offsetx>40) {
           this._prePages()
-        } else if (time<500 && offsetx< -40) {
+        } else if (time<500 && offsetx<-40) {
           this._nextPages()
         } else {
           this._toggleShowTtile()
@@ -55,9 +52,13 @@ export default {
     },
     _nextPages() {
       this.rendition.next()
+    },
+    _toggleShowTtile() {
+      this.$store.dispatch('setShowTitle', !this.showTitle)
     }
   },
-  created() {
+
+  mounted() {
     const fileName = this.$route.params.fileName.split("|").join("/")
     this.$store.dispatch("setFileName", fileName).then(() => {
       this.initEbook()

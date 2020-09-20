@@ -22,6 +22,7 @@ module.exports = {
     'space-before-blocks': 'off',
     'space-in-parens': 'off',
     'space-infix-ops': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-trailing-spaces': 'off'
   }
 }
