@@ -17,10 +17,10 @@ export default {
   methods: {
     initEbook() {
       const url = "http://localhost:8081/epub/" + this.fileName + ".epub"
-      console.log(url)
+      // console.log(url)
       // const baseUrl = "http://localhost:8081/epub/History/2016_Book_AHistoryOfForceFeeding.epub"
       this.book = new Epub(url)
-      console.log(this.book)
+      // console.log(this.book)
       // 通过Book.renderTo生成Rendition对象
       this.rendition = this.book.renderTo('read', {
         // width: window.innerWidth,
@@ -29,6 +29,32 @@ export default {
       })
       // 通过Rendtion.display渲染电子书
       this.rendition.display()
+      this.rendition.on('touchstart', event => {
+        this.touchstartX = event.changedTouches[0].clientX
+        this.timeStart = event.timeStamp
+      })
+
+      this.rendition.on('touchend', event => {
+        const offsetx = event.changedTouches[0].clientX - this.touchstartX
+        const time = event.timeStamp - this.timeStart
+        console.log(offsetx, time)
+        if (time<500 && offsetx>40) {
+          this._prePages()
+        } else if (time<500 && offsetx< -40) {
+          this._nextPages()
+        } else {
+          this._toggleShowTtile()
+        }
+        // event.preventDefault()
+        // event.stopPropagation()
+      })
+    },
+
+    _prePages() {
+      this.rendition.prev()
+    },
+    _nextPages() {
+      this.rendition.next()
     }
   },
   created() {

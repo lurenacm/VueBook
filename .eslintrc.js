@@ -21,6 +21,7 @@ module.exports = {
     'eol-last': 'off',
     'space-before-blocks': 'off',
     'space-in-parens': 'off',
-    'space-infix-ops': 'off'
+    'space-infix-ops': 'off',
+    'no-unused-vars': 'off'
   }
 }
