@@ -6,14 +6,12 @@
 
 <script>
 import Epub from "epubjs"
-import { mapGetters } from "vuex"
+import mixins from '@/utils/mixins'
 
 global.epub = Epub
 export default {
   name: "EbookRead",
-  computed: {
-    ...mapGetters(["fileName", "showTitle"])
-  },
+  mixins: [mixins],
   methods: {
     initEbook() {
       const url = "http://localhost:8081/epub/" + this.fileName + ".epub"
@@ -49,18 +47,23 @@ export default {
 
     _prePages() {
       this.rendition.prev()
+      this._hideToggle()
     },
     _nextPages() {
       this.rendition.next()
+       this._hideToggle()
     },
     _toggleShowTtile() {
-      this.$store.dispatch('setShowTitle', !this.showTitle)
+      this.setShowTitle(!this.showTitle)
+    },
+    _hideToggle() {
+      this.setShowTitle( false)
     }
   },
 
   mounted() {
     const fileName = this.$route.params.fileName.split("|").join("/")
-    this.$store.dispatch("setFileName", fileName).then(() => {
+    this.setFileName(fileName).then(() => {
       this.initEbook()
     })
   }
