@@ -23,6 +23,7 @@ module.exports = {
     'space-in-parens': 'off',
     'space-infix-ops': 'off',
     'no-unused-vars': 'off',
-    'no-trailing-spaces': 'off'
+    'no-trailing-spaces': 'off',
+    'no-undef': 'off'
   }
 }

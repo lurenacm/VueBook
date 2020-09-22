@@ -1,27 +1,35 @@
 <template>
-  <transition name="slide-up">
-    <div class="ebookbar"  v-show="showTitle">
-      <div class="icon">
-        <span class="icon-menu"></span>
+  <div>
+    <transition name="slide-up">
+      <div class="ebookbar"  v-show="showTitle">
+        <div class="icon" @click="setShowSetting(3)">
+          <span class="icon-menu"></span>
+        </div>
+        <div class="icon" @click="setShowSetting(2)">
+          <span class="icon-progress"></span>
+        </div>
+        <div class="icon" @click="setShowSetting(1)">
+          <span class="icon-bright"></span>
+        </div>
+        <div class="icon" @click="setShowSetting(0)">
+          <span class="icon-A"></span>
+        </div>
       </div>
-      <div class="icon">
-        <span class="icon-progress"></span>
-      </div>
-      <div class="icon">
-        <span class="icon-bright"></span>
-      </div>
-      <div class="icon">
-        <span class="icon-A"></span>
-      </div>
-    </div>
-  </transition>
+    </transition>
+    <ebook-font-size></ebook-font-size>
+  </div>
 </template>
 
 <script>
 import mixins from '@/utils/mixins'
+import EbookFontSize from '@/components/ebook/EbookFontSize'
+
 export default {
   name: "EbookBar",
-  mixins: [mixins]
+  mixins: [mixins],
+  components: {
+    EbookFontSize
+  }
 }
 </script>
 

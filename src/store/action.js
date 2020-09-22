@@ -8,6 +8,10 @@ const actions = {
     commit
   }, showTitle) => {
     return commit('setShowTitle', showTitle)
+  },
+  setShowSetting: ({ commit }, showSetting) => {
+    console.log(showSetting)
+    return commit('setShowSetting', showSetting)
   }
 }
 

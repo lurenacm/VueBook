@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+/vue-imooc-ebook-free
+/vue-imooc-ebook
 w-index.js
 
 # local env files
