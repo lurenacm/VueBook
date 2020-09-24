@@ -5,11 +5,11 @@
               <div class="left-font">
                   <span :style="{fontSize:fontsizelist[0].fontSize+ 'px'}">A</span>
               </div>
-              <div v-for="(item, index) of fontsizelist" :key="index" class="line-item">
+              <div v-for="(item, index) of fontsizelist" :key="index" class="line-item" @click="setFontSize(item.fontSize)">
                   <div class="vertical-line"></div>
                   <div class="line"></div>
                   <div class="vertical-line"></div>
-                  <div class="point" v-show="defaultFontSize === item.fontSize">
+                  <div class="point" v-show="defFontSize === item.fontSize">
                     <div class="point-item"></div>
                   </div>
               </div>
@@ -25,7 +25,12 @@
 import mixins from "@/utils/mixins"
 export default {
   name: "EbookFontSize",
-  mixins: [mixins]
+  mixins: [mixins],
+  methods: {
+      setFontSize(fontSize) {
+          this.setFont(fontSize)
+      }
+  }
 }
 </script>
 

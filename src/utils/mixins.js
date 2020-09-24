@@ -6,7 +6,7 @@ import {
 import { FONT_SIZE_LIST } from './book'
 const mixins = {
   computed: {
-    ...mapGetters(["fileName", "showTitle", 'showSetting'])
+    ...mapGetters(["fileName", "showTitle", 'showSetting', 'defFontSize'])
   },
   data() {
    return {
@@ -14,7 +14,7 @@ const mixins = {
    }
   },
   methods: {
-    ...mapActions(['setFileName', 'setShowTitle', 'setShowSetting'])
+    ...mapActions(['setFileName', 'setShowTitle', 'setShowSetting', 'setFont'])
   }
 }
 export default mixins

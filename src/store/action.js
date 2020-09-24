@@ -12,6 +12,9 @@ const actions = {
   setShowSetting: ({ commit }, showSetting) => {
     console.log(showSetting)
     return commit('setShowSetting', showSetting)
+  },
+  setFont: ({ commit }, fontSize) => {
+    return commit('setFont', fontSize)
   }
 }
 

@@ -32,7 +32,7 @@ export default {
       this.rendition.on('touchend', event => {
         const offsetx = event.changedTouches[0].clientX - this.touchstartX
         const time = event.timeStamp - this.timeStart
-        console.log(offsetx, time)
+        // console.log(offsetx, time)
         if (time<500 && offsetx>40) {
           this._prePages()
         } else if (time<500 && offsetx<-40) {
