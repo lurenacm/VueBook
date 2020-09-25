@@ -18,6 +18,12 @@ const actions = {
   },
   setBook: ({ commit }, book) => {
     return commit('setBook', book)
+  }, 
+  setFontFamily: ({ commit }, showFontFamily) => {
+    return commit('setFontFamily', showFontFamily)
+  },
+  setDefFontFamily: ({ commit }, defaultFontFamily) => {
+    return commit('setDefFontFamily', defaultFontFamily)
   }
 }
 

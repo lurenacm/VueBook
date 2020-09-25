@@ -17,18 +17,21 @@
       </div>
     </transition>
     <ebook-font-size></ebook-font-size>
+    <ebook-font-family></ebook-font-family>
   </div>
 </template>
 
 <script>
 import mixins from '@/utils/mixins'
 import EbookFontSize from '@/components/ebook/EbookFontSize'
+import EbookFontFamily from '@/components/ebook/EbookFontFamily'
 
 export default {
   name: "EbookBar",
   mixins: [mixins],
   components: {
-    EbookFontSize
+    EbookFontSize,
+    EbookFontFamily
   }
 }
 </script>

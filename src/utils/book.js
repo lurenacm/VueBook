@@ -8,6 +8,15 @@ const FONT_SIZE_LIST = [
     { fontSize: 24 }
   ]
 
+  const FONT_FAMILY_LIST = [
+    { fontFamily: 'Default' },
+    { fontFamily: 'Cabin' },
+    { fontFamily: 'Days One' },
+    { fontFamily: 'Montserrat' },
+    { fontFamily: 'Tangerine' }
+  ]
+
   export {
-    FONT_SIZE_LIST
+    FONT_SIZE_LIST,
+    FONT_FAMILY_LIST
   }
