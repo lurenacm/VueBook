@@ -19,8 +19,8 @@ const book = {
     setFont: (state, fontSize) => {
       state.defFontSize = fontSize
     },
-    setBook: (state, Book) => {
-      state.Book = Book
+    setBook: (state, book) => {
+      state.Book = book
     }
   }
 }

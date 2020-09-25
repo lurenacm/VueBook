@@ -28,9 +28,8 @@ export default {
   mixins: [mixins],
   methods: {
       setFontSize(fontSize) {
-          console.log(fontSize)
-          this.setFont(fontSize)
-          this.Book.rendition.themes.fontSize(fontSize)
+        this.setFont(fontSize)
+        this.Book.rendition.themes.fontSize(fontSize+'px')
       }
   }
 }
