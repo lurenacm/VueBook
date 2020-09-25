@@ -15,6 +15,9 @@ const actions = {
   },
   setFont: ({ commit }, fontSize) => {
     return commit('setFont', fontSize)
+  },
+  setBook: ({ commit }, Book) => {
+    return commit('setBook', Book)
   }
 }
 

@@ -16,6 +16,7 @@ export default {
     initEbook() {
       const url = "http://localhost:8081/epub/" + this.fileName + ".epub"
       this.book = new Epub(url)
+      this.setBook(this.book)
       // 通过Book.renderTo生成Rendition对象
       this.rendition = this.book.renderTo('read', {
         // width: window.innerWidth,
@@ -55,9 +56,14 @@ export default {
     },
     _toggleShowTtile() {
       this.setShowTitle(!this.showTitle)
+      this.setShowSetting(-1)
+      // this.showSetting = -1
     },
     _hideToggle() {
-      this.setShowTitle( false)
+      this.setShowTitle(false)
+      if (this.showTitle) {
+      this.setShowSetting(-1)
+      }
     }
   },
 

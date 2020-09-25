@@ -28,7 +28,9 @@ export default {
   mixins: [mixins],
   methods: {
       setFontSize(fontSize) {
+          console.log(fontSize)
           this.setFont(fontSize)
+          this.Book.rendition.themes.fontSize(fontSize)
       }
   }
 }
@@ -40,6 +42,7 @@ export default {
 .ebook-setting {
     width: 100%;
     height: px2rem(90);
+    line-height: px2rem(90);
     position: absolute;
     left: 0;
     right: 0;
@@ -47,14 +50,13 @@ export default {
     background: white;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    align-items: baseline;
     box-shadow: px2rem(0) px2rem(-8) px2rem(8) #ccc;
     .left-font {
-        margin: 0 px2rem(10);
+        margin: 0 px2rem(20);
     }
     .right-font {
-        margin: 0 px2rem(10);
+        margin: 0 px2rem(20);
     }
     .line-item {
         width: 50%;
@@ -65,7 +67,7 @@ export default {
             border-left: px2rem(1) solid #ccc;
             border-right: px2rem(1) solid #ccc;
             &:last-child {
-             border-right: px2rem(1) solid #ccc;
+             border-right: none
             }
         }
         .line {
