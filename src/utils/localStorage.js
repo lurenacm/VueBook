@@ -48,6 +48,15 @@ function getFontFamily(fileName) {
     return getBook(fileName, 'fontFamily')
 }
 
+// fontSize 写入缓存 
+function saveFontSize(fileName, font) {
+    setBook(fileName, 'FontSize', font)
+}
+
+function getFontSize(fileName) {
+    return getBook(fileName, 'FontSize')
+}
+
 export {
     setStorage,
     getStorage,
@@ -56,6 +65,7 @@ export {
     setBook,
     getBook,
     saveFontFamily,
-    getFontFamily
-
+    getFontFamily,
+    saveFontSize,
+    getFontSize
 }

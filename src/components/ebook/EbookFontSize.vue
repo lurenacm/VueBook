@@ -29,6 +29,8 @@
 
 <script>
 import mixins from "@/utils/mixins"
+import { saveFontSize } from '@/utils/localStorage'
+
 export default {
   name: "EbookFontSize",
   mixins: [mixins],
@@ -36,6 +38,7 @@ export default {
       setFontSize(fontSize) {
         this.setFont(fontSize)
         this.Book.rendition.themes.fontSize(fontSize+'px')
+        saveFontSize(this.fileName, fontSize)
       },
 
       showFamily() {

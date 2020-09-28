@@ -7,7 +7,12 @@
 <script>
 import Epub from "epubjs"
 import mixins from '@/utils/mixins'
-import { saveFontFamily, getFontFamily } from '@/utils/localStorage'
+import { 
+  saveFontFamily, 
+  getFontFamily,
+  saveFontSize,
+  getFontSize 
+  } from '@/utils/localStorage'
 
 global.epub = Epub
 export default {
@@ -26,13 +31,8 @@ export default {
       })
       // 通过Rendtion.display渲染打开电子书
       this.rendition.display().then( () => {
-        const font = getFontFamily(this.fileName)
-        if (font) {
-           this.book.rendition.themes.font(font)
-          this.setDefFontFamily(font)
-        } else {
-          saveFontFamily(this.fileName, this.defaultFontFamily)
-        }
+        this.initFontFamily()
+        this.initFontSize()
       })
 
       this.rendition.on('touchstart', event => {
@@ -61,6 +61,26 @@ export default {
         contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/montserrat.css`)
         contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/tangerine.css`)
       })
+    },
+
+    initFontFamily() {
+      const font = getFontFamily(this.fileName)
+        if (font) {
+           this.book.rendition.themes.font(font)
+          this.setDefFontFamily(font)
+        } else {
+          saveFontFamily(this.fileName, this.defaultFontFamily)
+        }
+    },
+
+    initFontSize() {
+      const fontSize = getFontSize(this.fileName)
+        if (fontSize) {
+           this.book.rendition.themes.fontSize(fontSize)
+          this.setFont(fontSize)
+        } else {
+          saveFontSize(this.fileName, this.defFontSize)
+        }
     },
 
     _prePages() {
