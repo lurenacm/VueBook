@@ -7,6 +7,7 @@
 <script>
 import Epub from "epubjs"
 import mixins from '@/utils/mixins'
+import { saveFontFamily, getFontFamily } from '@/utils/localStorage'
 
 global.epub = Epub
 export default {
@@ -24,7 +25,16 @@ export default {
         // method: 'default'
       })
       // 通过Rendtion.display渲染打开电子书
-      this.rendition.display()
+      this.rendition.display().then( () => {
+        const font = getFontFamily(this.fileName)
+        if (font) {
+           this.book.rendition.themes.font(font)
+          this.setDefFontFamily(font)
+        } else {
+          saveFontFamily(this.fileName, this.defaultFontFamily)
+        }
+      })
+
       this.rendition.on('touchstart', event => {
         this.touchstartX = event.changedTouches[0].clientX
         this.timeStart = event.timeStamp

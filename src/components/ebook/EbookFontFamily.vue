@@ -19,6 +19,7 @@
 
 <script>
 import mixins from "@/utils/mixins"
+import { saveFontFamily } from '@/utils/localStorage'
 
 export default {
   name: "EbookFontFamily",
@@ -29,6 +30,7 @@ export default {
       },
       setFont(font) {
         this.setDefFontFamily(font)
+        saveFontFamily(this.fileName, font)
         if (font === 'Default'){
           this.Book.rendition.themes.font('Courier New')
         } else {
