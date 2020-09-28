@@ -46,10 +46,10 @@ export default {
       })
 
       this.rendition.hooks.content.register( contents => {
-        contents.addStylesheet('http://localhost:8081/fonts/cabin.css')
-        contents.addStylesheet('http://localhost:8081/fonts/daysOne.css')
-        contents.addStylesheet('http://localhost:8081/fonts/montserrat.css')
-        contents.addStylesheet('http://localhost:8081/fonts/tangerine.css')
+        contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/cabin.css`)
+        contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/daysOne.css`)
+        contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/montserrat.css`)
+        contents.addStylesheet(`${process.env.VUE_APP_FONT}/fonts/tangerine.css`)
       })
     },
 
