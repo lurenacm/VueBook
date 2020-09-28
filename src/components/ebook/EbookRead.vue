@@ -44,20 +44,29 @@ export default {
         // event.preventDefault()
         // event.stopPropagation()
       })
+
+      this.rendition.hooks.content.register( contents => {
+        contents.addStylesheet('http://localhost:8081/fonts/cabin.css')
+        contents.addStylesheet('http://localhost:8081/fonts/daysOne.css')
+        contents.addStylesheet('http://localhost:8081/fonts/montserrat.css')
+        contents.addStylesheet('http://localhost:8081/fonts/tangerine.css')
+      })
     },
 
     _prePages() {
       this.rendition.prev()
       this._hideToggle()
+      this.setFontFamily(false)
     },
     _nextPages() {
       this.rendition.next()
-       this._hideToggle()
+      this._hideToggle()
+      this.setFontFamily(false)
     },
     _toggleShowTtile() {
       this.setShowTitle(!this.showTitle)
       this.setShowSetting(-1)
-      // this.showSetting = -1
+      this.setFontFamily(false)
     },
     _hideToggle() {
       this.setShowTitle(false)

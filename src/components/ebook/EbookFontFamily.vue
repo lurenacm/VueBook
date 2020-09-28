@@ -7,7 +7,7 @@
           <div class="text">选择字体</div>
         </div>
         <div class="fontFamilyList" v-for="(item ,index) of fontFamilyList" :key="index">
-            <div class="itemContainer">
+            <div class="itemContainer" @click="setFont(item.fontFamily)">
               <div class="item" :class="{'selectFamily': selectFamily(item.fontFamily)}">{{item.fontFamily}}</div>
                <span class="icon-check itemicon" v-if="selectFamily(item.fontFamily)"></span>
             </div>
@@ -26,6 +26,14 @@ export default {
   methods: {
       showFamily() {
         this.setFontFamily(false)
+      },
+      setFont(font) {
+        this.setDefFontFamily(font)
+        if (font === 'Default'){
+          this.Book.rendition.themes.font('Courier New')
+        } else {
+          this.Book.rendition.themes.font(font)
+        }
       },
       selectFamily(fontFamily) {
          return this.defaultFontFamily === fontFamily
