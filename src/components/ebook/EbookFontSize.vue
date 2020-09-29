@@ -1,7 +1,7 @@
 <template>
   <div>
       <transition>
-          <div class="container" v-show="showTitle && showSetting>=0">
+          <div class="container" v-show="showTitle && showSetting==0">
             <div class="ebook-setting">
                 <div class="left-font">
                     <span :style="{fontSize:fontsizelist[0].fontSize+ 'px'}">A</span>
