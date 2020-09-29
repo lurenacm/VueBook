@@ -11,7 +11,7 @@ const messages = {  // messages 复数
     cn
 }
 
-let locale = getLang('lang')
+let locale = getLang('selectLang')
 if (!locale) {
     locale = 'cn'
     saveLang(locale)
