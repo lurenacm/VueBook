@@ -3,7 +3,7 @@ import {
   mapActions
 } from 'vuex'
 
-import { FONT_SIZE_LIST, FONT_FAMILY_LIST } from './book'
+import { FONT_SIZE_LIST, FONT_FAMILY_LIST, themeList } from './book'
 const mixins = {
   data() {
    return {
@@ -12,7 +12,10 @@ const mixins = {
    }
   },
   computed: {
-    ...mapGetters(["fileName", "showTitle", 'showSetting', 'defFontSize', 'Book', 'showFontFamily', 'defaultFontFamily'])
+    ...mapGetters(["fileName", "showTitle", 'showSetting', 'defFontSize', 'Book', 'showFontFamily', 'defaultFontFamily']),
+    themeList() {
+      this.themeList(this)
+    }
   },
   methods: {
     ...mapActions(['setFileName', 'setShowTitle', 'setShowSetting', 'setFont', 'setBook', 'setFontFamily', 'setDefFontFamily'])
