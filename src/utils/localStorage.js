@@ -20,6 +20,15 @@ function clearStorage() {
     localStorage.clear()
 }
 
+// 写入语言国际化的缓存
+function saveLang(lang) {
+    localStorage.set( 'selectLang', lang)
+}
+
+function getLang (lang) {
+   return localStorage.get(lang)
+}
+
 // 每本电子书保存的设置可能不同，设置成一个对象。fileName表示写入的不同电子书
 function setBook(fileName, key, value) {
     let book = getStorage(`${fileName}-info`)
@@ -67,5 +76,7 @@ export {
     saveFontFamily,
     getFontFamily,
     saveFontSize,
-    getFontSize
+    getFontSize,
+    saveLang,
+    getLang
 }

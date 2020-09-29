@@ -4,7 +4,7 @@
       <div class="family-container" v-if="showFontFamily">
         <div class="header">
           <span class="icon-down2" @click="showFamily"></span>
-          <div class="text">选择字体</div>
+          <div class="text">{{$t('book.selectFont')}}</div>
         </div>
         <div class="fontFamilyList" v-for="(item ,index) of fontFamilyList" :key="index">
             <div class="itemContainer" @click="setFont(item.fontFamily)">
